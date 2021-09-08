@@ -53,7 +53,7 @@ app.get('/mezzo', function (req, res) {
 });
 
 app.get('/sop', function (req, res) {
-    res.sendfile(publicPath + '/indexsop.html');
+    res.sendfile(publicPath + '/sop.html');
 });
 
 app.get('/inscore3', function (req, res) {
