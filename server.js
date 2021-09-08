@@ -28,16 +28,6 @@ if (user && pass) {
 }
 
 
-
-
-// app.get('/about', function (req, res) {
-//   res.send('about')
-// })
-
-// app.get('/tomate', function (req, res) {
-//   app.use(serveStatic(`${__dirname}/public`))
-// })
-
 app.use(morgan('dev'));
 app.use(compression());
 // app.use(serveStatic(`${__dirname}/public`));
@@ -90,6 +80,10 @@ app.get('/baba', function (req, res) {
 
 app.get('/conductor', function (req, res) {
   res.sendfile(publicPath + '/conductor.html');
+});
+
+app.get('/controller', function (req, res) {
+  res.sendfile(publicPath + '/controller.html');
 });
 
 // app.use('/static', express.static(path.join(__dirname, 'public')))
