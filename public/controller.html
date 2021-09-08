@@ -13,7 +13,8 @@
   <script src="libs/inscoreglue.js"></script>
   <script src="libs/libmusicxml.js"></script>
   <!-- <script src="libs/send.js"></script> -->
-  <script src="libs/form.js"></script>
+  <script src="libs/sender.js"></script>
+  <script src="libs/receive.js"></script>
   <script src="/timesync/timesync.js"></script> 
 
 
@@ -37,6 +38,13 @@
 
 
 <script>
+// socket to send stuff
+var HOST = location.origin.replace(/^http/, 'ws');
+  var ws = new WebSocket(HOST);
+
+
+
+
    // create a timesync instance
    var ts = timesync.create({
      server: '/timesync',
@@ -60,7 +68,13 @@
 
 <body>
 <div>
-   <button id="but" type="button" onclick="alert('Hello world!')">Click Me!</button>
+   <button id="but" type="button" onclick="myFunction()">Start</button>
+   <button id="butstop" type="button" onclick="myFunction2()">Stop</button>
+   <script>
+      var bubu = document.getElementById("but");
+      var toto = document.getElementById("butstop");</script>
+   
+ 
  
   
 
@@ -373,7 +387,14 @@ sc100duree = $sc100end - $sc100start;
 #===================================================================================================================
 # events declaration
 #================================================================================================================= 
+/ITL/scene watch START0 (
+     /ITL/scene/cursor date 0,
+     /ITL/scene/cursor tempo 240
+    );
 
+/ITL/scene watch STOP0 (
+      /ITL/scene/cursor tempo 0
+     );
 
 
 /ITL/scene watch START (
