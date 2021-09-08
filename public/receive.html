@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>express-ws chat sample</title>
+</head>
+<body>
+
+	<video id="video1" controls>
+            <source src="adam3.mp4" type="video/mp4"/>
+          
+            <!-- fallback -->
+            Your browser does not support the <code>video</code> element.
+    </video>
+
+  <form class="form">
+    <input class="input" autofocus>
+    <input class="submit" type="submit">
+  </form>
+  <ul class="messages"></ul>
+  <script src="clientadam.js"></script>
+
+  <script> 
+var myVideo = document.getElementById("video1"); 
+
+function settime(number) { 
+myVideo.currentTime = number
+} 
+
+</script>
+
+
+
+
+</body>
+</html>
