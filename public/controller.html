@@ -70,9 +70,17 @@ var HOST = location.origin.replace(/^http/, 'ws');
 <div>
    <button id="but" type="button" onclick="myFunction()">Start</button>
    <button id="butstop" type="button" onclick="myFunction2()">Stop</button>
+
+
+   <form>
+      <label for="vol">seek (between 0 and 600s):</label>
+      <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" oninput="DisplayChange(this.value)">
+    </form>
+
    <script>
       var bubu = document.getElementById("but");
-      var toto = document.getElementById("butstop");</script>
+      var toto = document.getElementById("butstop");  
+   </script>
    
  
  
