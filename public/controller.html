@@ -61,6 +61,16 @@ var HOST = location.origin.replace(/^http/, 'ws');
      var now = new Date(ts.now());
      console.log('now: ' + now.toISOString() + ' ms<br>');
    }, 3000);
+
+   setInterval(function () {
+     var now = new Date(ts.now());
+     var dum = "dummy";
+    ws.send(dum);
+
+
+     console.log('sent dummy');
+   }, 5000);
+
  </script> 
 
 
