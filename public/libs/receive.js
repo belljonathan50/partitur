@@ -42,8 +42,8 @@
         // /ITL/scene/cursor date 0,
 
         break;
-      case 3:
-        day = "Wednesday";
+      case "dummy":
+        console.log("dummy");
         break;
       case 4:
         day = "Thursday";
