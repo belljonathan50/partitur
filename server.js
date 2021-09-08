@@ -1,7 +1,7 @@
 const express     = require('express');
 var timesyncServer = require('timesync/server');
 const app         = express();
-const Max = require("max-api");
+// const Max = require("max-api");
 
 
 const router = express.Router();
@@ -147,19 +147,19 @@ app.use("/ws-stuff", router);
 //     }
 //   });
 
-Max.addHandler("seek", (args) => {
-    console.log("send args: " + args);
+// Max.addHandler("seek", (args) => {
+//     console.log("send args: " + args);
     
-     console.log(args);
-     const stringifie =   String(args);
-     console.log(stringifie);
+//      console.log(args);
+//      const stringifie =   String(args);
+//      console.log(stringifie);
     
-    connects.forEach(socket => {
-      socket.send(stringifie);
+//     connects.forEach(socket => {
+//       socket.send(stringifie);
       
-    });
+//     });
 
-  });
+//   });
 
 
 // Max.addHandler("seek", (args) => {
@@ -175,18 +175,18 @@ Max.addHandler("seek", (args) => {
 
 
 
-  Max.addHandler("msg", (args) => {
-    console.log("temporal args: " + args);
-    console.log("hi");
-    //  ts.now();
+  // Max.addHandler("msg", (args) => {
+  //   console.log("temporal args: " + args);
+  //   console.log("hi");
+  //   //  ts.now();
     
-     console.log("what's the time " + args);
-     const stringifie =   String(args);
-     console.log("as a string, and sent over socket " +stringifie);
-    connects.forEach(socket => {
-      socket.send(stringifie);
-    });
-  });
+  //    console.log("what's the time " + args);
+  //    const stringifie =   String(args);
+  //    console.log("as a string, and sent over socket " +stringifie);
+  //   connects.forEach(socket => {
+  //     socket.send(stringifie);
+  //   });
+  // });
 
 
   app.use('/timesync', timesyncServer.requestHandler);
