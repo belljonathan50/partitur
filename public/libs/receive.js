@@ -8,19 +8,39 @@
   
   ws.onmessage = function(msg) {
     var response = msg.data;
-    console.log("response "+ response);
+    var words = response.split(' ');
+    var first = words[0];
+    var seekValue = parseInt(words[1]);
+
     console.log(msg);
+    console.log("response "+ response);
+    console.log("words "+ words);
+    console.log("first "+ first);
+    console.log("seekValue "+ seekValue);
+    console.log(typeof seekValue);
+    console.log(typeof seekValue);
+    console.log(typeof seekValue);
+    
 
 
-    switch (response) {
+    switch (first) {
       case "start":
         inscore.postMessageStrStr ("/ITL/scene", "event", "START0");
         break;
       case "stop":
         inscore.postMessageStrStr ("/ITL/scene", "event", "STOP0");
         break;
-      case 2:
-        day = "Tuesday";
+      case "seek":
+
+        var message = inscore.newMessageM ("date");
+        inscore.msgAddF (message, seekValue);
+        inscore.postMessage ("/ITL/scene/cursor", message); 
+
+        // inscore.postMessageStrStr ("/ITL/scene/cursor", "date", "3");
+
+
+        // /ITL/scene/cursor date 0,
+
         break;
       case 3:
         day = "Wednesday";
