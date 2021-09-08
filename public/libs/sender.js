@@ -16,3 +16,10 @@ function myFunction2() {
 }
 
 
+
+function DisplayChange(value) {
+  console.log("seek "+value);
+  ws.send("seek "+value);
+}
+
+
