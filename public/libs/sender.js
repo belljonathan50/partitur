@@ -31,11 +31,30 @@ function myFunctionStop() {
   }
 }
 
+function myDelayedFunction() {
+  delbut.onclick = function() {
+
+    var now = new Date(ts.now());
+    var mess = ('hit now: '+ now.getTime() +'; later: ' + ( now.getTime() + 2000 )  );
+    console.log(mess);
+    ws.send(mess);
+   
+   
+    // ws.send(mess);
+  }
+}
 
 
-function DisplayChange(value) {
+
+function SeekChange(value) {
   console.log("seek "+value);
   ws.send("seek "+value);
+}
+
+function DelayPlay(value) {
+  var latency = value;
+  console.log("DelayPlay "+value);
+  ws.send("DelayPlay "+value);
 }
 
 
