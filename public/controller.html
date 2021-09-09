@@ -78,7 +78,8 @@ var HOST = location.origin.replace(/^http/, 'ws');
 
 <body>
 <div>
-   <button id="but" type="button" onclick="myFunction()">Start</button>
+   <button id="but" type="button" onclick="myFunction()">Start0</button>
+   <button id="cur" type="button" onclick="myFunctionX()">Start at currentTime</button>
    <button id="butstop" type="button" onclick="myFunction2()">Stop</button>
 
 
@@ -409,6 +410,11 @@ sc100duree = $sc100end - $sc100start;
      /ITL/scene/cursor date 0,
      /ITL/scene/cursor tempo 240
     );
+
+    /ITL/scene watch STARTX (
+     /ITL/scene/cursor tempo 240
+    );
+
 
 /ITL/scene watch STOP0 (
       /ITL/scene/cursor tempo 0
