@@ -61,8 +61,8 @@
         setTimeout( function() {inscore.postMessageStrStr("/ITL/scene", "event", "STARTX")}, difference)
         break;
 
-        case "DelayPlay":
-          console.log("del " + words[1])
+        // case "DelayPlay":
+        //   console.log("del " + words[1])
 
     }
 
