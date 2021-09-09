@@ -62,7 +62,9 @@
         break;
 
         // case "DelayPlay":
-        //   console.log("del " + words[1])
+        //   var latency = words[1];
+        //   console.log("the latency is: " + latency);
+          
 
     }
 
