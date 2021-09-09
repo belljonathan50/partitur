@@ -45,8 +45,9 @@
       case "dummy":
         console.log("dummy");
         break;
-      case 4:
-        day = "Thursday";
+      case "startX":
+        inscore.postMessageStrStr ("/ITL/scene", "event", "STARTX");
+
         break;
       case 5:
         day = "Friday";
