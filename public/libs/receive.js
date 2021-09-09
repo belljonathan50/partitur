@@ -27,7 +27,7 @@
       case "start":
         inscore.postMessageStrStr ("/ITL/scene", "event", "START0");
         break;
-      case "stop":
+      case "pause":
         inscore.postMessageStrStr ("/ITL/scene", "event", "STOP0");
         break;
       case "seek":
@@ -47,10 +47,9 @@
         break;
       case "startX":
         inscore.postMessageStrStr ("/ITL/scene", "event", "STARTX");
-
         break;
-      case 5:
-        day = "Friday";
+      case "stop":
+        inscore.postMessageStrStr ("/ITL/scene", "event", "REWIND");
         break;
       case  6:
         day = "Saturday";
