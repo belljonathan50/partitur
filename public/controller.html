@@ -79,7 +79,7 @@ var HOST = location.origin.replace(/^http/, 'ws');
 <body>
 <div>
    <button id="but" type="button" onclick="myFunction()">Start0</button>
-   <button id="but" type="button" onclick="myFunction()">Start0 - delayed</button>
+   <button id="delbut" type="button" onclick="myDelayedFunction()">Start0 - delayed</button>
    <button id="cur" type="button" onclick="myFunctionX()">Start at currentTime</button>
    <button id="butpause" type="button" onclick="myFunctionPause()">Pause</button>
    <button id="butstop" type="button" onclick="myFunctionStop()">Stop</button>
@@ -87,7 +87,13 @@ var HOST = location.origin.replace(/^http/, 'ws');
 
    <form>
       <label for="vol">seek (between 0 and 600s):</label>
-      <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" oninput="DisplayChange(this.value)">
+      <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" oninput="SeekChange(this.value)">
+    </form>
+
+
+    <form>
+      <label >lag (between 0 and 2000ms):</label>
+      <input type="range" id="lag"  min="0" max="2000" style="color:rgb(3, 89, 129); width:600px;" oninput="DelayPlay(this.value)">
     </form>
 
    <script>
