@@ -393,8 +393,11 @@ sc100duree = $sc100end - $sc100start;
     );
 
 /ITL/scene watch STARTX (
-      /ITL/scene/cursor tempo 240
+      /ITL/scene/cursor tempo 240,
+      /ITL/scene/audio play 1
      );
+
+/ITL/scene/audio set audio 'libs/v36.wav';
 
 /ITL/scene watch STOP0 (
       /ITL/scene/cursor tempo 0
