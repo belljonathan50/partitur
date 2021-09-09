@@ -6,6 +6,14 @@ function myFunction() {
   }
 }
 
+function myFunctionX() {
+  cur.onclick = function() {
+    console.log("startX");
+    var text = "startX";
+    ws.send(text);
+  }
+}
+
 
 function myFunction2() {
   toto.onclick = function() {
