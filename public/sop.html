@@ -349,8 +349,13 @@ sc100duree = $sc100end - $sc100start;
     /ITL/scene watch STARTX (
       /ITL/scene/cursor tempo 240
      );
-     
+
 /ITL/scene watch STOP0 (
+      /ITL/scene/cursor tempo 0
+     );
+
+     /ITL/scene watch REWIND (
+      /ITL/scene/cursor date 0,
       /ITL/scene/cursor tempo 0
      );
 
