@@ -33,9 +33,10 @@ function myFunctionStop() {
 
 function myDelayedFunction() {
   delbut.onclick = function() {
-
+    latency = window.latency;
     var now = new Date(ts.now());
-    var mess = ('hit now: '+ now.getTime() +'; later: ' + ( now.getTime() + 2000 )  );
+    var mess = ('hit now: '+ now.getTime() +'; later: ' + ( now.getTime() + 1000)  );
+    
     console.log(mess);
     ws.send(mess);
    
@@ -53,8 +54,8 @@ function SeekChange(value) {
 
 function DelayPlay(value) {
   var latency = value;
-  console.log("DelayPlay "+value);
-  // ws.send("DelayPlay "+value);
+  console.log("DelayPlay "+latency);
+  ws.send("DelayPlay "+value);
 }
 
 
