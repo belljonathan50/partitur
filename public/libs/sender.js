@@ -1,5 +1,5 @@
 function myFunction() {
-  bubu.onclick = function() {
+  but.onclick = function() {
     console.log("start");
     var text = "start";
     ws.send(text);
@@ -15,8 +15,16 @@ function myFunctionX() {
 }
 
 
-function myFunction2() {
-  toto.onclick = function() {
+function myFunctionPause() {
+  butpause.onclick = function() {
+    console.log("pause");
+    var text = "pause";
+    ws.send(text);
+  }
+}
+
+function myFunctionStop() {
+  butstop.onclick = function() {
     console.log("stop");
     var text = "stop";
     ws.send(text);
