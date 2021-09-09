@@ -54,7 +54,7 @@ function SeekChange(value) {
 function DelayPlay(value) {
   var latency = value;
   console.log("DelayPlay "+value);
-  ws.send("DelayPlay "+value);
+  // ws.send("DelayPlay "+value);
 }
 
 
