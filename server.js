@@ -80,6 +80,10 @@ app.get('/banana', function (req, res) {
   res.sendfile(publicPath + '/banana.html');
 });
 
+app.get('/ideas', function (req, res) {
+  res.sendfile(publicPath + '/ideas.html');
+});
+
 
 app.get('/conductor', function (req, res) {
   res.sendfile(publicPath + '/conductor.html');
