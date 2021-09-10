@@ -58,3 +58,12 @@ function DelayPlay(value) {
 }
 
 
+function sendwrite() {
+  sen.onclick = function() {
+    console.log("sendwrite");
+    var text = "write this";
+    ws.send(text);
+  }
+}
+
+
