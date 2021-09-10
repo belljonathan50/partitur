@@ -72,7 +72,6 @@ app.get('/bass', function (req, res) {
   res.sendfile(publicPath + '/bass.html');
 });
 
-
 app.get('/baba', function (req, res) {
   res.sendfile(publicPath + '/baba.html');
 });
