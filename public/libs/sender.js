@@ -33,7 +33,6 @@ function myFunctionStop() {
 
 function myDelayedFunction() {
   delbut.onclick = function() {
-    latency = window.latency;
     var now = new Date(ts.now());
     var mess = ('hit now: '+ now.getTime() +'; later: ' + ( now.getTime() + 1000)  );
     
