@@ -61,9 +61,11 @@
         setTimeout( function() {inscore.postMessageStrStr("/ITL/scene", "event", "STARTX")}, difference)
         break;
 
-        // case "DelayPlay":
-        //   var latency = words[1];
-        //   console.log("the latency is: " + latency);
+        case  "write":
+          console.log("receive the write ");
+       
+          document.write("hello world")
+          break;
           
 
     }
