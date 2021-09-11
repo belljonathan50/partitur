@@ -61,11 +61,11 @@
         setTimeout( function() {inscore.postMessageStrStr("/ITL/scene", "event", "STARTX")}, difference)
         break;
 
-        case  "write":
-          console.log("receive the write ");
+        // case  "write":
+        //   console.log("receive the write ");
        
-          document.write("hello world")
-          break;
+        //   document.write("hello world")
+        //   break;
           
 
     }
