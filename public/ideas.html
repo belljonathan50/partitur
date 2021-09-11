@@ -15,27 +15,77 @@ h1 {
   color: white;
 }
 
+#interpupilary {
+  display:inline-block;
+  width: 80px;
+}
+
+#container {
+  text-align:center;
+  display:inline-block;
+}
+
   </style>
+
+
+
 
   <body style="background-color:black;"></body>
 
+<div id="container">
 
 
+  <video class="snob" width="400px" src="tata.mp4" controls></video>
 
-  <video class="snob" width="400px" src="test567.mp4" controls></video>
-  <video class="snob" src="test567.mp4" controls></video>
+  <div id="interpupilary" hight="400px">eded</div>
 
-  <form>
-    <label for="vol">display</label>
-    <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" oninput="scale(this.value)">
-  </form>
+  <video class="snob" src="tata.mp4" controls></video>
+
+</div>
+
+
+<form>
+  <label for="vol">display</label>
+  <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" 
+  oninput=
+  "
+  console.log('scale'+this.value);
+  let vids = document.getElementsByClassName('snob');
+  vids[0].width = value;
+  vids[1].width = value;
+  ">
+</form>
+
+<form>
+  <label for="vol">display</label>
+  <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" 
+  oninput=
+  "
+  let t = document.getElementById('interpupilary');
+  t.style.width = this.value;
+  ">
+</form>
 
   <p>change colors</p>
   <p>scale</p>
+  <p>textalign center https://youtu.be/I3zAKyLRciU?t=463</p>
+  <p>display: inline block;</p>
+
+  <p></p>
+
+  <p>oninput="javascript code"</p>
 
 <script>
   function scale(value) {
+    
     console.log("scale "+value);
+    let vids = document.getElementsByClassName("snob");
+    vids[0].width = value;
+    vids[1].width = value;
+  }
+
+  function scale(value) {
+    console.log("dist "+value);
     let vids = document.getElementsByClassName("snob");
     vids[0].width = value;
     vids[1].width = value;
