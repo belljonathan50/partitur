@@ -88,6 +88,10 @@ app.get('/ar', function (req, res) {
   res.sendfile(publicPath + '/ar.html');
 });
 
+app.get('/leducmus', function (req, res) {
+  res.sendfile(publicPath + '/leducmus.html');
+});
+
 
 app.get('/conductor', function (req, res) {
   res.sendfile(publicPath + '/conductor.html');
