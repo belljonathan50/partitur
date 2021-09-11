@@ -20,13 +20,30 @@ h1 {
   <body style="background-color:black;"></body>
 
 
+
+
+  <video class="snob" width="400px" src="test567.mp4" controls></video>
+  <video class="snob" src="test567.mp4" controls></video>
+
   <form>
     <label for="vol">display</label>
-    <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" oninput="SeekChange(this.value)">
+    <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" oninput="scale(this.value)">
   </form>
 
-  <video src="test567.mp4" controls></video>
-  <video src="test567.mp4" controls></video>
+  <p>change colors</p>
+  <p>scale</p>
+
+<script>
+  function scale(value) {
+    console.log("scale "+value);
+    let vids = document.getElementsByClassName("snob");
+    vids[0].width = value;
+    vids[1].width = value;
+    
+  }
+</script>
+
+
 
 
   <h1>Videos</h1>
@@ -80,6 +97,9 @@ h1 {
     <p>
 
     
+
+
+
 
 
 
