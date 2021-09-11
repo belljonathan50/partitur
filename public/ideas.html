@@ -22,7 +22,7 @@ h1 {
 
 #container {
   text-align:center;
-  display:inline-block;
+  /* display:inline-block; */
 }
 
   </style>
@@ -34,12 +34,13 @@ h1 {
 
 <div id="container">
 
-
-  <video class="snob" width="400px" src="tata.mp4" controls></video>
+<center>
+  <video class="snob" width="140px" src="tata.mp4" controls></video>
 
   <div id="interpupilary" hight="400px">eded</div>
 
-  <video class="snob" src="tata.mp4" controls></video>
+  <video class="snob"  width="140px" src="tata.mp4" controls></video>
+</center>
 
 </div>
 
@@ -58,11 +59,13 @@ h1 {
 
 <form>
   <label for="vol">display</label>
-  <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" 
+  <input type="range" id="inter" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" 
   oninput=
   "
+  console.log(this.value)
   let t = document.getElementById('interpupilary');
-  t.style.width = this.value;
+  t.style.width = this.value+'px';
+  console.log(this.value+'px')
   ">
 </form>
 
