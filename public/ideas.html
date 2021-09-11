@@ -32,6 +32,45 @@ h1 {
 
   <body style="background-color:black;"></body>
 
+
+
+  <form>
+    <label for="vol">display</label>
+    <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" 
+    oninput=
+    "
+    console.log('scale'+this.value);
+    let vids = document.getElementsByClassName('snob');
+    vids[0].width = value;
+    vids[1].width = value;
+    ">
+  </form>
+  
+  <form>
+    <label for="vol">display</label>
+    <input type="range" id="inter" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" 
+    oninput=
+    "
+    console.log(this.value)
+    let t = document.getElementById('interpupilary');
+    t.style.width = this.value+'px';
+    console.log(this.value+'px')
+    ">
+  </form>
+  
+  <form>
+    <label for="vol">display</label>
+    <input type="range" id="inter" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" 
+    oninput=
+    "
+    console.log(this.value)
+    let x = document.getElementById('divduhaut');
+    x.style.height = this.value+'px';
+    console.log(this.value+'px')
+    ">
+  </form>
+
+<div id="divduhaut"></div>
 <div id="container">
 
 <center>
@@ -45,29 +84,6 @@ h1 {
 </div>
 
 
-<form>
-  <label for="vol">display</label>
-  <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" 
-  oninput=
-  "
-  console.log('scale'+this.value);
-  let vids = document.getElementsByClassName('snob');
-  vids[0].width = value;
-  vids[1].width = value;
-  ">
-</form>
-
-<form>
-  <label for="vol">display</label>
-  <input type="range" id="inter" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" 
-  oninput=
-  "
-  console.log(this.value)
-  let t = document.getElementById('interpupilary');
-  t.style.width = this.value+'px';
-  console.log(this.value+'px')
-  ">
-</form>
 
   <p>change colors</p>
   <p>scale</p>
