@@ -2698,6 +2698,74 @@ click = (/ITL/scene/cursor date '$date');
 
 
 
+<style>
+
+
+   p {
+     color: grey;
+   }
+   
+   h1 {
+     color: white;
+   }
+   
+   #interpupilary {
+     display:inline-block;
+     width: 80px;
+   }
+   
+   #container {
+     text-align:center;
+     /* display:inline-block; */
+   }
+   
+     </style>
+   
+   
+   
+   
+     <body style="background-color:black;"></body>
+   
+   
+   
+     <form>
+       <label for="vol">size</label>
+       <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:1200px;" 
+       oninput=
+       "
+       
+       var text = 'smart size ' + this.value;
+       console.log(text);
+       ws.send(text);
+
+
+
+       ">
+     </form>
+     
+     <form>
+       <label for="vol">distance</label>
+       <input type="range" id="inter" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" 
+       oninput=
+       "
+       console.log(this.value)
+       var text = 'smart distance ' + this.value+'px';
+       console.log(text);
+       ws.send(text);
+       ">
+     </form>
+     
+     <form>
+       <label for="vol">hauteur</label>
+       <input type="range" id="inter" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" 
+       oninput=
+       "
+       console.log(this.value);
+       var text = 'smart height ' + this.value+'px';
+       console.log(text);
+       ws.send(text);
+       ">
+     </form>
 
 
 
