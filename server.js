@@ -92,6 +92,10 @@ app.get('/leducmus', function (req, res) {
   res.sendfile(publicPath + '/leducmus.html');
 });
 
+app.get('/smartsop', function (req, res) {
+  res.sendfile(publicPath + '/smartsop.html');
+});
+
 
 app.get('/conductor', function (req, res) {
   res.sendfile(publicPath + '/conductor.html');
