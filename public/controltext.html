@@ -1,0 +1,226 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>State of Guts</title>
+
+  <link href="libs/fonts/fonts.css" rel="stylesheet">
+  <script src="libs/libINScore.js"></script>
+  <script src="libs/libGUIDOEngine.js"></script>
+  <script src="libs/libfaust-wasm.js"></script>
+  <script src="libs/FaustLibrary.js"></script>
+  <script src="libs/inscoreview.js"></script>
+  <script src="libs/inscoreglue.js"></script>
+  <script src="libs/libmusicxml.js"></script>
+  <!-- <script src="libs/send.js"></script> -->
+  <script src="libs/sender.js"></script>
+  <script src="libs/receive.js"></script>
+  <script src="/timesync/timesync.js"></script> 
+
+
+  <style>
+    body {
+      margin: 20;
+      background-color: black;
+      color: white
+    }
+
+
+  </style>
+</head>
+
+
+
+<script>
+// socket to send stuff
+var HOST = location.origin.replace(/^http/, 'ws');
+  var ws = new WebSocket(HOST);
+
+
+
+
+   // create a timesync instance
+   var ts = timesync.create({
+     server: '/timesync',
+     interval: 10000
+   });
+  
+   // get notified on changes in the offset
+   ts.on('change', function (offset) {
+     console.log('changed offset: ' + offset + ' ms<br>');
+   });
+  
+   // get synchronized time
+   setInterval(function () {
+     var now = new Date(ts.now());
+     console.log('now: ' + now.toISOString() + ' ms<br>');
+   }, 3000);
+
+   setInterval(function () {
+     var now = new Date(ts.now());
+     var dum = "dummy";
+    ws.send(dum);
+
+
+     console.log('sent dummy');
+   }, 15000);
+
+ </script> 
+
+
+
+
+  
+   
+<body style="background-color:black;">
+   
+<!--    
+<div>
+   <button id="but" type="button" onclick="myFunction()">Start0</button>
+   <button id="delbut" type="button" onclick="myDelayedFunction()">Start00 - delayed</button>
+   <button id="cur" type="button" onclick="myFunctionX()">Start at currentTime</button>
+   <button id="butpause" type="button" onclick="myFunctionPause()">Pause</button>
+   <button id="butstop" type="button" onclick="myFunctionStop()">Stop</button>
+   <button id="sen" type="button" onclick="sendwrite()">sendwrite</button>
+
+
+   <form>
+      <label for="vol">seek (between 0 and 600s):</label>
+      <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" oninput="SeekChange(this.value)">
+    </form>
+
+  
+
+
+</div>
+  -->
+
+
+  <!--   /ITL/scene/bnext watch mouseDown ( 
+    /ITL/scene/cursor date '$(/ITL/scene/vnext get date)', 
+    /ITL/scene/audio vdate '$(/ITL/scene/vnext get date)'
+  );
+  /ITL/scene/bprev watch mouseDown ( 
+    /ITL/scene/cursor date '$(/ITL/scene/vprev get date)', 
+    /ITL/scene/audio vdate '$(/ITL/scene/vprev get date)'
+  ); 
+
+/ITL/scene/cursor watch timeLeave $sc100end 100000000 (
+	/ITL/scene/end show 0
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/ITL/log write "debug-oddduttttt";
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+
+
+
+
+<style>
+
+
+   p {
+     color: grey;
+   }
+   
+   h1 {
+     color: white;
+   }
+   
+   #interpupilary {
+     display:inline-block;
+     width: 80px;
+   }
+   
+   #container {
+     text-align:center;
+     /* display:inline-block; */
+   }
+   
+     </style>
+   
+   
+ 
+   
+     <form>
+       <label for="vol">size</label>
+       <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:1200px;" 
+       oninput=
+       "
+       
+       var text = 'smart size ' + this.value;
+       console.log(text);
+       ws.send(text);
+
+
+
+       ">
+     </form>
+     
+     <form>
+       <label for="vol">numbers</label>
+       <input type="text" id="inter" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" 
+       oninput=
+       "
+       console.log(this.value)
+       var text = 'smartex ' + this.value;
+       console.log(text);
+       ws.send(text);
+       ">
+     </form>
+     
+     <form>
+       <label for="vol">hauteur</label>
+       <input type="range" id="inter" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" 
+       oninput=
+       "
+       console.log(this.value);
+       var text = 'smart height ' + this.value+'px';
+       console.log(text);
+       ws.send(text);
+       ">
+     </form>
+
+     <form>
+      <label for="vol">distance</label>
+      <input type="range" id="inter" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" 
+      oninput=
+      "
+      console.log(this.value);
+      var text = 'smart distance ' + this.value+'px';
+      console.log(text);
+      ws.send(text);
+      ">
+    </form>
+
+
+
+
+</body>
+
+</html>
