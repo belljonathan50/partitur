@@ -100,6 +100,14 @@ app.get('/smartex', function (req, res) {
   res.sendfile(publicPath + '/smartex.html');
 });
 
+app.get('/smartimg', function (req, res) {
+  res.sendfile(publicPath + '/smartimg.html');
+});
+
+app.get('/smartvid', function (req, res) {
+  res.sendfile(publicPath + '/smartvid.html');
+});
+
 app.get('/smartex', function (req, res) {
   res.sendfile(publicPath + '/smartex.html');
 });
