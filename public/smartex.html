@@ -1,0 +1,1761 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>State of Guts</title>
+
+  <link href="libs/fonts/fonts.css" rel="stylesheet">
+  <script src="libs/libINScore.js"></script>
+  <script src="libs/libGUIDOEngine.js"></script>
+  <script src="libs/libfaust-wasm.js"></script>
+  <script src="libs/FaustLibrary.js"></script>
+  <script src="libs/inscoreview.js"></script>
+  <script src="libs/inscoreglue.js"></script>
+  <script src="libs/libmusicxml.js"></script>
+  <script src="libs/receivesmartsop.js"></script>
+
+<!-- 
+  <style>
+    body {
+      margin: 20;
+      background-color: black;
+      color: white
+    }
+
+    .inscore {
+      background-color: white;
+      border-color: grey;
+      width: 100%;
+      height: 100%;
+      font-size: 1px;
+    }
+  </style> -->
+</head>
+
+<body>
+
+
+
+   <style>
+
+
+      p {
+        color: grey;
+      }
+      
+      h1 {
+        color: white;
+      }
+      
+      #interpupilary {
+        display:inline-block;
+        width: 80px;
+      }
+      
+      #container {
+        text-align:center;
+        /* display:inline-block; */
+      }
+      
+        </style>
+      
+      
+      
+      
+        <body style="background-color:black;"></body>
+      
+      
+      
+      
+      <div id="divduhaut"></div>
+      <div id="container">
+      
+      <center>
+        <img class="snob" width="140px" src="imgs/0.png" controls></img>
+      
+        <div id="interpupilary" hight="400px">eded</div>
+      
+        <img class="snob" width="140px" src="imgs/0.png" controls></img>
+      </center>
+      
+      </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="inscore" id="scene">
+    <pre>
+
+
+#==================================================
+#lets add the audio
+#==================================================
+
+
+
+
+
+/ITL/scene/cursor set rect 0.03 0.6;
+/ITL/scene/cursor color 255 0 0;
+/ITL/scene color 0 0 0;
+
+
+
+
+	click = (/ITL/scene/cursor date '$date', /ITL/log write "hello");
+  /ITL/scene/sc* watch mouseDown $click;
+/ITL/scene/sc* watch mouseMove $click;
+
+
+#===================================================================================================================
+# events declaration
+#================================================================================================================= 
+/ITL/scene watch START0 (
+     /ITL/scene/cursor date 0,
+     /ITL/scene/cursor tempo 240
+    );
+
+    /ITL/scene watch STARTX (
+      /ITL/scene/cursor tempo 240
+     );
+
+/ITL/scene watch STOP0 (
+      /ITL/scene/cursor tempo 0
+     );
+
+     /ITL/scene watch REWIND (
+      /ITL/scene/cursor date 0,
+      /ITL/scene/cursor tempo 0
+     );
+
+
+/ITL/scene watch START (
+	/ITL/scene/sync cursor sc* v relative
+);
+
+/ITL/scene watch STOP (
+	/ITL/scene/cursor tempo 0
+);
+
+
+
+
+
+
+
+
+
+/ITL/scene watch CUT (
+	/ITL/scene/shift disconnect audioOutput,
+	/ITL/scene/echo disconnect audioOutput,
+	/ITL/scene/vocoder disconnect audioOutput,
+	/ITL/scene/reverb disconnect audioOutput,
+	/ITL/scene/radio disconnect audioOutput
+);
+
+/ITL/scene watch VOCODER (
+	/ITL/scene/audioInput connect vocoder,
+    /ITL/scene/vocoder connect audioOutput,
+	/ITL/scene/vocoder/My_Vocoder/Excitation/Freq '$1',
+	/ITL/scene/vocoder/My_Vocoder/Excitation/Gain '$2',
+	/ITL/scene/vocoder/My_Vocoder/Vocoder/Attack '$3',
+	/ITL/scene/vocoder/My_Vocoder/Vocoder/BW '$4',
+	/ITL/scene/vocoder/My_Vocoder/Vocoder/Release '$5'
+);
+
+/ITL/scene watch ECHO (
+/ITL/scene/audioInput connect echo,
+/ITL/scene/echo connect audioOutput,
+/ITL/scene/echo/echo__1000/feedback '$1',
+/ITL/scene/echo/echo__1000/millisecond '$2'
+);
+
+
+#==================================================
+# SHIFT 1/ shifting -24 24 2/ window 50 10000 3/ xfade 1 10000 
+#================================================== 
+
+
+/ITL/scene watch SHIFT (
+	/ITL/scene/audioInput connect shift,
+    /ITL/scene/shift connect audioOutput,
+	/ITL/scene/shift/Pitch_Shifter/shifting '$1',
+	/ITL/scene/shift/Pitch_Shifter/window '$2',
+	/ITL/scene/shift/Pitch_Shifter/xfade '$3'
+);
+
+
+#==================================================
+# REVERB 1/ damps 0. 1. 2/ roomsize 0. 1. 3/ wet 0. 1.
+#================================================== 
+
+
+/ITL/scene watch REVERB (
+/ITL/scene/audioInput connect reverb,
+/ITL/scene/reverb connect audioOutput,
+/ITL/scene/reverb/Freeverb/0x00/Damp '$1',
+/ITL/scene/reverb/Freeverb/0x00/RoomSize '$2',
+/ITL/scene/reverb/Freeverb/Wet '$3'
+);
+
+#==================================================
+# SHIFTREVERB 1/ shifting -24 24 2/ window 50 10000 3/ xfade 1 10000 4/ damps 0. 1. 5/ roomsize 0. 1. 6/ wet 0. 1.
+#================================================== 
+
+
+/ITL/scene watch SHIFTREVERB (
+/ITL/scene/audioInput connect shift,
+/ITL/scene/shift connect reverb,
+/ITL/scene/reverb connect audioOutput,
+/ITL/scene/shift/Pitch_Shifter/shifting '$1',
+/ITL/scene/shift/Pitch_Shifter/window 10000,
+/ITL/scene/shift/Pitch_Shifter/xfade 10000,
+/ITL/scene/reverb/Freeverb/0x00/Damp 0.9,
+/ITL/scene/reverb/Freeverb/0x00/RoomSize 0.9,
+/ITL/scene/reverb/Freeverb/0x00/Stereo_Spread 0.9,
+/ITL/scene/reverb/Freeverb/Wet '$2'
+);
+
+/ITL/scene watch RADIO (
+/ITL/scene/audioInput connect radio,
+/ITL/scene/radio connect audioOutput,
+/ITL/scene/radio/FaustDSP/Q  '$1',
+/ITL/scene/radio/FaustDSP/freq  '$2'
+);
+
+
+
+
+#==================================================
+# RADIOECHO 1/ Q 20s good     2/ freq 0 - 0.5  -  1      3/ milliseconds     4/ feedback 0 100
+#==================================================
+
+/ITL/scene watch RADIOECHO (
+/ITL/scene/audioInput connect echo,
+/ITL/scene/echo connect radio,
+/ITL/scene/radio connect audioOutput,
+/ITL/scene/radio/FaustDSP/Q  '$1',
+/ITL/scene/radio/FaustDSP/freq  '$2',
+/ITL/scene/echo/echo__1000/millisecond '$3',
+/ITL/scene/echo/echo__1000/feedback '$4'
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+/ITL/log write "debug-inn";
+
+#================================================================================================
+# the score
+#================================================================================================
+
+
+/ITL/scene/sc* watch mouseDown (/ITL/scene/cursor date "$date");
+
+
+
+
+
+
+
+#================================================================================================
+# score effects
+#================================================================================================
+
+/ITL/scene/cursor watch timeEnter 1.010412 2.747 (
+   /ITL/scene event REVERB 0.96 0.82 0.3
+);
+
+/ITL/scene/cursor watch timeEnter 2.747 4.73 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 4.73 6.467 (
+   /ITL/scene event RADIO 25 0.83
+);
+
+/ITL/scene/cursor watch timeEnter 6.467 8.548 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 8.548 10.285 (
+   /ITL/scene event ECHO 24 714
+);
+
+/ITL/scene/cursor watch timeEnter 10.285 14.612 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 14.612 16.349 (
+   /ITL/scene event SHIFT -15 8537 6572
+);
+
+/ITL/scene/cursor watch timeEnter 16.349 18.43 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 26.542 28.622 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 30.359 32.44 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 28.622 30.359 (
+   /ITL/scene event RADIO 9 0.08
+);
+
+/ITL/scene/cursor watch timeEnter 32.44 34.177 (
+   /ITL/scene event ECHO 93 1436
+);
+
+/ITL/scene/cursor watch timeEnter 34.177 36.562 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 36.562 40.29 (
+   /ITL/scene event ECHO 63 53
+);
+
+/ITL/scene/cursor watch timeEnter 40.29 41.765 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 41.765 43.502 (
+   /ITL/scene event RADIO 27 0.37
+);
+
+/ITL/scene/cursor watch timeEnter 43.502 45.83 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 45.83 49.557 (
+   /ITL/scene event RADIO 8 0.33
+);
+
+/ITL/scene/cursor watch timeEnter 49.557 50.977 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 50.977 52.714 (
+   /ITL/scene event VOCODER 69 0.23 0.97 0.51 1.54
+);
+
+/ITL/scene/cursor watch timeEnter 52.714 54.795 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 24.805 26.542 (
+   /ITL/scene event ECHO 3 747
+);
+
+/ITL/scene/cursor watch timeEnter 18.43 20.167 (
+   /ITL/scene event REVERB 0.97 0.37 0.06
+);
+
+/ITL/scene/cursor watch timeEnter 58.612 60.349 (
+   /ITL/scene event SHIFT -24 3062 7415
+);
+
+/ITL/scene/cursor watch timeEnter 54.795 56.532 (
+   /ITL/scene event ECHO 18 359
+);
+
+/ITL/scene/cursor watch timeEnter 63.574 68.855 (
+   /ITL/scene event ECHO 85 1773
+);
+
+/ITL/scene/cursor watch timeEnter 68.855 70.575 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 70.575 72.295 (
+   /ITL/scene event SHIFTREVERB 5 3101 4144 0.98 0.77 0.85
+);
+
+/ITL/scene/cursor watch timeEnter 72.295 76.397 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 76.397 79.27 (
+   /ITL/scene event VOCODER 54 0.67 1 0.11 0.48
+);
+
+/ITL/scene/cursor watch timeEnter 79.27 79.668 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 79.668 83.181 (
+   /ITL/scene event SHIFT -18 5160 6140
+);
+
+/ITL/scene/cursor watch timeEnter 83.181 84.923 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 84.923 87.398 (
+   /ITL/scene event REVERB 0.89 0.89 0.47
+);
+
+/ITL/scene/cursor watch timeEnter 87.398 87.450547 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 87.450547 89.807 (
+   /ITL/scene event REVERB 0.64 0.02 0.01
+);
+
+/ITL/scene/cursor watch timeEnter 89.807 94.297742 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 94.297742 96.297 (
+   /ITL/scene event ECHO 67 858
+);
+
+/ITL/scene/cursor watch timeEnter 96.297 98.168576 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 98.168576 100.168 (
+   /ITL/scene event SHIFT -16 4265 5868
+);
+
+/ITL/scene/cursor watch timeEnter 100.168 99.873 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 20.167 24.805 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 56.532 58.612 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 102.787 102.758 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 102.758 105.706 (
+   /ITL/scene event SHIFT 17 8784 5206
+);
+
+/ITL/scene/cursor watch timeEnter 105.706 106.407 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 60.349 63.574 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 108.814694 109.719 (
+   /ITL/scene event SHIFT -14 6533 1950
+);
+
+/ITL/scene/cursor watch timeEnter 109.719 111.020728 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 111.020728 111.925 (
+   /ITL/scene event SHIFTREVERB 12 298 1996 0.58 0.31 0.37
+);
+
+/ITL/scene/cursor watch timeEnter 111.925 114.195278 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 114.195278 117.947 (
+   /ITL/scene event RADIO 7 0.07
+);
+
+/ITL/scene/cursor watch timeEnter 117.947 118.907 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 118.907 119.869 (
+   /ITL/scene event ECHO 73 1028
+);
+
+/ITL/scene/cursor watch timeEnter 119.869 121.192 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 121.192 123.192 (
+   /ITL/scene event SHIFT -5 9038 9998
+);
+
+/ITL/scene/cursor watch timeEnter 123.192 124.417171 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 124.417171 125.464 (
+   /ITL/scene event REVERB 0.96 0.82 0.3
+);
+
+/ITL/scene/cursor watch timeEnter 125.464 126.619401 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 126.619401 128.619 (
+   /ITL/scene event RADIO 25 0.83
+);
+
+/ITL/scene/cursor watch timeEnter 128.619 128.398238 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 128.398238 131.994 (
+   /ITL/scene event ECHO 24 714
+);
+
+/ITL/scene/cursor watch timeEnter 131.994 132.805 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 132.805 137.374 (
+   /ITL/scene event SHIFT -15 8537 6572
+);
+
+/ITL/scene/cursor watch timeEnter 137.374 137.724 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 137.724 143.005 (
+   /ITL/scene event REVERB 0.97 0.37 0.06
+);
+
+/ITL/scene/cursor watch timeEnter 143.005 144.725 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 144.725 146.445 (
+   /ITL/scene event ECHO 3 747
+);
+
+/ITL/scene/cursor watch timeEnter 146.445 147.812 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 147.812 151.751 (
+   /ITL/scene event RADIO 9 0.08
+);
+
+/ITL/scene/cursor watch timeEnter 151.751 152.015 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 152.015 153.629 (
+   /ITL/scene event ECHO 93 1436
+);
+
+/ITL/scene/cursor watch timeEnter 153.629 153.904 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 153.904 158.473 (
+   /ITL/scene event ECHO 63 53
+);
+
+/ITL/scene/cursor watch timeEnter 158.473 158.65 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 158.65 163.931 (
+   /ITL/scene event RADIO 27 0.37
+);
+
+/ITL/scene/cursor watch timeEnter 163.931 165.719 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 165.719 167.439 (
+   /ITL/scene event RADIO 8 0.33
+);
+
+/ITL/scene/cursor watch timeEnter 167.439 168.844664 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 168.844664 172.643 (
+   /ITL/scene event VOCODER 69 0.23 0.97 0.51 1.54
+);
+
+/ITL/scene/cursor watch timeEnter 172.643 172.701622 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 172.701622 176.993 (
+   /ITL/scene event ECHO 18 359
+);
+
+/ITL/scene/cursor watch timeEnter 176.993 177.353391 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 177.353391 180.253 (
+   /ITL/scene event SHIFT -24 3062 7415
+);
+
+/ITL/scene/cursor watch timeEnter 180.410372 183.351 (
+   /ITL/scene event ECHO 85 1773
+);
+
+/ITL/scene/cursor watch timeEnter 180.253 180.410372 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 183.589461 189.017 (
+   /ITL/scene event SHIFTREVERB 5 3101 4144 0.98 0.77 0.85
+);
+
+/ITL/scene/cursor watch timeEnter 183.351 183.589461 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 189.017 189.31438 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 189.31438 192.352 (
+   /ITL/scene event VOCODER 54 0.67 1 0.11 0.48
+);
+
+/ITL/scene/cursor watch timeEnter 192.352 195.086042 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 195.086042 196.84 (
+   /ITL/scene event SHIFT -18 5160 6140
+);
+
+/ITL/scene/cursor watch timeEnter 196.84 201.083707 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 201.083707 202.82 (
+   /ITL/scene event REVERB 0.89 0.89 0.47
+);
+
+/ITL/scene/cursor watch timeEnter 204.366665 208.301 (
+   /ITL/scene event REVERB 0.64 0.02 0.01
+);
+
+/ITL/scene/cursor watch timeEnter 202.82 204.366665 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 211.960766 214.96 (
+   /ITL/scene event ECHO 67 858
+);
+
+/ITL/scene/cursor watch timeEnter 208.301 211.960766 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 214.96 216.410626 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 216.410626 219.31 (
+   /ITL/scene event SHIFT -16 4265 5868
+);
+
+/ITL/scene/cursor watch timeEnter 219.426748 222.326 (
+   /ITL/scene event SHIFTREVERB 5 6080 7559 0.81 0.31 0.15
+);
+
+/ITL/scene/cursor watch timeEnter 222.326 223.842 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 223.842 227.609 (
+   /ITL/scene event SHIFT 17 8784 5206
+);
+
+/ITL/scene/cursor watch timeEnter 227.609 230.479 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 219.31 219.426748 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 230.479 236.07 (
+   /ITL/scene event ECHO 59 919
+);
+
+/ITL/scene/cursor watch timeEnter 236.07 237.42 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 237.42 238 (
+   /ITL/scene event SHIFT -14 6533 1950
+);
+
+/ITL/scene/cursor watch timeEnter 238 242.015222 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 242.015222 245.782 (
+   /ITL/scene event SHIFTREVERB 12 298 1996 0.58 0.31 0.37
+);
+
+/ITL/scene/cursor watch timeEnter 245.782 247.506 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 247.506 252.075 (
+   /ITL/scene event RADIO 7 0.07
+);
+
+/ITL/scene/cursor watch timeEnter 252.075 252.594355 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 252.594355 256.361 (
+   /ITL/scene event ECHO 73 1028
+);
+
+/ITL/scene/cursor watch timeEnter 256.361 257.567 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 257.567 262.165 (
+   /ITL/scene event SHIFT -5 9038 9998
+);
+
+/ITL/scene/cursor watch timeEnter 262.165 262.322 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 262.322 266.093 (
+   /ITL/scene event REVERB 0.96 0.82 0.3
+);
+
+/ITL/scene/cursor watch timeEnter 266.567 270.517 (
+   /ITL/scene event RADIO 25 0.83
+);
+
+/ITL/scene/cursor watch timeEnter 266.093 266.567 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 270.517 276.936588 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 276.936588 277.532 (
+   /ITL/scene event ECHO 24 714
+);
+
+/ITL/scene/cursor watch timeEnter 279.904147 283.171 (
+   /ITL/scene event SHIFT -15 8537 6572
+);
+
+/ITL/scene/cursor watch timeEnter 277.532 279.904147 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 283.171 283.407066 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 283.407066 286.674 (
+   /ITL/scene event REVERB 0.97 0.37 0.06
+);
+
+/ITL/scene/cursor watch timeEnter 286.674 286.650644 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 286.650644 289.917 (
+   /ITL/scene event ECHO 3 747
+);
+
+/ITL/scene/cursor watch timeEnter 99.873 102.787 (
+   /ITL/scene event SHIFTREVERB 5 6080 7559 0.81 0.31 0.15
+);
+
+/ITL/scene/cursor watch timeEnter 289.78879 293.055 (
+   /ITL/scene event RADIO 9 0.08
+);
+
+/ITL/scene/cursor watch timeEnter 289.917 289.78879 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 293.055 293.214067 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 294.934 295.542 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 293.214067 294.934 (
+   /ITL/scene event ECHO 93 1436
+);
+
+/ITL/scene/cursor watch timeEnter 295.542 298.359 (
+   /ITL/scene event ECHO 63 53
+);
+
+/ITL/scene/cursor watch timeEnter 298.881342 300.718 (
+   /ITL/scene event RADIO 27 0.37
+);
+
+/ITL/scene/cursor watch timeEnter 300.718 300.768 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 305.845 306.327027 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 300.768 305.845 (
+   /ITL/scene event RADIO 8 0.33
+);
+
+/ITL/scene/cursor watch timeEnter 106.407 107.383 (
+   /ITL/scene event ECHO 59 919
+);
+
+/ITL/scene/cursor watch timeEnter 308.047 308.77 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 308.77 310.361 (
+   /ITL/scene event ECHO 18 359
+);
+
+/ITL/scene/cursor watch timeEnter 310.361 310.793 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 310.793 316.494 (
+   /ITL/scene event SHIFT -24 3062 7415
+);
+
+/ITL/scene/cursor watch timeEnter 316.494 316.767664 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 316.767664 320.637 (
+   /ITL/scene event ECHO 85 1773
+);
+
+/ITL/scene/cursor watch timeEnter 320.637 321.115 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 321.115 326.816 (
+   /ITL/scene event SHIFTREVERB 5 3101 4144 0.98 0.77 0.85
+);
+
+/ITL/scene/cursor watch timeEnter 326.816 326.679558 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 326.679558 327.275 (
+   /ITL/scene event VOCODER 54 0.67 1 0.11 0.48
+);
+
+/ITL/scene/cursor watch timeEnter 327.275 327.926678 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 327.926678 335.151 (
+   /ITL/scene event SHIFT -18 5160 6140
+);
+
+/ITL/scene/cursor watch timeEnter 298.359 298.881342 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 335.151 337.958488 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 342.953 347.48 (
+   /ITL/scene event REVERB 0.64 0.02 0.01
+);
+
+/ITL/scene/cursor watch timeEnter 339.678 342.953 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 347.48 349.8 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 349.8 354.493 (
+   /ITL/scene event ECHO 67 858
+);
+
+/ITL/scene/cursor watch timeEnter 354.702226 355.282 (
+   /ITL/scene event SHIFT -16 4265 5868
+);
+
+/ITL/scene/cursor watch timeEnter 354.493 354.702226 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 107.383 108.814694 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 355.282 356.886766 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 356.886766 360.643 (
+   /ITL/scene event SHIFTREVERB 5 6080 7559 0.81 0.31 0.15
+);
+
+/ITL/scene/cursor watch timeEnter 360.643 360.874532 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 360.874532 364.436 (
+   /ITL/scene event SHIFT 17 8784 5206
+);
+
+/ITL/scene/cursor watch timeEnter 364.436 364.622253 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 364.622253 367.987 (
+   /ITL/scene event ECHO 59 919
+);
+
+/ITL/scene/cursor watch timeEnter 367.987 368.094 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 368.094 369.766 (
+   /ITL/scene event SHIFT -14 6533 1950
+);
+
+/ITL/scene/cursor watch timeEnter 369.766 370.856167 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 374.375 375.193095 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 370.856167 374.375 (
+   /ITL/scene event SHIFTREVERB 12 298 1996 0.58 0.31 0.37
+);
+
+/ITL/scene/cursor watch timeEnter 375.193095 378.712 (
+   /ITL/scene event RADIO 7 0.07
+);
+
+/ITL/scene/cursor watch timeEnter 378.712 380.332 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 380.332 382.004 (
+   /ITL/scene event ECHO 73 1028
+);
+
+/ITL/scene/cursor watch timeEnter 382.004 382.437096 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 382.437096 384.803 (
+   /ITL/scene event SHIFT -5 9038 9998
+);
+
+/ITL/scene/cursor watch timeEnter 384.803 385.1 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 385.1 387.465 (
+   /ITL/scene event REVERB 0.96 0.82 0.3
+);
+
+/ITL/scene/cursor watch timeEnter 388.218 390.584 (
+   /ITL/scene event RADIO 25 0.83
+);
+
+/ITL/scene/cursor watch timeEnter 387.465 388.218 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 394.675 395.257 (
+   /ITL/scene event ECHO 24 714
+);
+
+/ITL/scene/cursor watch timeEnter 390.584 394.675 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 395.257 397.124 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 397.124 399.627 (
+   /ITL/scene event SHIFT -15 8537 6572
+);
+
+/ITL/scene/cursor watch timeEnter 399.627 400.43 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 400.43 402.15 (
+   /ITL/scene event REVERB 0.97 0.37 0.06
+);
+
+/ITL/scene/cursor watch timeEnter 404 406.947 (
+   /ITL/scene event ECHO 3 747
+);
+
+/ITL/scene/cursor watch timeEnter 406.947 407.188645 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 402.15 404 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 410.136 409.581645 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 407.188645 410.136 (
+   /ITL/scene event RADIO 9 0.08
+);
+
+/ITL/scene/cursor watch timeEnter 412.529 413.015645 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 409.581645 412.529 (
+   /ITL/scene event ECHO 93 1436
+);
+
+/ITL/scene/cursor watch timeEnter 413.015645 415.963 (
+   /ITL/scene event ECHO 63 53
+);
+
+/ITL/scene/cursor watch timeEnter 415.963 415.584 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 415.584 418.949 (
+   /ITL/scene event RADIO 27 0.37
+);
+
+/ITL/scene/cursor watch timeEnter 418.949 419.196072 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 421.779 422.841615 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 419.196072 421.779 (
+   /ITL/scene event RADIO 8 0.33
+);
+
+/ITL/scene/cursor watch timeEnter 425.424 425.264 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 422.841615 425.424 (
+   /ITL/scene event VOCODER 69 0.23 0.97 0.51 1.54
+);
+
+/ITL/scene/cursor watch timeEnter 426.609 427.193 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 425.264 426.609 (
+   /ITL/scene event ECHO 18 359
+);
+
+/ITL/scene/cursor watch timeEnter 428.178 428.392 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 427.193 428.178 (
+   /ITL/scene event SHIFT -24 3062 7415
+);
+
+/ITL/scene/cursor watch timeEnter 428.392 429.737 (
+   /ITL/scene event ECHO 85 1773
+);
+
+/ITL/scene/cursor watch timeEnter 429.737 430.213 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 432.213 436.438 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 430.213 432.213 (
+   /ITL/scene event SHIFTREVERB 5 3101 4144 0.98 0.77 0.85
+);
+
+/ITL/scene/cursor watch timeEnter 436.438 437.423 (
+   /ITL/scene event VOCODER 54 0.67 1 0.11 0.48
+);
+
+/ITL/scene/cursor watch timeEnter 437.638 438.983 (
+   /ITL/scene event SHIFT -18 5160 6140
+);
+
+/ITL/scene/cursor watch timeEnter 437.423 437.638 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 438.983 439.458 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 441.458 441.231472 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 439.458 441.458 (
+   /ITL/scene event REVERB 0.89 0.89 0.47
+);
+
+/ITL/scene/cursor watch timeEnter 441.231472 444.959 (
+   /ITL/scene event REVERB 0.64 0.02 0.01
+);
+
+/ITL/scene/cursor watch timeEnter 444.959 445.150737 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 447.251 448.845 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 449.83 450.044 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 445.150737 447.251 (
+   /ITL/scene event ECHO 67 858
+);
+
+/ITL/scene/cursor watch timeEnter 448.845 449.83 (
+   /ITL/scene event SHIFT -16 4265 5868
+);
+
+/ITL/scene/cursor watch timeEnter 451.389 451.973 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 450.044 451.389 (
+   /ITL/scene event SHIFTREVERB 5 6080 7559 0.81 0.31 0.15
+);
+
+/ITL/scene/cursor watch timeEnter 451.973 452.958 (
+   /ITL/scene event SHIFT 17 8784 5206
+);
+
+/ITL/scene/cursor watch timeEnter 453.172 454.517 (
+   /ITL/scene event ECHO 59 919
+);
+
+/ITL/scene/cursor watch timeEnter 452.958 453.172 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 306.327027 308.047 (
+   /ITL/scene event VOCODER 69 0.23 0.97 0.51 1.54
+);
+
+/ITL/scene/cursor watch timeEnter 454.517 454.993 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 454.993 456.993 (
+   /ITL/scene event SHIFT -14 6533 1950
+);
+
+/ITL/scene/cursor watch timeEnter 456.993 458.245163 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 458.245163 462.476 (
+   /ITL/scene event SHIFTREVERB 12 298 1996 0.58 0.31 0.37
+);
+
+/ITL/scene/cursor watch timeEnter 462.476 471.363 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 471.363 474.668 (
+   /ITL/scene event RADIO 7 0.07
+);
+
+/ITL/scene/cursor watch timeEnter 337.958488 339.678 (
+   /ITL/scene event REVERB 0.89 0.89 0.47
+);
+
+/ITL/scene/cursor watch timeEnter 475.604527 476.58 (
+   /ITL/scene event ECHO 73 1028
+);
+
+/ITL/scene/cursor watch timeEnter 474.668 475.604527 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 476.58 478.088 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 478.088 480.068 (
+   /ITL/scene event SHIFT -5 9038 9998
+);
+
+/ITL/scene/cursor watch timeEnter 481.598 483.652 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 480.068 480.62263 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 488.308 490.288 (
+   /ITL/scene event ECHO 24 714
+);
+
+/ITL/scene/cursor watch timeEnter 490.288 493.355 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 493.355 494.331 (
+   /ITL/scene event SHIFT -15 8537 6572
+);
+
+/ITL/scene/cursor watch timeEnter 497.225 498.201 (
+   /ITL/scene event REVERB 0.97 0.37 0.06
+);
+
+/ITL/scene/cursor watch timeEnter 494.331 497.225 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 500.545 503.85 (
+   /ITL/scene event ECHO 3 747
+);
+
+/ITL/scene/cursor watch timeEnter 498.201 500.545 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 503.85 504.73 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 504.73 507.513 (
+   /ITL/scene event RADIO 9 0.08
+);
+
+/ITL/scene/cursor watch timeEnter 506.604 509.387 (
+   /ITL/scene event ECHO 93 1436
+);
+
+/ITL/scene/cursor watch timeEnter 509.387 509.264 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 480.62263 481.598 (
+   /ITL/scene event REVERB 0.96 0.82 0.3
+);
+
+/ITL/scene/cursor watch timeEnter 509.264 514.965 (
+   /ITL/scene event ECHO 63 53
+);
+
+/ITL/scene/cursor watch timeEnter 507.513 506.604 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 515.03018 516.805 (
+   /ITL/scene event RADIO 27 0.37
+);
+
+/ITL/scene/cursor watch timeEnter 516.805 516.330728 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 519.113 519.20862 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 516.330728 519.113 (
+   /ITL/scene event RADIO 8 0.33
+);
+
+/ITL/scene/cursor watch timeEnter 521.507 521.557882 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 519.20862 521.507 (
+   /ITL/scene event VOCODER 69 0.23 0.97 0.51 1.54
+);
+
+/ITL/scene/cursor watch timeEnter 521.557882 525.784 (
+   /ITL/scene event ECHO 18 359
+);
+
+/ITL/scene/cursor watch timeEnter 525.784 525.9 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 527.854 527.888663 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 525.9 527.854 (
+   /ITL/scene event SHIFT -24 3062 7415
+);
+
+/ITL/scene/cursor watch timeEnter 527.888663 530.281 (
+   /ITL/scene event ECHO 85 1773
+);
+
+/ITL/scene/cursor watch timeEnter 530.281 530.931821 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 535.507 535.677 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 541.022 543.316 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 535.677 541.022 (
+   /ITL/scene event VOCODER 54 0.67 1 0.11 0.48
+);
+
+/ITL/scene/cursor watch timeEnter 530.931821 535.507 (
+   /ITL/scene event SHIFTREVERB 5 3101 4144 0.98 0.77 0.85
+);
+
+/ITL/scene/cursor watch timeEnter 543.316 546.985 (
+   /ITL/scene event SHIFT -18 5160 6140
+);
+
+/ITL/scene/cursor watch timeEnter 546.985 549.69206 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 556.15 556.675 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 549.69206 556.15 (
+   /ITL/scene event REVERB 0.89 0.89 0.47
+);
+
+/ITL/scene/cursor watch timeEnter 556.675 563.133 (
+   /ITL/scene event REVERB 0.64 0.02 0.01
+);
+
+/ITL/scene/cursor watch timeEnter 563.133 563.412357 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 563.412357 569.95 (
+   /ITL/scene event ECHO 67 858
+);
+
+/ITL/scene/cursor watch timeEnter 569.95 571.465357 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 571.465357 575.134 (
+   /ITL/scene event SHIFT -16 4265 5868
+);
+
+/ITL/scene/cursor watch timeEnter 575.134 577.593157 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 577.593157 582.846 (
+   /ITL/scene event SHIFTREVERB 5 6080 7559 0.81 0.31 0.15
+);
+
+/ITL/scene/cursor watch timeEnter 582.846 583.809755 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 583.809755 585.584 (
+   /ITL/scene event SHIFT 17 8784 5206
+);
+
+/ITL/scene/cursor watch timeEnter 585.584 587.076445 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 587.076445 588.115 (
+   /ITL/scene event ECHO 59 919
+);
+
+/ITL/scene/cursor watch timeEnter 588.115 589.202 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 589.202 591.683 (
+   /ITL/scene event SHIFT -14 6533 1950
+);
+
+/ITL/scene/cursor watch timeEnter 591.683 591.701613 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 591.701613 593.872 (
+   /ITL/scene event SHIFTREVERB 12 298 1996 0.58 0.31 0.37
+);
+
+/ITL/scene/cursor watch timeEnter 593.872 594.477 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 594.477 597.95 (
+   /ITL/scene event RADIO 7 0.07
+);
+
+/ITL/scene/cursor watch timeEnter 597.95 600.04 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 600.04 605.293 (
+   /ITL/scene event ECHO 73 1028
+);
+
+/ITL/scene/cursor watch timeEnter 607.404 611.171 (
+   /ITL/scene event SHIFT -5 9038 9998
+);
+
+/ITL/scene/cursor watch timeEnter 605.293 607.404 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 612.951 615.432 (
+   /ITL/scene event REVERB 0.96 0.82 0.3
+);
+
+/ITL/scene/cursor watch timeEnter 611.171 612.951 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 615.432 617.478 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 617.478 621.186 (
+   /ITL/scene event RADIO 25 0.83
+);
+
+/ITL/scene/cursor watch timeEnter 623.237 626.906 (
+   /ITL/scene event ECHO 24 714
+);
+
+/ITL/scene/cursor watch timeEnter 621.186 623.237 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 626.906 630.511652 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 630.511652 637.309 (
+   /ITL/scene event SHIFT -15 8537 6572
+);
+
+/ITL/scene/cursor watch timeEnter 637.309 638.587031 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 638.587031 642.256 (
+   /ITL/scene event REVERB 0.97 0.37 0.06
+);
+
+/ITL/scene/cursor watch timeEnter 642.256 647.566031 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 647.566031 654.364 (
+   /ITL/scene event ECHO 3 747
+);
+
+/ITL/scene/cursor watch timeEnter 654.364 undefined (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 483.652 486.957 (
+   /ITL/scene event RADIO 25 0.83
+);
+
+/ITL/scene/cursor watch timeEnter 486.957 488.308 (
+/ITL/scene event CUT 
+);
+
+/ITL/scene/cursor watch timeEnter 514.965 515.03018 (
+/ITL/scene event CUT 
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# UI UI UI UI UI UI UI user interface settings
+
+
+/ITL/scene/title set txt "Machine à sons - no visual";
+/ITL/scene/title fontSize 12;
+/ITL/scene/title y -0.55;
+/ITL/scene/title color white;
+
+/ITL/scene/cursor tempo 0;
+/ITL/scene/cursor date 0;
+
+/ITL/scene/timeline set rect 2.0 0.06;
+/ITL/scene/timeline color 30 30 30;
+/ITL/scene/timeline y 0.73;
+/ITL/scene/timeline duration 772 1;
+
+/ITL/scene/timeline watch mouseDown ( /ITL/scene/cursor date '$date');
+/ITL/scene/timeline watch mouseMove ( /ITL/scene/cursor date '$date');
+
+/ITL/scene/sync cursor timeline v;
+
+/ITL/scene/tm0 set txt "0'";
+/ITL/scene/tm2 set txt "2'";
+/ITL/scene/tm4 set txt "4'";
+/ITL/scene/tm6 set txt "6'";
+/ITL/scene/tm8 set txt "8'";
+/ITL/scene/tm10 set txt "10'";
+/ITL/scene/tm12 set txt "12'";
+/ITL/scene/tm0 date 0;
+/ITL/scene/tm2 date 120;
+/ITL/scene/tm4 date 240;
+/ITL/scene/tm6 date 360;
+/ITL/scene/tm8 date 480;
+/ITL/scene/tm10 date 600;
+/ITL/scene/tm12 date 720;
+/ITL/scene/tm* color white;
+/ITL/scene/tm* scale 0.03;
+/ITL/scene/sync tm* timeline syncBottom;
+/ITL/scene/tm* dy 0.3;
+
+/ITL/scene/ctrlplay set img "imgsop/play.png";
+/ITL/scene/ctrlstop set img "imgsop/stop.png";
+/ITL/scene/ctrlplay xorigin 1.2;
+/ITL/scene/ctrlstop xorigin -1.2;
+/ITL/scene/ctrl* width 0.080;
+/ITL/scene/ctrl* y 0.88;
+alpha = 150; 
+/ITL/scene/ctrl* alpha $alpha;
+/ITL/scene/ctrl* watch mouseEnter ( /ITL/scene/$self alpha 255); 
+/ITL/scene/ctrl* watch mouseLeave ( /ITL/scene/$self alpha $alpha); 
+
+CTRLPLAY = (/ITL/scene/ctrlplay push,
+	/ITL/log write 'ctrplay-push',
+	/ITL/scene/cursor tempo 240,
+
+	/ITL/scene/ctrlplay set img "imgsop/pause.png", 
+	/ITL/scene/ctrlplay watch mouseDown (
+		/ITL/scene/cursor tempo 0,
+
+		/ITL/scene/ctrlplay set img "imgsop/play.png",
+		/ITL/log write 'ctrplay-pop',
+		/ITL/scene/ctrlplay pop
+	)
+);
+
+/ITL/scene/ctrlplay watch mouseDown $CTRLPLAY;
+
+/ITL/scene/ctrlstop watch mouseDown (
+	/ITL/scene/cursor tempo 0,
+	/ITL/scene/cursor date 0,
+
+
+	/ITL/scene/ctrlplay pop,
+	/ITL/scene/ctrlplay watch mouseDown $CTRLPLAY,
+	/ITL/scene/ctrlplay set img "imgsop/play.png",
+	/ITL/scene event CUT 
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#==================================================
+# faust part
+#================================================== 
+
+/ITL/scene/echo set faustw 'wasm/echo.wasm' 'wasm/echo.json';
+/ITL/scene/echo/echo__1000/feedback 80;
+/ITL/scene/echo/echo__1000/millisecond 80;
+/ITL/scene/echo show 0;
+
+
+/ITL/scene/shift set faustw 'wasm/shift.wasm' 'wasm/shift.json';
+/ITL/scene/shift show 0;
+
+/ITL/scene/vocoder set faustw 'wasm/vocoder.wasm' 'wasm/vocoder.json';
+/ITL/scene/vocoder show 0;
+/ITL/scene/vocoder/My_Vocoder/Excitation/Freq 50;
+/ITL/scene/vocoder/My_Vocoder/Excitation/Gain 1;
+/ITL/scene/vocoder/My_Vocoder/Vocoder/Attack 0.1;
+/ITL/scene/vocoder/My_Vocoder/Vocoder/BW 0.13;
+/ITL/scene/vocoder/My_Vocoder/Vocoder/Release 0.1;
+
+/ITL/scene/reverb set faustw 'wasm/reverb.wasm' 'wasm/reverb.json';
+/ITL/scene/reverb show 0;
+
+/ITL/scene/eq set faustw  'wasm/eq.wasm' 'wasm/eq.json';
+/ITL/scene/eq show 0;
+
+/ITL/scene/radio set faustw 'wasm/radio.wasm' 'wasm/radio.json';
+/ITL/scene/radio show 0;
+
+
+
+
+
+
+
+
+
+
+
+#==================================================
+# for brozsing
+
+
+
+
+
+
+click = (/ITL/scene/cursor date '$date');
+
+#==================================================
+
+
+#==================================================
+#/ITL/scene/cursor date 5;
+#
+# /ITL/scene/sc100 watch show ( /ITL/scene/sc100 watch show, /ITL/scene event START );
+#
+#
+#================================================== 
+
+
+
+
+
+</pre>
+
+  </div>
+
+
+  <!--   /ITL/scene/bnext watch mouseDown ( 
+    /ITL/scene/cursor date '$(/ITL/scene/vnext get date)', 
+    /ITL/scene/audio vdate '$(/ITL/scene/vnext get date)'
+  );
+  /ITL/scene/bprev watch mouseDown ( 
+    /ITL/scene/cursor date '$(/ITL/scene/vprev get date)', 
+    /ITL/scene/audio vdate '$(/ITL/scene/vprev get date)'
+  ); 
+
+/ITL/scene/cursor watch timeLeave $sc100end 100000000 (
+	/ITL/scene/end show 0
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/ITL/log write "debug-outtttt";
+
+
+
+
+
+
+
+
+
+-->
+
+
+
+
+
+
+
+
+</body>
+
+</html>
