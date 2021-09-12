@@ -96,6 +96,14 @@ app.get('/smartsop', function (req, res) {
   res.sendfile(publicPath + '/smartsop.html');
 });
 
+app.get('/smartex', function (req, res) {
+  res.sendfile(publicPath + '/smartex.html');
+});
+
+app.get('/smartex', function (req, res) {
+  res.sendfile(publicPath + '/smartex.html');
+});
+
 
 app.get('/conductor', function (req, res) {
   res.sendfile(publicPath + '/conductor.html');
