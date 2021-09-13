@@ -174,10 +174,11 @@ var HOST = location.origin.replace(/^http/, 'ws');
        <input type="text" id="inter" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" 
        oninput=
        "
-       console.log(this.value)
-       var text = 'smartax ' + this.value;
+       var zozo = this.value;
+       if (zozo == '') {console.log('jhgjhgjhgjhgjhgjhgjhg')}
+       else {       var text = 'smartax ' + this.value;
        console.log(text);
-       ws.send(text);
+       ws.send(text);};
        ">
      </form>
 <!-- 
