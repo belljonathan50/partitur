@@ -91,9 +91,8 @@
           let arra = ["<div id='mym'> <h1>hddhh</h1> <h1>hddhh</h1>  <h1>hddhh</h1> </div>",
            "<video id='mym' class='snob' width='140px' src='tata.mp4' controls></video>",
             "<div id='mym'><video  class='snob' width='140px' src='tata.mp4' controls></video><video  class='snob' width='140px' src='tata.mp4' controls></video></div>",
-             "<div id='mym'> <h1>run away</h1> </div>",
-              "<div id='mym'> <iframe id='prism3d' title='Inline Frame Example2' z-index='-1' src='https://score.jonathanbell.eu/tenor-test/prism/index.html' style='opacity: 1;'></iframe></div>", 
-              "lift up your leg",
+            "<div id='mym'> <iframe height='100%' width='100%' id='prism3d' title='Inline Frame Example2' z-index='-1' src='https://score.jonathanbell.eu/tenor-test/prism/index.html' style='opacity: 1; width=100%; height=100%'></iframe></div>",
+              "<div id='mym'> <iframe height='40%' width='40%' id='prism3d' title='Inline Frame Example2' z-index='-1' src='https://score.jonathanbell.eu/tenor-test/prism/index.html' style='opacity: 1; display:inline-block;'></iframe> <iframe height='40%' width='40%' id='prism3d' title='Inline Frame Example2' z-index='-1' src='https://score.jonathanbell.eu/tenor-test/prism/index.html' style='opacity: 1; display:inline-block;'></iframe></div>",
                "sing beautifully",
                 "make ugly noise",
                  "lay down"];
