@@ -1,10 +1,4 @@
-function myFunction() {
-  but.onclick = function() {
-    console.log("start");
-    var text = "start";
-    ws.send(text);
-  }
-}
+
 
 function myFunctionX() {
   cur.onclick = function() {
