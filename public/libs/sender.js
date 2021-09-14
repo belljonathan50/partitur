@@ -2,8 +2,8 @@
 
 function myFunctionX() {
   cur.onclick = function() {
-    console.log("startX");
-    var text = "startX";
+    console.log('startX');
+    var text = 'startX';
     ws.send(text);
   }
 }
@@ -11,16 +11,16 @@ function myFunctionX() {
 
 function myFunctionPause() {
   butpause.onclick = function() {
-    console.log("pause");
-    var text = "pause";
+    console.log('pause');
+    var text = 'pause';
     ws.send(text);
   }
 }
 
 function myFunctionStop() {
   butstop.onclick = function() {
-    console.log("stop");
-    var text = "stop";
+    console.log('stop');
+    var text = 'stop';
     ws.send(text);
   }
 }
@@ -41,21 +41,21 @@ function myDelayedFunction() {
 
 
 function SeekChange(value) {
-  console.log("seek "+value);
-  ws.send("seek "+value);
+  console.log('seek '+value);
+  ws.send('seek '+value);
 }
 
 function DelayPlay(value) {
   var latency = value;
-  console.log("DelayPlay "+latency);
-  ws.send("DelayPlay "+value);
+  console.log('DelayPlay '+latency);
+  ws.send('DelayPlay '+value);
 }
 
 
 function sendwrite() {
   sen.onclick = function() {
-    console.log("sendwrite");
-    var text = "write this";
+    console.log('sendwrite');
+    var text = 'write this';
     ws.send(text);
   }
 }
