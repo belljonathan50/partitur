@@ -863,8 +863,6 @@ bottom = y 0.2;
  /ITL/log write section 8
 );
 
-
-
 /ITL/scene/cursor watch timeEnter $sc9start$sc9end (
    /ITL/scene/sc* show 0,
    /ITL/scene/sc9 show 1,
@@ -1246,7 +1244,6 @@ bottom = y 0.2;
    /ITL/scene/sc51 $bottom,
  /ITL/log write section 50
 );
-
 
 /ITL/scene/cursor watch timeEnter $sc51start$sc51end (
    /ITL/scene/sc* show 0,
@@ -2560,11 +2557,9 @@ bottom = y 0.2;
 
 /ITL/scene/ctrlplay set img "imgscon/play.png";
 /ITL/scene/ctrlstop set img "imgscon/stop.png";
-/ITL/scene/ctrlback set img "imgscon/back.png";
 
 /ITL/scene/ctrlplay xorigin 1.2;
 /ITL/scene/ctrlstop xorigin -1.2;
-/ITL/scene/ctrlback xorigin 3.6;
 /ITL/scene/ctrl* width 0.080;
 /ITL/scene/ctrl* y 0.88;
 alpha = 150; 
@@ -2596,6 +2591,11 @@ CTRLPLAY = (/ITL/scene/ctrlplay push,
 	/ITL/scene/ctrlplay set img "imgscon/play.png",
 	/ITL/scene event CUT 
 );
+
+<!-- /ITL/scene/ctrlback watch mouseDown (
+   /ITL/scene/cursor date ('$date[10/1]')
+); -->
+
 
 
 
