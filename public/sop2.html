@@ -680,6 +680,7 @@ bottom = y 0.2;
 
 
 /ITL/scene/cursor watch timeEnter $sc0start$sc0end (
+   /ITL/scene/audio play 1,
    /ITL/scene/sc* show 0,
    /ITL/scene/sc0 show 1,
    /ITL/scene/sc1 show 1,
@@ -2613,11 +2614,11 @@ alpha = 150;
 CTRLPLAY = (/ITL/scene/ctrlplay push,
 	/ITL/log write 'ctrplay-push',
 	/ITL/scene/cursor tempo 240,
-
+   /ITL/scene/audio play 1,
 	/ITL/scene/ctrlplay set img "imgsop/pause.png", 
 	/ITL/scene/ctrlplay watch mouseDown (
 		/ITL/scene/cursor tempo 0,
-
+      /ITL/scene/audio play 0,
 		/ITL/scene/ctrlplay set img "imgsop/play.png",
 		/ITL/log write 'ctrplay-pop',
 		/ITL/scene/ctrlplay pop
@@ -2629,8 +2630,8 @@ CTRLPLAY = (/ITL/scene/ctrlplay push,
 /ITL/scene/ctrlstop watch mouseDown (
 	/ITL/scene/cursor tempo 0,
 	/ITL/scene/cursor date 0,
-
-
+   /ITL/scene/audio play 0,
+   /ITL/scene/audio vdate 0,
 	/ITL/scene/ctrlplay pop,
 	/ITL/scene/ctrlplay watch mouseDown $CTRLPLAY,
 	/ITL/scene/ctrlplay set img "imgsop/play.png",
@@ -2649,8 +2650,8 @@ CTRLPLAY = (/ITL/scene/ctrlplay push,
 #================================================== 
 
 
-
-
+/ITL/scene/audio set audio "libs/machineasons.mp3";
+/ITL/scene/audio show 0;
 
 
 #==================================================
@@ -2697,11 +2698,9 @@ CTRLPLAY = (/ITL/scene/ctrlplay push,
 # for browsing
 
 
-
-
-
-
-click = (/ITL/scene/cursor date '$date');
+click = (/ITL/scene/cursor date '$date', /ITL/scene/audio vdate '$date');
+/ITL/scene/sc* watch mouseMove $click;
+/ITL/scene/sc* watch mouseDown $click;
 
 #==================================================
 
