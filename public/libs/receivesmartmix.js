@@ -95,7 +95,13 @@
               "<div id='mym'> <iframe height='40%' width='40%' id='prism3d' title='Inline Frame Example2' z-index='-1' src='https://score.jonathanbell.eu/tenor-test/prism/index.html' style='opacity: 1; display:inline-block;'></iframe> <iframe height='40%' width='40%' id='prism3d' title='Inline Frame Example2' z-index='-1' src='https://score.jonathanbell.eu/tenor-test/prism/index.html' style='opacity: 1; display:inline-block;'></iframe></div>",
                "  <div id='mym'>  <a-scene height='40%' width='40%' ><a-box position='-1 0.5 -3' rotation='0 45 0' color='#4CC3D9'></a-box></a-scene></div>",
                 "<div id='mym'>  <a-scene height='40%' width='40%' ><a-box position='-1 0.5 -3' rotation='0 45 0' color='#4CC3D9'></a-box></a-scene><a-scene><a-box position='-1 0.5 -3' rotation='0 45 0' color='#4CC3D9'></a-box></a-scene></div>",
-                 "<div id='mym'>     <iframe src='http://localhost:3000/smart3D.html' height='200' width='300' ></iframe> <iframe src='http://localhost:3000/smart3D.html' height='200' width='300' ></iframe>   </div>"];
+                 "<div id='mym'>     <iframe src='http://localhost:3000/smart3D.html' height='200' width='300' ></iframe> <iframe src='http://localhost:3000/smart3D.html' height='200' width='300' ></iframe>   </div>",
+                "<div id='mym'> <iframe id='viewer' name='viewer' allow='fullscreen; xr-spatial-tracking;' src='webgl_animation_skinning_morph.html' style='display: unset;'></iframe> </div>"
+                
+                
+                
+                
+                ];
           var INSTRUCTION = arra[second];
           let aziz = document.getElementById("mym");
           console.log(second);
