@@ -1,0 +1,144 @@
+
+	click = (/ITL/scene/cursor date '$date', /ITL/log write "hello");
+  /ITL/scene/sc* watch mouseDown $click;
+/ITL/scene/sc* watch mouseMove $click;
+
+#===================================================================================================================
+# events declaration
+#================================================================================================================= 
+/ITL/scene watch START0 (
+     /ITL/scene/cursor date 0,
+     /ITL/scene/cursor tempo 60
+    );
+
+    /ITL/scene watch STARTX (
+      /ITL/scene/cursor tempo 60
+     );
+
+/ITL/scene watch STOP0 (
+      /ITL/scene/cursor tempo 0
+     );
+
+     /ITL/scene watch REWIND (
+      /ITL/scene/cursor date 0,
+      /ITL/scene/cursor tempo 0
+     );
+
+
+/ITL/scene watch START (
+	/ITL/scene/sync cursor sc* v relative
+);
+
+/ITL/scene watch STOP (
+	/ITL/scene/cursor tempo 0
+);
+
+
+/ITL/scene/sc100 watch show (
+	/ITL/scene/sc100 watch show,
+	/ITL/scene event START
+);
+
+
+
+
+
+
+
+/ITL/scene watch CUT (
+	/ITL/scene/shift disconnect audioOutput,
+	/ITL/scene/echo disconnect audioOutput,
+	/ITL/scene/vocoder disconnect audioOutput,
+	/ITL/scene/reverb disconnect audioOutput,
+	/ITL/scene/radio disconnect audioOutput
+);
+
+/ITL/scene watch VOCODER (
+	/ITL/scene/audioInput connect vocoder,
+    /ITL/scene/vocoder connect audioOutput,
+	/ITL/scene/vocoder/My_Vocoder/Excitation/Freq '$1',
+	/ITL/scene/vocoder/My_Vocoder/Excitation/Gain '$2',
+	/ITL/scene/vocoder/My_Vocoder/Vocoder/Attack '$3',
+	/ITL/scene/vocoder/My_Vocoder/Vocoder/BW '$4',
+	/ITL/scene/vocoder/My_Vocoder/Vocoder/Release '$5'
+);
+
+/ITL/scene watch ECHO (
+/ITL/scene/audioInput connect echo,
+/ITL/scene/echo connect audioOutput,
+/ITL/scene/echo/echo__1000/feedback '$1',
+/ITL/scene/echo/echo__1000/millisecond '$2'
+);
+
+
+#==================================================
+# SHIFT 1/ shifting -24 24 2/ window 50 10000 3/ xfade 1 10000 
+#================================================== 
+
+
+/ITL/scene watch SHIFT (
+	/ITL/scene/audioInput connect shift,
+    /ITL/scene/shift connect audioOutput,
+	/ITL/scene/shift/Pitch_Shifter/shifting '$1',
+	/ITL/scene/shift/Pitch_Shifter/window '$2',
+	/ITL/scene/shift/Pitch_Shifter/xfade '$3'
+);
+
+
+#==================================================
+# REVERB 1/ damps 0. 1. 2/ roomsize 0. 1. 3/ wet 0. 1.
+#================================================== 
+
+
+/ITL/scene watch REVERB (
+/ITL/scene/audioInput connect reverb,
+/ITL/scene/reverb connect audioOutput,
+/ITL/scene/reverb/Freeverb/0x00/Damp '$1',
+/ITL/scene/reverb/Freeverb/0x00/RoomSize '$2',
+/ITL/scene/reverb/Freeverb/Wet '$3'
+);
+
+#==================================================
+# SHIFTREVERB 1/ shifting -24 24 2/ window 50 10000 3/ xfade 1 10000 4/ damps 0. 1. 5/ roomsize 0. 1. 6/ wet 0. 1.
+#================================================== 
+
+
+/ITL/scene watch SHIFTREVERB (
+/ITL/scene/audioInput connect shift,
+/ITL/scene/shift connect reverb,
+/ITL/scene/reverb connect audioOutput,
+/ITL/scene/shift/Pitch_Shifter/shifting '$1',
+/ITL/scene/shift/Pitch_Shifter/window 10000,
+/ITL/scene/shift/Pitch_Shifter/xfade 10000,
+/ITL/scene/reverb/Freeverb/0x00/Damp 0.9,
+/ITL/scene/reverb/Freeverb/0x00/RoomSize 0.9,
+/ITL/scene/reverb/Freeverb/0x00/Stereo_Spread 0.9,
+/ITL/scene/reverb/Freeverb/Wet '$2'
+);
+
+/ITL/scene watch RADIO (
+/ITL/scene/audioInput connect radio,
+/ITL/scene/radio connect audioOutput,
+/ITL/scene/radio/FaustDSP/Q  '$1',
+/ITL/scene/radio/FaustDSP/freq  '$2'
+);
+
+
+
+
+#==================================================
+# RADIOECHO 1/ Q 20s good     2/ freq 0 - 0.5  -  1      3/ milliseconds     4/ feedback 0 100
+#==================================================
+
+/ITL/scene watch RADIOECHO (
+/ITL/scene/audioInput connect echo,
+/ITL/scene/echo connect radio,
+/ITL/scene/radio connect audioOutput,
+/ITL/scene/radio/FaustDSP/Q  '$1',
+/ITL/scene/radio/FaustDSP/freq  '$2',
+/ITL/scene/echo/echo__1000/millisecond '$3',
+/ITL/scene/echo/echo__1000/feedback '$4'
+);
+
+
+/ITL/log write "loaded event declaration";
