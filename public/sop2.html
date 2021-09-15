@@ -1258,9 +1258,6 @@ CTRLPLAY = (/ITL/scene/ctrlplay push,
 
 
 
-
-
-
 #==================================================
 # audio part
 #================================================== 
@@ -1272,6 +1269,15 @@ CTRLPLAY = (/ITL/scene/ctrlplay push,
 
 
 
+
+
+
+
+#==================================================
+# for browsing
+click = (/ITL/scene/cursor date '$date', /ITL/scene/audio vdate '$date');
+/ITL/scene/sc* watch mouseMove $click;
+/ITL/scene/sc* watch mouseDown $click;
 
 
 
