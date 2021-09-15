@@ -2577,10 +2577,12 @@ bottom = y 0.2;
 /ITL/scene/timeline y 0.73;
 /ITL/scene/timeline duration 772 1;
 
-/ITL/scene/timeline watch mouseDown ( /ITL/scene/cursor date '$date');
-/ITL/scene/timeline watch mouseMove ( /ITL/scene/cursor date '$date');
 
 /ITL/scene/sync cursor timeline v;
+
+/ITL/scene/timeline watch mouseDown (/ITL/scene/audio vdate '$date', /ITL/scene/cursor date '$date' );
+/ITL/scene/timeline watch mouseMove ( /ITL/scene/audio vdate '$date', /ITL/scene/cursor date '$date');
+
 
 /ITL/scene/tm0 set txt "0'";
 /ITL/scene/tm2 set txt "2'";
