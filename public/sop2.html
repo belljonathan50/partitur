@@ -343,11 +343,11 @@ sc100duree = $sc100end - $sc100start;
 #================================================================================================================= 
 /ITL/scene watch START0 (
      /ITL/scene/cursor date 0,
-     /ITL/scene/cursor tempo 240
+     /ITL/scene/cursor tempo 60
     );
 
     /ITL/scene watch STARTX (
-      /ITL/scene/cursor tempo 240
+      /ITL/scene/cursor tempo 60
      );
 
 /ITL/scene watch STOP0 (
@@ -2613,7 +2613,7 @@ alpha = 150;
 
 CTRLPLAY = (/ITL/scene/ctrlplay push,
 	/ITL/log write 'ctrplay-push',
-	/ITL/scene/cursor tempo 240,
+	/ITL/scene/cursor tempo 60,
    /ITL/scene/audio play 1,
 	/ITL/scene/ctrlplay set img "imgsop/pause.png", 
 	/ITL/scene/ctrlplay watch mouseDown (
@@ -2696,6 +2696,7 @@ CTRLPLAY = (/ITL/scene/ctrlplay push,
 
 #==================================================
 # for browsing
+
 
 
 click = (/ITL/scene/cursor date '$date', /ITL/scene/audio vdate '$date');
