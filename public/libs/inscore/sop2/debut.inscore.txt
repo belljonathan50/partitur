@@ -1,0 +1,491 @@
+
+/ITL/scene/cursor set rect 0.03 0.6;
+/ITL/scene/cursor color 255 0 0;
+/ITL/scene color 0 0 0;
+sc0start = 0.1 ;
+sc0end = 10 ;
+sc2start = 20 ;
+sc2end = 30 ;
+sc6start = 60 ;
+sc6end = 70 ;
+sc7start = 70 ;
+sc7end = 80 ;
+sc8start = 80 ;
+sc8end = 90 ;
+sc9start = 90 ;
+sc9end = 100 ;
+sc10start = 100 ;
+sc10end = 110 ;
+sc11start = 110 ;
+sc11end = 120 ;
+sc12start = 120 ;
+sc12end = 130 ;
+sc13start = 130 ;
+sc13end = 140 ;
+sc14start = 140 ;
+sc14end = 150 ;
+sc15start = 150 ;
+sc15end = 160 ;
+sc16start = 160 ;
+sc16end = 170 ;
+sc17start = 170 ;
+sc17end = 180 ;
+sc5start = 50 ;
+sc5end = 60 ;
+sc3start = 30 ;
+sc3end = 40 ;
+sc19start = 190 ;
+sc19end = 200 ;
+sc21start = 210 ;
+sc21end = 220 ;
+sc22start = 220 ;
+sc22end = 230 ;
+sc4start = 40 ;
+sc4end = 50 ;
+sc24start = 240 ;
+sc24end = 250 ;
+sc25start = 250 ;
+sc25end = 260 ;
+sc26start = 260 ;
+sc26end = 270 ;
+sc27start = 270 ;
+sc27end = 280 ;
+sc28start = 280 ;
+sc28end = 290 ;
+sc29start = 290 ;
+sc29end = 300 ;
+sc30start = 300 ;
+sc30end = 310 ;
+sc31start = 310 ;
+sc31end = 320 ;
+sc32start = 320 ;
+sc32end = 330 ;
+sc33start = 330 ;
+sc33end = 340 ;
+sc34start = 340 ;
+sc34end = 350 ;
+sc35start = 350 ;
+sc35end = 360 ;
+sc36start = 360 ;
+sc36end = 370 ;
+sc38start = 380 ;
+sc38end = 390 ;
+sc37start = 370 ;
+sc37end = 380 ;
+sc39start = 390 ;
+sc39end = 400 ;
+sc40start = 400 ;
+sc40end = 410 ;
+sc41start = 410 ;
+sc41end = 420 ;
+sc42start = 420 ;
+sc42end = 430 ;
+sc43start = 430 ;
+sc43end = 440 ;
+sc44start = 440 ;
+sc44end = 450 ;
+sc45start = 450 ;
+sc45end = 460 ;
+sc46start = 460 ;
+sc46end = 470 ;
+sc47start = 470 ;
+sc47end = 480 ;
+sc48start = 480 ;
+sc48end = 490 ;
+sc49start = 490 ;
+sc49end = 500 ;
+sc50start = 500 ;
+sc50end = 510 ;
+sc51start = 510 ;
+sc51end = 520 ;
+sc53start = 530 ;
+sc53end = 540 ;
+sc52start = 520 ;
+sc52end = 530 ;
+sc54start = 540 ;
+sc54end = 550 ;
+sc55start = 550 ;
+sc55end = 560 ;
+sc56start = 560 ;
+sc56end = 570 ;
+sc57start = 570 ;
+sc57end = 580 ;
+sc58start = 580 ;
+sc58end = 590 ;
+sc59start = 590 ;
+sc59end = 600 ;
+sc60start = 600 ;
+sc60end = 610 ;
+sc61start = 610 ;
+sc61end = 620 ;
+sc62start = 620 ;
+sc62end = 630 ;
+sc63start = 630 ;
+sc63end = 640 ;
+sc23start = 230 ;
+sc23end = 240 ;
+sc65start = 650 ;
+sc65end = 660 ;
+sc20start = 200 ;
+sc20end = 210 ;
+sc1start = 10 ;
+sc1end = 20 ;
+sc18start = 180 ;
+sc18end = 190 ;
+sc64start = 640 ;
+sc64end = 650 ;
+sc100start = 1500 ;
+sc100end = 1515 ;
+
+
+sc0duree = $sc0end - $sc0start;
+sc1duree = $sc1end - $sc1start;
+sc2duree = $sc2end - $sc2start;
+sc3duree = $sc3end - $sc3start;
+sc4duree = $sc4end - $sc4start;
+sc5duree = $sc5end - $sc5start;
+sc6duree = $sc6end - $sc6start;
+sc7duree = $sc7end - $sc7start;
+sc8duree = $sc8end - $sc8start;
+sc9duree = $sc9end - $sc9start;
+sc10duree = $sc10end - $sc10start;
+sc11duree = $sc11end - $sc11start;
+sc12duree = $sc12end - $sc12start;
+sc13duree = $sc13end - $sc13start;
+sc14duree = $sc14end - $sc14start;
+sc15duree = $sc15end - $sc15start;
+sc16duree = $sc16end - $sc16start;
+sc17duree = $sc17end - $sc17start;
+sc18duree = $sc18end - $sc18start;
+sc19duree = $sc19end - $sc19start;
+sc20duree = $sc20end - $sc20start;
+sc21duree = $sc21end - $sc21start;
+sc22duree = $sc22end - $sc22start;
+sc23duree = $sc23end - $sc23start;
+sc24duree = $sc24end - $sc24start;
+sc25duree = $sc25end - $sc25start;
+sc26duree = $sc26end - $sc26start;
+sc27duree = $sc27end - $sc27start;
+sc28duree = $sc28end - $sc28start;
+sc29duree = $sc29end - $sc29start;
+sc30duree = $sc30end - $sc30start;
+sc31duree = $sc31end - $sc31start;
+sc32duree = $sc32end - $sc32start;
+sc33duree = $sc33end - $sc33start;
+sc34duree = $sc34end - $sc34start;
+sc35duree = $sc35end - $sc35start;
+sc36duree = $sc36end - $sc36start;
+sc37duree = $sc37end - $sc37start;
+sc38duree = $sc38end - $sc38start;
+sc39duree = $sc39end - $sc39start;
+sc40duree = $sc40end - $sc40start;
+sc41duree = $sc41end - $sc41start;
+sc42duree = $sc42end - $sc42start;
+sc43duree = $sc43end - $sc43start;
+sc44duree = $sc44end - $sc44start;
+sc45duree = $sc45end - $sc45start;
+sc46duree = $sc46end - $sc46start;
+sc47duree = $sc47end - $sc47start;
+sc48duree = $sc48end - $sc48start;
+sc49duree = $sc49end - $sc49start;
+sc50duree = $sc50end - $sc50start;
+sc51duree = $sc51end - $sc51start;
+sc52duree = $sc52end - $sc52start;
+sc53duree = $sc53end - $sc53start;
+sc54duree = $sc54end - $sc54start;
+sc55duree = $sc55end - $sc55start;
+sc56duree = $sc56end - $sc56start;
+sc57duree = $sc57end - $sc57start;
+sc58duree = $sc58end - $sc58start;
+sc59duree = $sc59end - $sc59start;
+sc60duree = $sc60end - $sc60start;
+sc61duree = $sc61end - $sc61start;
+sc62duree = $sc62end - $sc62start;
+sc63duree = $sc63end - $sc63start;
+sc64duree = $sc64end - $sc64start;
+sc65duree = $sc65end - $sc65start;
+
+sc100duree = $sc100end - $sc100start;
+
+
+
+
+/ITL/scene/sc0 set img 'imgsop/0.png' ;
+/ITL/scene/sc1 set img 'imgsop/1.png' ;
+/ITL/scene/sc2 set img 'imgsop/2.png' ;
+/ITL/scene/sc3 set img 'imgsop/3.png' ;
+/ITL/scene/sc4 set img 'imgsop/4.png' ;
+/ITL/scene/sc5 set img 'imgsop/5.png' ;
+/ITL/scene/sc6 set img 'imgsop/6.png' ;
+/ITL/scene/sc8 set img 'imgsop/8.png' ;
+/ITL/scene/sc7 set img 'imgsop/7.png' ;
+/ITL/scene/sc9 set img 'imgsop/9.png' ;
+/ITL/scene/sc10 set img 'imgsop/10.png' ;
+/ITL/scene/sc11 set img 'imgsop/11.png' ;
+/ITL/scene/sc12 set img 'imgsop/12.png' ;
+/ITL/scene/sc13 set img 'imgsop/13.png' ;
+/ITL/scene/sc14 set img 'imgsop/14.png' ;
+/ITL/scene/sc15 set img 'imgsop/15.png' ;
+/ITL/scene/sc16 set img 'imgsop/16.png' ;
+/ITL/scene/sc17 set img 'imgsop/17.png' ;
+/ITL/scene/sc19 set img 'imgsop/19.png' ;
+/ITL/scene/sc18 set img 'imgsop/18.png' ;
+/ITL/scene/sc20 set img 'imgsop/20.png' ;
+/ITL/scene/sc21 set img 'imgsop/21.png' ;
+/ITL/scene/sc22 set img 'imgsop/22.png' ;
+/ITL/scene/sc23 set img 'imgsop/23.png' ;
+/ITL/scene/sc25 set img 'imgsop/25.png' ;
+/ITL/scene/sc26 set img 'imgsop/26.png' ;
+/ITL/scene/sc27 set img 'imgsop/27.png' ;
+/ITL/scene/sc28 set img 'imgsop/28.png' ;
+/ITL/scene/sc29 set img 'imgsop/29.png' ;
+/ITL/scene/sc30 set img 'imgsop/30.png' ;
+/ITL/scene/sc24 set img 'imgsop/24.png' ;
+/ITL/scene/sc31 set img 'imgsop/31.png' ;
+/ITL/scene/sc32 set img 'imgsop/32.png' ;
+/ITL/scene/sc33 set img 'imgsop/33.png' ;
+/ITL/scene/sc34 set img 'imgsop/34.png' ;
+/ITL/scene/sc35 set img 'imgsop/35.png' ;
+/ITL/scene/sc36 set img 'imgsop/36.png' ;
+/ITL/scene/sc37 set img 'imgsop/37.png' ;
+/ITL/scene/sc38 set img 'imgsop/38.png' ;
+/ITL/scene/sc39 set img 'imgsop/39.png' ;
+/ITL/scene/sc40 set img 'imgsop/40.png' ;
+/ITL/scene/sc41 set img 'imgsop/41.png' ;
+/ITL/scene/sc42 set img 'imgsop/42.png' ;
+/ITL/scene/sc43 set img 'imgsop/43.png' ;
+/ITL/scene/sc44 set img 'imgsop/44.png' ;
+/ITL/scene/sc45 set img 'imgsop/45.png' ;
+/ITL/scene/sc46 set img 'imgsop/46.png' ;
+/ITL/scene/sc47 set img 'imgsop/47.png' ;
+/ITL/scene/sc48 set img 'imgsop/48.png' ;
+/ITL/scene/sc49 set img 'imgsop/49.png' ;
+/ITL/scene/sc50 set img 'imgsop/50.png' ;
+/ITL/scene/sc51 set img 'imgsop/51.png' ;
+/ITL/scene/sc52 set img 'imgsop/52.png' ;
+/ITL/scene/sc54 set img 'imgsop/54.png' ;
+/ITL/scene/sc53 set img 'imgsop/53.png' ;
+/ITL/scene/sc55 set img 'imgsop/55.png' ;
+/ITL/scene/sc56 set img 'imgsop/56.png' ;
+/ITL/scene/sc57 set img 'imgsop/57.png' ;
+/ITL/scene/sc58 set img 'imgsop/58.png' ;
+/ITL/scene/sc59 set img 'imgsop/59.png' ;
+/ITL/scene/sc60 set img 'imgsop/60.png' ;
+/ITL/scene/sc61 set img 'imgsop/61.png' ;
+/ITL/scene/sc62 set img 'imgsop/62.png' ;
+/ITL/scene/sc63 set img 'imgsop/63.png' ;
+/ITL/scene/sc64 set img 'imgsop/64.png' ;
+/ITL/scene/sc65 set img 'imgsop/65.png' ;
+/ITL/scene/sc100 set img 'imgsop/65.png' ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/ITL/scene/sc* show 0;
+/ITL/scene/sc[01] show 1;
+
+/ITL/scene/end set txt "The End";
+/ITL/scene/end fontSize 36;
+/ITL/scene/end color 255 255 255;
+/ITL/scene/end show 0;
+
+top = y -0.2;
+bottom = y 0.2;
+/ITL/scene/sc* width 2.9;
+/ITL/scene/sc0 $top;
+/ITL/scene/sc1 $bottom;
+/ITL/scene/sc0 date  $sc0start;
+/ITL/scene/sc0 duration $sc0duree;
+/ITL/scene/sc1 date  $sc1start;
+/ITL/scene/sc1 duration $sc1duree;
+/ITL/scene/sc2 date  $sc2start;
+/ITL/scene/sc2 duration $sc2duree;
+/ITL/scene/sc3 date  $sc3start;
+/ITL/scene/sc3 duration $sc3duree;
+/ITL/scene/sc4 date  $sc4start;
+/ITL/scene/sc4 duration $sc4duree;
+/ITL/scene/sc5 date  $sc5start;
+/ITL/scene/sc5 duration $sc5duree;
+/ITL/scene/sc6 date  $sc6start;
+/ITL/scene/sc6 duration $sc6duree;
+/ITL/scene/sc7 date  $sc7start;
+/ITL/scene/sc7 duration $sc7duree;
+/ITL/scene/sc8 date  $sc8start;
+/ITL/scene/sc8 duration $sc8duree;
+/ITL/scene/sc9 date  $sc9start;
+/ITL/scene/sc9 duration $sc9duree;
+/ITL/scene/sc10 date    $sc10start;
+/ITL/scene/sc10 duration $sc10duree;
+/ITL/scene/sc11 date    $sc11start;
+/ITL/scene/sc11 duration $sc11duree;
+/ITL/scene/sc12 date    $sc12start;
+/ITL/scene/sc12 duration $sc12duree;
+/ITL/scene/sc13 date    $sc13start;
+/ITL/scene/sc13 duration $sc13duree;
+/ITL/scene/sc14 date    $sc14start;
+/ITL/scene/sc14 duration $sc14duree;
+/ITL/scene/sc15 date    $sc15start;
+/ITL/scene/sc15 duration $sc15duree;
+/ITL/scene/sc16 date    $sc16start;
+/ITL/scene/sc16 duration $sc16duree;
+/ITL/scene/sc17 date    $sc17start;
+/ITL/scene/sc17 duration $sc17duree;
+/ITL/scene/sc18 date    $sc18start;
+/ITL/scene/sc18 duration $sc18duree;
+/ITL/scene/sc19 date    $sc19start;
+/ITL/scene/sc19 duration $sc19duree;
+/ITL/scene/sc20 date    $sc20start;
+/ITL/scene/sc20 duration $sc20duree;
+/ITL/scene/sc21 date    $sc21start;
+/ITL/scene/sc21 duration $sc21duree;
+/ITL/scene/sc22 date    $sc22start;
+/ITL/scene/sc22 duration $sc22duree;
+/ITL/scene/sc23 date    $sc23start;
+/ITL/scene/sc23 duration $sc23duree;
+/ITL/scene/sc24 date    $sc24start;
+/ITL/scene/sc24 duration $sc24duree;
+/ITL/scene/sc25 date    $sc25start;
+/ITL/scene/sc25 duration $sc25duree;
+/ITL/scene/sc26 date    $sc26start;
+/ITL/scene/sc26 duration $sc26duree;
+/ITL/scene/sc27 date    $sc27start;
+/ITL/scene/sc27 duration $sc27duree;
+/ITL/scene/sc28 date    $sc28start;
+/ITL/scene/sc28 duration $sc28duree;
+/ITL/scene/sc29 date    $sc29start;
+/ITL/scene/sc29 duration $sc29duree;
+/ITL/scene/sc30 date    $sc30start;
+/ITL/scene/sc30 duration $sc30duree;
+
+/ITL/scene/sc31 date $sc31start ;
+/ITL/scene/sc31 duration $sc31duree ;
+
+/ITL/scene/sc32 date $sc32start ;
+/ITL/scene/sc32 duration $sc32duree ;
+
+/ITL/scene/sc33 date $sc33start ;
+/ITL/scene/sc33 duration $sc33duree ;
+
+/ITL/scene/sc34 date $sc34start ;
+/ITL/scene/sc34 duration $sc34duree ;
+
+/ITL/scene/sc35 date $sc35start ;
+/ITL/scene/sc35 duration $sc35duree ;
+
+/ITL/scene/sc36 date $sc36start ;
+/ITL/scene/sc36 duration $sc36duree ;
+
+/ITL/scene/sc37 date $sc37start ;
+/ITL/scene/sc37 duration $sc37duree ;
+
+/ITL/scene/sc38 date $sc38start ;
+/ITL/scene/sc38 duration $sc38duree ;
+
+/ITL/scene/sc39 date $sc39start ;
+/ITL/scene/sc39 duration $sc39duree ;
+
+/ITL/scene/sc40 date $sc40start ;
+/ITL/scene/sc40 duration $sc40duree ;
+
+/ITL/scene/sc41 date $sc41start ;
+/ITL/scene/sc41 duration $sc41duree ;
+
+/ITL/scene/sc42 date $sc42start ;
+/ITL/scene/sc42 duration $sc42duree ;
+
+/ITL/scene/sc43 date $sc43start ;
+/ITL/scene/sc43 duration $sc43duree ;
+
+/ITL/scene/sc44 date $sc44start ;
+/ITL/scene/sc44 duration $sc44duree ;
+
+/ITL/scene/sc45 date $sc45start ;
+/ITL/scene/sc45 duration $sc45duree ;
+
+/ITL/scene/sc46 date $sc46start ;
+/ITL/scene/sc46 duration $sc46duree ;
+
+/ITL/scene/sc47 date $sc47start ;
+/ITL/scene/sc47 duration $sc47duree ;
+
+/ITL/scene/sc48 date $sc48start ;
+/ITL/scene/sc48 duration $sc48duree ;
+
+/ITL/scene/sc49 date $sc49start ;
+/ITL/scene/sc49 duration $sc49duree ;
+
+/ITL/scene/sc50 date $sc50start ;
+/ITL/scene/sc50 duration $sc50duree ;
+
+/ITL/scene/sc51 date $sc51start ;
+/ITL/scene/sc51 duration $sc51duree ;
+
+/ITL/scene/sc52 date $sc52start ;
+/ITL/scene/sc52 duration $sc52duree ;
+
+/ITL/scene/sc53 date $sc53start ;
+/ITL/scene/sc53 duration $sc53duree ;
+
+/ITL/scene/sc54 date $sc54start ;
+/ITL/scene/sc54 duration $sc54duree ;
+
+/ITL/scene/sc55 date $sc55start ;
+/ITL/scene/sc55 duration $sc55duree ;
+
+/ITL/scene/sc56 date $sc56start ;
+/ITL/scene/sc56 duration $sc56duree ;
+
+/ITL/scene/sc57 date $sc57start ;
+/ITL/scene/sc57 duration $sc57duree ;
+
+/ITL/scene/sc58 date $sc58start ;
+/ITL/scene/sc58 duration $sc58duree ;
+
+/ITL/scene/sc59 date $sc59start ;
+/ITL/scene/sc59 duration $sc59duree ;
+
+/ITL/scene/sc60 date $sc60start ;
+/ITL/scene/sc60 duration $sc60duree ;
+
+/ITL/scene/sc61 date $sc61start ;
+/ITL/scene/sc61 duration $sc61duree ;
+
+/ITL/scene/sc62 date $sc62start ;
+/ITL/scene/sc62 duration $sc62duree ;
+
+/ITL/scene/sc63 date $sc63start ;
+/ITL/scene/sc63 duration $sc63duree ;
+
+/ITL/scene/sc64 date $sc64start ;
+/ITL/scene/sc64 duration $sc64duree ;
+
+/ITL/scene/sc65 date $sc65start ;
+/ITL/scene/sc65 duration $sc65duree ;
+
+/ITL/scene/sc15 date $sc15start ;
+/ITL/scene/sc15 duration $sc15duree ;
+
+/ITL/scene/sc17 date $sc17start ;
+/ITL/scene/sc17 duration $sc17duree ;
+
+/ITL/scene/sc18 date $sc18start ;
+/ITL/scene/sc18 duration $sc18duree ;
+
+
+/ITL/log write "debut loaded";

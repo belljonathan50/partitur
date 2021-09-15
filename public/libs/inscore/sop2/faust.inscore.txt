@@ -1,0 +1,33 @@
+
+
+#==================================================
+# faust part
+#================================================== 
+
+/ITL/scene/echo set faustw 'wasm/echo.wasm' 'wasm/echo.json';
+/ITL/scene/echo/echo__1000/feedback 80;
+/ITL/scene/echo/echo__1000/millisecond 80;
+/ITL/scene/echo show 0;
+
+
+/ITL/scene/shift set faustw 'wasm/shift.wasm' 'wasm/shift.json';
+/ITL/scene/shift show 0;
+
+/ITL/scene/vocoder set faustw 'wasm/vocoder.wasm' 'wasm/vocoder.json';
+/ITL/scene/vocoder show 0;
+/ITL/scene/vocoder/My_Vocoder/Excitation/Freq 50;
+/ITL/scene/vocoder/My_Vocoder/Excitation/Gain 1;
+/ITL/scene/vocoder/My_Vocoder/Vocoder/Attack 0.1;
+/ITL/scene/vocoder/My_Vocoder/Vocoder/BW 0.13;
+/ITL/scene/vocoder/My_Vocoder/Vocoder/Release 0.1;
+
+/ITL/scene/reverb set faustw 'wasm/reverb.wasm' 'wasm/reverb.json';
+/ITL/scene/reverb show 0;
+
+/ITL/scene/eq set faustw  'wasm/eq.wasm' 'wasm/eq.json';
+/ITL/scene/eq show 0;
+
+/ITL/scene/radio set faustw 'wasm/radio.wasm' 'wasm/radio.json';
+/ITL/scene/radio show 0;
+
+/ITL/log write "faust part loaded";
