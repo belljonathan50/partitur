@@ -47,10 +47,6 @@
 
 
 
-/ITL/scene watch keyDown "13" ( /ITL/scene event PRINTX );
- /ITL/scene watch PRINTX (
-     /ITL/log write "hi"
-    );
 
 
 
@@ -2630,6 +2626,34 @@ CTRLPLAY = (/ITL/scene/ctrlplay push,
 		/ITL/scene/ctrlplay pop
 	)
 );
+
+
+
+/ITL/scene watch keyDown ArrowRight ( /ITL/scene event PRINTX );
+ /ITL/scene watch PRINTX (
+   /ITL/log write "hi hi",
+   /ITL/scene/ctrlplay push,
+	/ITL/log write 'ctrplay-push',
+	/ITL/scene/cursor tempo 60,
+   /ITL/scene/audio play 1,
+	/ITL/scene/ctrlplay set img "imgsop/pause.png", 
+	/ITL/scene/ctrlplay watch mouseDown (
+		/ITL/scene/cursor tempo 0,
+      /ITL/scene/audio play 0,
+		/ITL/scene/ctrlplay set img "imgsop/play.png",
+		/ITL/log write 'ctrplay-pop',
+		/ITL/scene/ctrlplay pop)
+    );
+
+    /ITL/scene watch keyDown ArrowLeft ( /ITL/scene event PRINTY );
+    /ITL/scene watch PRINTY (
+      /ITL/scene/cursor tempo 0,
+         /ITL/scene/audio play 0,
+         /ITL/scene/ctrlplay set img "imgsop/play.png",
+         /ITL/log write 'ctrplay-pop',
+         /ITL/scene/ctrlplay pop
+       );
+
 
 /ITL/scene/ctrlplay watch mouseDown $CTRLPLAY;
 
