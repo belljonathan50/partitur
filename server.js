@@ -92,6 +92,14 @@ app.get('/leducmus', function (req, res) {
   res.sendfile(publicPath + '/leducmus.html');
 });
 
+app.get('/dos', function (req, res) {
+  res.sendfile(publicPath + '/dos.html');
+});
+
+app.get('/sound', function (req, res) {
+  res.sendfile(publicPath + '/sound.html');
+});
+
 app.get('/smartsop', function (req, res) {
   res.sendfile(publicPath + '/smartsop.html');
 });
