@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>my ideas</title>
+  <title>qualif</title>
 
 
   <style>
@@ -15,6 +15,25 @@ p {
 h1 {
   margin: 5px;
   color: white;
+}
+
+h2 {
+  margin: 12px;
+  color: rgb(160, 17, 17);
+}
+
+sup {
+  color: rgb(139, 148, 114);
+}
+
+h3 {
+  margin: 12px;
+  color: rgb(14, 136, 54);
+}
+
+h4 {
+  margin: 12px;
+  color: rgb(68, 77, 160);
 }
 
 #interpupilary {
@@ -39,86 +58,110 @@ h1 {
 <h1>Partitions distribuées, réalité augmentée et composition assistée, quelques potentialités des Technologies pour la Notation (TENOR)</h1>
 <div id="container">
   <p>   
-Jonathan Bell, compositeur, chercheur associé laboratoire 
+Jonathan Bell, compositeur<a href="http://partitur.herokuapp.com/dos#art1-note1" id="art1-1"><sup>1</sup></a>, chercheur associé laboratoire 
 PRISM-CNRS
 
-<a href="http://partitur.herokuapp.com/dos#art1-note1" id="art1-1"><sup>1</sup></a>
-    <br>
--> my scripts - dans le bon ordre
-<br>
-press the space bar in inscore?
-<br>
-jacktrip
-<br>
-rPis videos + audio <br>
-if there is audio on Pi, then 3 binocles, with output connected to computer low lat. + videostream
-<br>
-14h low lat
-<br>
-Raspberry Pi has no audio?? + screen? + image?
-<br>
-2s and 3s, dans machine à sons, Markov aléatoire contrôlé
-
-  <p>   
-    en revoyant les videos je pense à une idée: 
-    Angelo se filme dans PatchXR - il crée un oscilateur en VR en se filmant en POV - du coup ce film peut être réinjecté en VR dans une nouvelle session, de sorte qu'en refaisant exactement ce qu'il y a dans la vidéo, il retrouve exactement le même chemin (il reproduit exactement la même impro, et on peut écrire une pièce spectrale par dessus
-    <br>  outerhtml <br> 
-    pour changer dynamiquement un contenu <br>
-    document.getElementById("myAnchor").innerHTML = "W3Schools";  <br>
-  document.getElementById("myAnchor").href = "https://www.w3schools.com"; <br>
-  document.getElementById("myAnchor").target = "_blank";</p>
 
 
 
-  <h1>Videos</h1>
-  <p>Two videos, one for each eye <br>
-  Black n white - > White n black holograph <br>
-  Black n white - > White n blpas ack holograph <br>
-  One kid in VR realtime controls the loop of little lamb <br>
-
-  <h1>INScore</h1>
-  <p>just for scheduling and faust <br>
-
-  <h1>Document.write</h1>
-  <p>load html content <br>
-
-
-  <h1>Aframe</h1>
-  <p>Two videos, one for each eye <br>
-
-  <h1>Website qualif</h1>
-  <p>Two videos, one for each eye </p>
-  <p>2 iframes </p>
-  <p>draw1 <br>draw2 </p>
-  deleuze communication <br>
-  do that
 
 
 
-  <h1>todo</h1>
-  <p>Richard B</p>
-  <p>Benjamin M</p>
-  <p>Mathieu VR</p>
+
+<h2>Introduction</h2>
+<p>
+En informatique musicale, la notion émergeante de recherche artistique laisse entrevoir des interactions croissantes entre création artistique, recherche scientifique et développement logiciel. Ce modèle, depuis longtemps promu dans les universités américaines, oriente la production artistique vers le monde de demain et présente le potentiel évident de rendre ludique l’apprentissage de notions fondamentales en sciences et technologies. On peut cependant déceler dans ce paradigme un retranchement de l’art vers la sphère académique, ou, pire, sa subordination à l’industrie technologique commerciale. 
+<br><br>
+En tant que chercheur associé au PRISM, la figure de Jean-Claude Risset (1938-2016), père de la computer music, est pour moi un modèle évident. L’enjeu de son époque consistait à “composer le son”, ou générer des sons de synthèse jusqu’alors inouïs, en explorant par la même occasion le phénomène acoustique et surtout sa perception par l’oreille humaine. Cette prise en compte de l’humain en Interaction Homme-Machine (HCI) m’inspire en tant qu’artiste : plutôt que de réaliser des installations ou de projeter une bande sur un système de diffusion, je cherche avant tout à écrire pour des musiciens (humains), ce qui me conduit à interroger le lien entre technologie et notation (TENOR).
+</p>
 
 
-  <h1>My intranet</h1>
-  <p>trios miniatures </p>
-  <p>chaque fois une histoire, une partition, des traitements, des costumes, une bande son</p>
-  <p>Black n white - > White n blpas ack holograph </p>
-  <p>One kid in VR realtime controls the loop of little lamb </p>
+<h2>SmartVox : prémices</h2>
+<p>
+  L’application Web SmartVox constitue l’aboutissement de ma recherche doctorale “Audioscores, a resource for composition and computer-aided composition” (Dmus in composition, Guildhall School, Londres, 2016). Développée à l’IRCAM en 2016 dans le framework SoundWorks (Robaszkiewicz 2015) du projet CoSiMa (ANR-13-CORD-0010), SmartVox concerne la notation musicale et la performance à l’ère des objets connectés (IoT, Internet of Things). Utilisée majoritairement dans mes propres compositions, l’application consiste à distribuer et synchroniser des partitions audiovisuelles sur les navigateurs web des smartphones des interprètes, pour les faire chanter ou jouer en polyphonie tout en se déplaçant (e.g. autour du public) dans un langage spectral (i.e. microtonal).</p>
 
-  <p>trios miniatures </p>
-  <p>chaque fois une histoire, une partition, des traitements, des costumes, une bande son</p>
-  <p>Black n white - > White n blpas ack holograph </p>
-  <p>One kid in VR realtime controls the loop of little lamb </p>
-
-  <p>le son qui sort du nav est cumulable avec parto</p>
-
-  <p>bach black n white</p>
-
-  <p>ma voix dans reverb + gardiner en fond</p>
-  <p>auto</p>
+<h2>Distributed notation</h2>
+  <p>
+    La notion de partitions distribuées n’est pas unique à SmartVox, comme le montrent principalement INScore Web (Fober, 2021), Drawsocket (Gottfried, 2019), et le Decibel ScorePlayer (Wyatt, 2019). Dédiés à l’animation et à la distribution de partitions graphiques, INScore et Drawsocket1 sont tous deux pensés spécifiquement pour et à partir du format OSC (Open Sound Control), pour une communication WebSocket temps réel entre les différents agents de la partition (une adresse pour chaque voix/instrument, une sous-adresse pour instance graphique e.g. curseur).</p>
+  
+<h2>TENOR - Contexte international</h2>
     <p>
+      Répandue en Australie, la notation animée (Hope, 2017) modifie profondément les pratiques musicales collectives écrites. Redéfinissant le rôle du chef d’orchestre quand le déroulement temporel est dicté par l’avancement d’un curseur sur la page (Wyatt, 2019), ces dispositifs simplifient la synchronisation des interprètes au multimédia et offrent de nouvelles possibilités dans le domaine des formes écrites et semi-improvisées.
+  
+  <br><br>
+
+      SmartVox est aujourd’hui bien identifiée par la conférence internationale TENOR (Technology for Musical Notation and Representation), dont la circulation des savoirs en grande partie à l’origine des développements actuels de ma pratique artistique & technologique (communication réseau, réalité augmentée, web-audio…)1. 
+    </p>    
+  
+  
+
+<h2>Illustration par quelques œuvres :</h2>
+    <p>
+      Bhagwati (2017) et Hajdu (2016) , remettent en question la validité des interactive scores du point de vue artistique, posant à cette occasion la question de la plausibilité du couple recherche-création dans le domaine des technologies pour la notation. Nous tentons néanmoins ici une illustration par quelques exemples.
+
+
+<h3>Illustration par quelques œuvres :</h3>
+
+<h4>Le temps des nuages (2018)<h4>
+ <p>Pour chœur d’enfants, ensemble et électronique permettait à 80 chanteurs de réaliser une polyphonie complexe, montrant également la robustesse du système : 70 collégiens et 10 musiciens professionnels, spatialisés autour du public, soit plus de 60 connexions au serveur, dans une salle de 500 personnes, ce qui mérite à plusieurs égards une comparaison avec la Symphonie im St. Pauli Elbtunnel dans laquelle 144 musiciens se synchronisent au moyen de drawsocket. (Hajdu, 2019).
+</p>
+
+<h4>Deliciae (2021)<h4>
+  <p>est une composition/performance dans laquelle les chanteurs sont guidés par des partitions distribuées affichées sur des casques qu’ils portent en `head mounted display´ (costumes et mouvements : Leticia Martinez Perez).</p>
+
+<h4>Common Ground (2021)<h4>
+  <p>composée sur des poèmes Robert Bell et réalisée en collaboration avec l’artiste Keke Vilabelda, présente un dispositif technologique comparable à celui de Deliciae. La création a été réalisée à l´aide du dispositif SmartVox embarqué sur RaspberryPi. La reprise cette pièce lors du remote choir concert de TENOR 2021 à Hambourg expérimentait la combinaison de deux technologies : 1/ drawsocket pour les partitions distribuées et 2/ JackTrip pour l’audio faible latence.</p>
+  
+<h4>Fantaisie (2021)<h4>
+    <p>La violoncelliste visualise la partition au moyen de l’environnement INScore (Fober 2012, 2021) embarqué sur des lunettes Epson.</p>
+    
+
+
+
+<h2>Bibliographie</h2>
+<p>
+Bhagwati (2017) <a href="https://www.tenor-conference.org/proceedings/2017/20_Bhagwati_tenor2017.pdf">Vexations of ephemerality</a>, TENOR 2017, La Coruña, Spain.<br>
+
+Bell (2016) <a href="https://openaccess.city.ac.uk/id/eprint/17285/">Audio Scores, a resource for composition and computer-aided performance</a>, Thèse de doctorat, City University, Londres.<br>
+
+Bell (2017) <a href="https://www.tenor-conference.org/proceedings/2017/11_Bell_tenor2017.pdf">Smartvox - A Web-Based Distributed Media Player as Notation Tool For Choral Practices </a> J Bell, B Matuszewski, TENOR 2017, La Coruña, Spain.<br>
+
+Bell (2018) <a href="https://www.tenor-conference.org/proceedings/2018/03_Bell_tenor18.pdf">Audiovisual Scores and Parts Synchronized Over the Web</a>, TENOR 2018, Montreal, Canada.<br>
+
+Bell (2019) <a href="https://www.tenor-conference.org/proceedings/2019/01Bell.pdf">Animated Notation, Score Distribution and AR-VR Environments for Spectral Mimetic Transfer in Music Composition</a> TENOR 2019 – J Bell, B Carey, Melbourne, Australia.<br>
+
+Bell (2020) <a href="https://www.tenor-conference.org/proceedings/2020/26_Bell_tenor20.pdf"> Common Ground, music and movement directed by a Raspberry Pi</a>, TENOR 2020, Hambourg, Germany.<br>
+
+Bell (2021) <a href="https://www.tenor-conference.org/proceedings/2021/07_Bell_tenor21.pdf">
+Distributed Notation in the Browser, an Overview</a>, TENOR 2021, Hambourg, Germany.<br>
+
+Dominique Fober, Yann Orlarey, Stéphane Letz (2012) <a href="https://hal.archives-ouvertes.fr/hal-02158817/document">
+INScore - An Environment for the Design of Live Music Scores.</a> Linux Audio Conference, 2012, Stanford, United States. pp.47-54. <br>
+
+R. Gottfried, G. Hajdu (2019) <a href="https://www.tenor-conference.org/proceedings/2019/05Gottfried.pdf">
+Drawsocket: A Browser Based System for Networked Score Display</a>, Proceedings of the International Conference on Technologies for Music Notation and Representation – TENOR'19.<br>
+
+G. Hajdu, R. Gottfried (2019) <a href="https://www.tenor-conference.org/proceedings/2019/06Hajdu.pdf">
+Networked Music Performance in the Old Elbe Tunnel</a>, Proceedings of the International Conference on Technologies for Music Notation and Representation – TENOR’19.<br>
+
+G. Hajdu (2016) <a href="https://direct.mit.edu/comj/article/40/1/25/94561/Disposable-Music">
+Disposable Music</a>, Computer Music Journal, Vol. 40 No1 Spring 2016.<br>
+
+C. Hope (2017) <a href="https://direct.mit.edu/comj/article/41/3/21/94736/Electronic-Scores-for-Music-The-Possibilities-of">
+Electronic Scores for Music: The Possibilities of Animated Notation</a>, Computer Music Journal, vol. 41-3, p.21-35.<br>
+
+S. Robaszkiewicz, N. Schnell (2015) <a href="http://architexte.ircam.fr/textes/Robaszkiewicz15a/index.pdf">
+Soundworks – A playground for artists and developers to create collaborative mobile web performances</a>, 1st Web Audio Conference, 2015, Paris, France.<br>
+
+D. Fober (2021) <a href="https://www.tenor-conference.org/proceedings/2021/03_Fober_tenor21.pdf">
+A web based environment embedding signal processing in musical scores</a>, Proceedings of the TENOR conference, Hamburg, Germany, 2021.<br>
+
+</p>
+
+
+
+<h3>Notes</h3>
+    
 
 
 
