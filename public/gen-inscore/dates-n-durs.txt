@@ -1,0 +1,30 @@
+/ITL/scene/sc0 date $sc0start ;
+/ITL/scene/sc0 duration $sc0duree ;
+
+/ITL/scene/sc1 date $sc1start ;
+/ITL/scene/sc1 duration $sc1duree ;
+
+/ITL/scene/sc2 date $sc2start ;
+/ITL/scene/sc2 duration $sc2duree ;
+
+/ITL/scene/sc3 date $sc3start ;
+/ITL/scene/sc3 duration $sc3duree ;
+
+/ITL/scene/sc4 date $sc4start ;
+/ITL/scene/sc4 duration $sc4duree ;
+
+/ITL/scene/sc5 date $sc5start ;
+/ITL/scene/sc5 duration $sc5duree ;
+
+/ITL/scene/sc6 date $sc6start ;
+/ITL/scene/sc6 duration $sc6duree ;
+
+/ITL/scene/sc7 date $sc7start ;
+/ITL/scene/sc7 duration $sc7duree ;
+
+/ITL/scene/sc8 date $sc8start ;
+/ITL/scene/sc8 duration $sc8duree ;
+
+/ITL/scene/sc9 date $sc9start ;
+/ITL/scene/sc9 duration $sc9duree ;
+
