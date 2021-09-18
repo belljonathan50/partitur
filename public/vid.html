@@ -2,17 +2,12 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-  <title>State of Gutzindex</title>
+  <title>vid</title>
 
   <link href="libs/fonts/fonts.css" rel="stylesheet">
-  <script src="libs/libINScore.js"></script>
-  <script src="libs/libGUIDOEngine.js"></script>
-  <script src="libs/libfaust-wasm.js"></script>
-  <script src="libs/FaustLibrary.js"></script>
-  <script src="libs/inscoreview.js"></script>
-  <script src="libs/inscoreglue.js"></script>
-  <script src="libs/libmusicxml.js"></script>
-  <script src="libs/receive.js"></script>
+  
+  <script src="libs/receivevid.js"></script>
+  <script src="/timesync/timesync.js"></script> 
 
 
   <style>
@@ -32,10 +27,27 @@
   </style>
 </head>
 
+
+<script>
+
+  var ts = timesync.create({
+    server: '/timesync',
+    interval: 10000
+  });
+ 
+  ts.on('change', function (offset) {
+  });
+  setInterval(function () {
+    var now = new Date(ts.now());
+  }, 5000);
+</script> 
+
+
+
 <body>
     
 <center>
-   <video class="snob" width="640px" src="libs/vids/S1.mp4" controls playsinline></video>
+   <video id="vid" width="640px" src="libs/vids/S1.mp4" controls playsinline></video>
  
  </center>
 
