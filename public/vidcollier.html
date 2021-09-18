@@ -1,0 +1,178 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>vid</title>
+
+  <link href="libs/fonts/fonts.css" rel="stylesheet">
+  
+ 
+  <script src="/timesync/timesync.js"></script> 
+
+
+  <style>
+    body {
+      margin: 20;
+      background-color: black;
+      color: white
+    }
+
+    .inscore {
+      background-color: white;
+      border-color: grey;
+      width: 100%;
+      height: 100%;
+      font-size: 1px;
+    }
+
+    .slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 125px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+  </style>
+</head>
+
+
+<script>
+
+  var ts = timesync.create({
+    server: '/timesync',
+    interval: 10000
+  });
+ 
+  ts.on('change', function (offset) {
+  });
+  setInterval(function () {
+    var now = new Date(ts.now());
+  }, 5000);
+</script> 
+
+
+
+
+<body>
+    
+<center>
+   <video id="vid" width="640px" src="libs/vids/S1.mp4" controls playsinline></video>
+ 
+ </center>
+
+ <form>
+  <label for="vol">delay adjustment</label>
+  <input class="slider" type="range" id="vol" name="sik" name="sik" min="-800" max="800" value="0" style="color:rgb(0, 251, 21); width:600px;" oninput="window.tomate =parseInt(this.value); this.nextElementSibling.value = this.value + ' ms'">
+  <output>0</output>
+</form>
+
+<script>
+  tomate = 0
+</script>
+
+
+<script>
+
+  (function() {
+    var HOST = location.origin.replace(/^http/, 'ws');
+    var ws = new WebSocket(HOST);
+    
+    var form = document.querySelector('.form');
+  
+    var vid = document.getElementById('vid');
+  
+  
+    
+    ws.onmessage = function(msg) {
+      var response = msg.data;
+      console.log(response);
+      var words = response.split(' ');
+      var first = words[0];
+      var seekValue = parseInt(words[1]);
+      var vid = document.getElementById('vid');
+  
+      // console.log(msg);
+      // console.log("response "+ response);
+      // console.log("words "+ words);
+      // console.log("first "+ first);
+      // console.log("seekValue "+ seekValue);
+      // console.log(typeof seekValue);
+      // console.log(typeof seekValue);
+      // console.log(typeof seekValue);
+      
+  
+  
+      switch (first) {
+        
+        case "start":
+          vid.currentTime = 0;
+          vid.play();
+          
+          break;
+  
+        case "pause":
+          vid.pause();
+          break;
+  
+        case "seek":
+          vid.currentTime = seekValue;
+          break;
+  
+        case "dummy":
+          console.log("dummy");
+          break;
+  
+        case "startX":
+          vid.play();
+          break;
+  
+        case "stop":
+          vid.pause();
+          vid.currentTime = 0;
+          break;
+  
+        case  "hit":
+          var NowClientSide = new Date(ts.now());
+          var forsee = parseInt(words[4]);
+          console.log("zob");
+          console.log(NowClientSide.getTime());
+          console.log(NowClientSide.value);
+          console.log(typeof forsee);
+          console.log(typeof tomate);
+          console.log(typeof NowClientSide);
+          var difference = (forsee + tomate) - NowClientSide.getTime();
+          console.log("NowClientSIde "+ NowClientSide.getTime());
+          console.log("forsee "+ forsee);
+          console.log("difference "+ difference);
+          setTimeout( function() { vid.play(); }, difference)
+          break;
+  
+  
+          // case  "write":
+          //   console.log("receive the write ");
+         
+          //   document.write("hello world")
+          //   break;
+            
+  
+      }
+  
+  
+  
+  
+  
+    }
+  }());
+  
+  
+  </script>
+  
+
+</body>
+
+</html>
