@@ -1,4 +1,4 @@
-sc0start = 0 ;
+sc0start = 0.1 ;
 sc0end = 2.5 ;
 sc1start = 2.5 ;
 sc1end = 5 ;
