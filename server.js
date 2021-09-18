@@ -96,6 +96,10 @@ app.get('/dos', function (req, res) {
   res.sendfile(publicPath + '/dos.html');
 });
 
+app.get('/vid', function (req, res) {
+  res.sendfile(publicPath + '/vid.html');
+});
+
 app.get('/sound', function (req, res) {
   res.sendfile(publicPath + '/sound.html');
 });
