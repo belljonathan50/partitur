@@ -40,10 +40,6 @@ function myDelayedFunction() {
 
 
 
-function SeekChange(value) {
-  console.log('seek '+value);
-  ws.send('seek '+value);
-}
 
 function DelayPlay(value) {
   var latency = value;
