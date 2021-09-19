@@ -79,8 +79,6 @@
   var form = document.querySelector('.form');
 
   var vid = document.getElementById('vid');
-
-
   
   ws.onmessage = function(msg) {
     var response = msg.data;
@@ -109,7 +107,7 @@
           break;
 
           case "tallis":
-          console.log("tune test");
+          console.log("tune tallis");
           vid.src= "./libs/vids/s/tallis.mp4";
           alert("please click");
            vid.play();
@@ -124,17 +122,33 @@
            vid.pause();
           break;
 
-          case "falasol":
+          case "kids":
           console.log("tune test");
-          vid.src= "./libs/vids/s/falasol.mp4";
+          vid.src= "./libs/vids/s/kids.mp4";
           alert("please click");
            vid.play();
            vid.pause();
           break;
 
-          case "josquin":
+          case "dufay":
           console.log("tune test");
-          vid.src= "./libs/vids/s/josquin.mp4";
+          vid.src= "./libs/vids/s/dufay.mp4";
+          alert("please click");
+           vid.play();
+           vid.pause();
+          break;
+
+          case "ockeghem":
+          console.log("tune test");
+          vid.src= "./libs/vids/s/ockeghem.mp4";
+          alert("please click");
+           vid.play();
+           vid.pause();
+          break;
+
+          case "dunstable":
+          console.log("tune test");
+          vid.src= "./libs/vids/s/dunstable.mp4";
           alert("please click");
            vid.play();
            vid.pause();
