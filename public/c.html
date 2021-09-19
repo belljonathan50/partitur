@@ -164,8 +164,7 @@ var now = new Date(ts.now());
 
    <form>
       <label for="vol">seek (between 0 and 600s):</label>
-      <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" oninput="
-      SeekChange(this.value);  
+      <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" oninput=" 
       var duration = this.value;
       
       var mins = ~~((duration % 3600) / 60);
@@ -232,21 +231,41 @@ var now = new Date(ts.now());
    
    
      <form>
-       <label for="vol">size - write directly on page</label>
-       <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:1200px;" 
+       <label for="vol">playback-speed</label>
+       <input type="range" id="vol" name="sik" value="1" min="0.5" max="4" step="0.1" style="color:rgb(0, 251, 21); width:1200px;" 
        oninput=
        "
        var text = 'smart size ' + this.value;
        console.log(text);
        ws.send(text);
+       this.nextElementSibling.value =  ' Rate =  ' + this.value  ;
+      ws.send('rate '+value);
        ">
+       <output> Rate = 1</output>
      </form>
-     
-     <button id="tallis" type="button" onclick="
-     console.log('sendwrite');
-      var text = 'tune tallis';
-      ws.send(text);
-     ">Tallis</button>
+
+
+
+<!-- which tune to play      -->
+<button id="test" type="button" onclick="
+var text = 'tune test';
+ws.send(text);
+">test</button>
+
+<button id="collier" type="button" onclick="
+ var text = 'tune collier';
+ ws.send(text);
+">Collier</button>
+
+<button id="falasolmifa" type="button" onclick="
+ var text = 'tune falasolmifa';
+ ws.send(text);
+">falasol</button>
+
+<button id="josquin" type="button" onclick="
+ var text = 'tune josquin';
+ ws.send(text);
+">Josquin</button>
         
 
 
