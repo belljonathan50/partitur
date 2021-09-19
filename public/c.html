@@ -1,0 +1,260 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>State of Guts</title>
+
+  <link href="libs/fonts/fonts.css" rel="stylesheet">
+  <!-- <script src="libs/libINScore.js"></script>
+  <script src="libs/libGUIDOEngine.js"></script>
+  <script src="libs/libfaust-wasm.js"></script>
+  <script src="libs/FaustLibrary.js"></script>
+  <script src="libs/inscoreview.js"></script>
+  <script src="libs/inscoreglue.js"></script>
+  <script src="libs/libmusicxml.js"></script> -->
+  <!-- <script src="libs/receive.js"></script> -->
+  <script src="/timesync/timesync.js"></script> 
+
+
+  <style>
+    body {
+      margin: 20;
+      background-color: black;
+      color: white
+    }
+    .inscore {
+      background-color: white;
+      border-color: grey;
+      width: 100%;
+      height: 100%;
+      font-size: 1px;
+    }
+
+
+p {
+  color: grey;
+}
+
+h1 {
+  color: white;
+}
+
+#interpupilary {
+  display:inline-block;
+  width: 80px;
+}
+
+#container {
+  text-align:center;
+  /* display:inline-block; */
+}
+
+
+
+
+
+  </style>
+</head>
+
+
+<script>
+   // socket to send stuff
+   var print = console.log; 
+   console.log = function(msg) { print("Altered!: " + msg); } ;
+   console.log("Some mejhjhjhjhssage");
+</script> 
+
+
+<script>
+// socket to send stuff
+var HOST = location.origin.replace(/^http/, 'ws');
+  var ws = new WebSocket(HOST);
+
+
+
+
+   // create a timesync instance
+   var ts = timesync.create({
+     server: '/timesync',
+     interval: 10000
+   });
+  
+   // get notified on changes in the offset
+   ts.on('change', function (offset) {
+     console.log('changed offset: ' + offset + ' ms<br>');
+   });
+  
+   // get synchronized time
+   setInterval(function () {
+     var now = new Date(ts.now());
+     console.log('now: ' + now.toISOString() + ' ms<br>');
+   }, 3000);
+
+   setInterval(function () {
+     var now = new Date(ts.now());
+     var dum = "dummy";
+    ws.send(dum);
+
+
+     console.log('sent dummy');
+   }, 15000);
+
+ </script> 
+
+
+
+
+<body>
+<div>
+
+  <button id="butstop" type="button" onclick="
+console.log('stop');
+var text = 'stop';
+ws.send(text);
+">Stop</button>
+
+   <button id="but" type="button" onclick="
+      console.log('start');
+    var text = 'start';
+    ws.send(text);
+      ">Start at 00</button>
+
+
+<button id="delbut" type="button" onclick="
+var now = new Date(ts.now());
+ var mess = ('hit now: '+ now.getTime() +'; later: ' + ( now.getTime() + 500)  );
+ console.log(mess);
+ ws.send(mess);
+">Start0 - del 500</button>
+
+<button id="delbut" type="button" onclick="
+var now = new Date(ts.now());
+ var mess = ('hit now: '+ now.getTime() +'; later: ' + ( now.getTime() + 1000)  );
+ console.log(mess);
+ ws.send(mess);
+">Start0 - del 1000</button>
+
+<button id="delbut" type="button" onclick="
+var now = new Date(ts.now());
+ var mess = ('hit now: '+ now.getTime() +'; later: ' + ( now.getTime() + 1000)  );
+ console.log(mess);
+ ws.send(mess);
+">Start0 - del 2000</button>
+
+   <button id="cur" type="button" onclick="
+       console.log('startX');
+    var text = 'startX';
+    ws.send(text);
+   ">Start at currentTime</button>
+
+   <button id="butpause" type="button" onclick="
+       console.log('pause');
+    var text = 'pause';
+    ws.send(text);
+   ">Pause</button>
+
+
+
+   <button id="sen" type="button" onclick="
+   console.log('sendwrite');
+    var text = 'write this';
+    ws.send(text);
+   ">sendwrite</button>
+
+
+   <form>
+      <label for="vol">seek (between 0 and 600s):</label>
+      <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" oninput="
+      SeekChange(this.value);  
+      var duration = this.value;
+      
+      var mins = ~~((duration % 3600) / 60);
+      var secs = ~~duration % 60;
+      console.log(mins);
+
+      this.nextElementSibling.value =  mins + ' mins ' + secs;
+      ws.send('seek '+value);
+      ">
+      <output>0</output>
+    </form>
+
+
+
+   <script>
+      var bubu = document.getElementById("but");
+      var toto = document.getElementById("butstop");  
+   </script>
+
+
+
+
+
+ 
+ 
+  
+
+
+</div>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   
+   
+   
+     <body style="background-color:black;"></body>
+   
+   
+   
+     <form>
+       <label for="vol">size - write directly on page</label>
+       <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:1200px;" 
+       oninput=
+       "
+       var text = 'smart size ' + this.value;
+       console.log(text);
+       ws.send(text);
+       ">
+     </form>
+     
+     <button id="tallis" type="button" onclick="
+     console.log('sendwrite');
+      var text = 'tune tallis';
+      ws.send(text);
+     ">Tallis</button>
+        
+
+
+</body>
+
+
+
+
+<script src="libs/sender.js"></script>
+
+</html>
