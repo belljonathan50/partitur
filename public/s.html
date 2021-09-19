@@ -93,7 +93,25 @@
     switch (first) {
       
         case "tune":
-        console.log("hey")
+        console.log("this voice: tune keyword");
+
+
+
+
+          switch (second) {
+      
+          case "test":
+          console.log("tune test");
+          vid.src= "./libs/vids/test.mp4";
+          alert("please click");
+           vid.play();
+           vid.pause();
+          break;
+
+          case "collier":
+          console.log("tune colliers");
+          break;
+                      }
         break;
 
         case "this":
@@ -104,20 +122,14 @@
 
           switch (second) {
       
-          case "tune":
+          case "play":
           console.log("hey")
           break;
 
-          case "this":
-          console.log("i");
-
-
-
-
-
-      
-      break;
-  }
+          case "rate":
+          console.log("i");  
+          break;
+                          }
 
 
 
