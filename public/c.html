@@ -164,7 +164,7 @@ var now = new Date(ts.now());
 
    <form>
       <label for="vol">seek (between 0 and 600s):</label>
-      <input type="range" id="vol" name="sik" min="0" max="600" style="color:rgb(0, 251, 21); width:600px;" oninput=" 
+      <input type="range" id="vol" name="sik"  min="0" max="600" value="0" style="color:rgb(0, 251, 21); width:600px;" oninput=" 
       var duration = this.value;
       
       var mins = ~~((duration % 3600) / 60);
@@ -252,20 +252,35 @@ var text = 'tune test';
 ws.send(text);
 ">test</button>
 
+<button id="tallis" type="button" onclick="
+ var text = 'tune tallis';
+ ws.send(text);
+">tallis</button>
+
 <button id="collier" type="button" onclick="
  var text = 'tune collier';
  ws.send(text);
 ">Collier</button>
 
-<button id="falasolmifa" type="button" onclick="
- var text = 'tune falasolmifa';
+<button id="kids" type="button" onclick="
+ var text = 'tune kids';
  ws.send(text);
-">falasol</button>
+">kids</button>
 
-<button id="josquin" type="button" onclick="
- var text = 'tune josquin';
+<button id="dufay" type="button" onclick="
+ var text = 'tune dufay';
  ws.send(text);
-">Josquin</button>
+">dufay</button>
+
+<button id="ockeghem" type="button" onclick="
+ var text = 'tune ockeghem';
+ ws.send(text);
+">ockeghem</button>
+
+<button id="dunstable" type="button" onclick="
+ var text = 'tune dunstable';
+ ws.send(text);
+">dunstable</button>
         
 
 
