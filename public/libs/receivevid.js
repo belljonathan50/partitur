@@ -16,17 +16,6 @@
     var seekValue = parseInt(words[1]);
     var vid = document.getElementById('vid');
 
-    // console.log(msg);
-    // console.log("response "+ response);
-    // console.log("words "+ words);
-    // console.log("first "+ first);
-    // console.log("seekValue "+ seekValue);
-    // console.log(typeof seekValue);
-    // console.log(typeof seekValue);
-    // console.log(typeof seekValue);
-    
-
-
     switch (first) {
       
       case "start":
