@@ -83,23 +83,48 @@
 
   
   ws.onmessage = function(msg) {
+    var response = msg.data;
+    var words = response.split(' ');
+    var first = words[0];
+    var second = words[1];
+    var Value = parseInt(words[1]);
 
 
     switch (first) {
       
-      case "tune":
+        case "tune":
         console.log("hey")
-        
         break;
 
+        case "this":
+        console.log("i");
 
-        // case  "write":
-        //   console.log("receive the write ");
-       
-        //   document.write("hello world")
-        //   break;
-          
 
+
+
+          switch (second) {
+      
+          case "tune":
+          console.log("hey")
+          break;
+
+          case "this":
+          console.log("i");
+
+
+
+
+
+      
+      break;
+  }
+
+
+
+
+
+        
+        break;
     }
 
 
