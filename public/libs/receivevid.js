@@ -10,7 +10,7 @@
   
   ws.onmessage = function(msg) {
     var response = msg.data;
-    console.log(response);
+    console.log('everybody '+ response);
     var words = response.split(' ');
     var first = words[0];
     var seekValue = parseInt(words[1]);
