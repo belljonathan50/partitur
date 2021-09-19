@@ -76,6 +76,12 @@ app.get('/baba', function (req, res) {
   res.sendfile(publicPath + '/baba.html');
 });
 
+
+app.get('/c', function (req, res) {
+  res.sendfile(publicPath + '/c.html');
+});
+
+
 app.get('/banana', function (req, res) {
   res.sendfile(publicPath + '/banana.html');
 });
@@ -107,6 +113,10 @@ app.get('/vid', function (req, res) {
 
 app.get('/sound', function (req, res) {
   res.sendfile(publicPath + '/sound.html');
+});
+
+app.get('/s', function (req, res) {
+  res.sendfile(publicPath + '/s.html');
 });
 
 app.get('/smartsop', function (req, res) {
