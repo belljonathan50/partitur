@@ -14,6 +14,7 @@
     var words = response.split(' ');
     var first = words[0];
     var myValue = parseInt(words[1]);
+    var myFloat = parseFloat(words[1]);
     var vid = document.getElementById('vid');
 
     switch (first) {
@@ -21,7 +22,6 @@
       case "start":
         vid.currentTime = 0;
         vid.play();
-        
         break;
 
       case "pause":
@@ -41,7 +41,10 @@
         break;
 
       case "rate":
-        vid.playbackRate = myValue;
+        console.log("haaaaaaaa"+myFloat);
+        console.log(typeof myFloat);
+        vid.playbackRate = myFloat;
+
         break;
 
       case "stop":
