@@ -27,12 +27,22 @@ p {
 
 div#a {
   display: inline-block;
-  width: 55%;
+  width: 65%;
 }
 
 div#b {
   display: inline-block;
+  width: 30%;
+}
+
+div#left {
+  display: inline;
   width: 35%;
+}
+
+div#right {
+  display: inline-block;
+  width: 65%;
 }
 
 h1 {
@@ -95,22 +105,43 @@ PRISM-CNRS
 <p>
 En informatique musicale, la notion émergeante de recherche artistique laisse entrevoir des interactions croissantes entre création artistique, recherche scientifique et développement logiciel. Ce modèle, depuis longtemps promu dans les universités américaines, oriente la production artistique vers le monde de demain et présente le potentiel évident de rendre ludique l’apprentissage de notions fondamentales en sciences et technologies. On peut cependant déceler dans ce paradigme un retranchement de l’art vers la sphère académique, ou, pire, sa subordination à l’industrie technologique commerciale. 
 <br><br>
-En tant que chercheur associé au PRISM, la figure de Jean-Claude Risset (1938-2016), père de la computer music, est pour moi un modèle évident. L’enjeu de son époque consistait à “composer le son”, ou générer des sons de synthèse jusqu’alors inouïs, en explorant par la même occasion le phénomène acoustique et surtout sa perception par l’oreille humaine. Cette prise en compte de l’humain en Interaction Homme-Machine (HCI) m’inspire en tant qu’artiste : plutôt que de réaliser des installations ou de projeter une bande sur un système de diffusion, je cherche avant tout à écrire pour des musiciens (humains), ce qui me conduit à interroger le lien entre technologie et notation (TENOR).
+En tant que chercheur associé au PRISM-CNRS, la figure de Jean-Claude Risset (1938-2016), père de la computer music, est pour moi un modèle évident. L’enjeu de son époque consistait à “composer le son”, ou générer des sons de synthèse jusqu’alors inouïs, en explorant par la même occasion le phénomène acoustique et sa perception par l’oreille humaine. C'est surtout cette prise en compte de l’humain en Interaction Homme-Machine (HCI) qui m’inspire en tant qu’artiste : plutôt que de réaliser des installations ou de projeter une bande sur un système de diffusion, je cherche avant tout à écrire pour des musiciens (humains), ce qui me conduit à interroger le lien entre technologie et notation (TENOR : Technology for music Notation and Representation).
 </p>
 
 
 <h2>SmartVox : prémices</h2>
 <p>
-  L’application Web SmartVox constitue l’aboutissement de ma recherche doctorale <a href="http://partitur.herokuapp.com/dos#note-audioscores" id="audioscores">Audioscores, a resource for composition and computer-aided composition</a>
-  
-  (Dmus in composition, Guildhall School, Londres, 2016). Développée à l’IRCAM en 2016 dans le framework SoundWorks <a href="http://partitur.herokuapp.com/dos#robaszkiewicz2015" id="audioscores">(Robaszkiewicz 2015)</a> du projet CoSiMa (ANR-13-CORD-0010), SmartVox concerne la notation musicale et la performance à l’ère des objets connectés (IoT, Internet of Things). Utilisée majoritairement dans mes propres compositions, l’application consiste à distribuer et synchroniser des partitions audiovisuelles sur les navigateurs web des smartphones des interprètes, pour les faire chanter ou jouer en polyphonie tout en se déplaçant (e.g. autour du public) dans un langage spectral (i.e. microtonal).</p>
+
+ 
+ <div>
+  <div class="snob" id="a"> <p> Bien que pianiste improvisateur, ma formation initiale s'est concentrée sur l'écriture, passée
+    (3 prix d'écriture: harmonie, renaissance et XXème, CNSMDP), et contemporaine
+    (prix de composition, CNSMDP). Désireux de poursuivre mes recherches en composition, ma thèse <a href="http://partitur.herokuapp.com/dos#note-audioscores" id="audioscores">Audioscores, a resource for composition and computer-aided composition</a> consistait
+    à étendre les possibilités de l'écriture au moyen d'écouteurs diffusés au casque de l'interprête. <br><br><br><br>
+  </p></div>
+  <div class="snob" id="b">	<iframe  height="90%"  width="100%" src="https://www.youtube.com/embed/7HNCXE1ZLbM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div></div>
+ 
+
+
+  <div id="left" width="40%" >	<iframe   src="https://www.youtube.com/embed/JZsJn7EEW-A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+  <div id="right" id="a"> <p>  <p>
+    L’application Web SmartVox, développée à l’IRCAM en 2016 dans le framework SoundWorks <a href="http://partitur.herokuapp.com/dos#robaszkiewicz2015" id="audioscores">(Robaszkiewicz 2015)</a>
+    du projet CoSiMa (ANR-13-CORD-0010), constitue donc l'aboutissement de cette recherche doctorale, étendant aux technologies web mes résultats jusqu'alors circonscrits aux outils traditionnels (une DAW et un système de diffusion multicanal). 
+    SmartVox concerne donc la notation musicale et la performance à l’ère des objets connectés (IoT, Internet of Things). Utilisée majoritairement dans mes propres compositions, l’application consiste à distribuer et synchroniser des partitions audiovisuelles sur les navigateurs web des smartphones des interprètes, pour leur permettre de chanter ou de jouer en polyphonie tout en se déplaçant (e.g. autour du public), le plus souvent dans un langage spectral (i.e. microtonal).</p>
+   
+  </p></div>
+ <!-- <p>
+ L’application Web SmartVox, développée à l’IRCAM en 2016 dans le framework SoundWorks <a href="http://partitur.herokuapp.com/dos#robaszkiewicz2015" id="audioscores">(Robaszkiewicz 2015)</a>
+ du projet CoSiMa (ANR-13-CORD-0010), constitue donc l'aboutissement de cette recherche doctorale, étendant aux technologies web mes résultats jusqu'alors circonscrits aux outils traditionnels (une DAW et un système de diffusion multicanal). 
+ SmartVox concerne donc la notation musicale et la performance à l’ère des objets connectés (IoT, Internet of Things). Utilisée majoritairement dans mes propres compositions, l’application consiste à distribuer et synchroniser des partitions audiovisuelles sur les navigateurs web des smartphones des interprètes, pour leur permettre de chanter ou de jouer en polyphonie tout en se déplaçant (e.g. autour du public), le plus souvent dans un langage spectral (i.e. microtonal).</p> -->
 
 <h2>Distributed notation</h2>
   <p>
     La notion de partitions distribuées n’est pas unique à SmartVox, comme le montrent principalement:
     INScore Web <a href="http://partitur.herokuapp.com/dos#note-fober2021" id="fober2021">(Fober, 2021)</a>, 
     Drawsocket <a href="http://partitur.herokuapp.com/dos#note-gottfried2019" id="gottfried2019">(Gottfried, 2019)</a>, 
-    et le Decibel ScorePlayer <a href="http://partitur.herokuapp.com/dos#note-Wyatt2019" id="Wyatt2019">(Wyatt, 2019)</a>. Dédiés à l’animation et à la distribution de partitions graphiques, INScore et Drawsocket1 sont tous deux pensés spécifiquement pour et à partir du format OSC (Open Sound Control), pour une communication WebSocket temps réel entre les différents agents de la partition (une adresse pour chaque voix/instrument, une sous-adresse pour instance graphique e.g. curseur).</p>
+    et le Decibel ScorePlayer <a href="http://partitur.herokuapp.com/dos#note-Wyatt2019" id="Wyatt2019">(Wyatt, 2019)</a>.
+    Dédiés à l’animation et à la distribution de partitions graphiques, INScore et Drawsocket1 sont tous deux pensés spécifiquement pour et à partir du format OSC (Open Sound Control), pour une communication WebSocket temps réel entre les différents agents de la partition (une adresse pour chaque voix/instrument, une sous-adresse pour instance graphique e.g. curseur).</p>
   
 <h2>TENOR - Contexte international</h2>
     <p>
@@ -150,6 +181,7 @@ En tant que chercheur associé au PRISM, la figure de Jean-Claude Risset (1938-2
   </p></div>
   <div class="snob" id="b">	<iframe  height="90%"  width="100%" src="https://www.youtube.com/embed/SyFdR2HiF00" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div></div>
  
+
 
 
 
@@ -234,7 +266,7 @@ Electronic Scores for Music: The Possibilities of Animated Notation</a>, Compute
  (2015) <a href="http://architexte.ircam.fr/textes/Robaszkiewicz15a/index.pdf">
 Soundworks – A playground for artists and developers to create collaborative mobile web performances</a>, 1st Web Audio Conference, 2015, Paris, France.<br>
 
-<a id="note-fober2011"href="http://partitur.herokuapp.com/dos#fober2011">D. Fober</a>
+<a id="note-fober2021"href="http://partitur.herokuapp.com/dos#fober2011">D. Fober</a>
  (2021) <a href="https://www.tenor-conference.org/proceedings/2021/03_Fober_tenor21.pdf">
 A web based environment embedding signal processing in musical scores</a>, Proceedings of the TENOR conference, Hamburg, Germany, 2021.<br>
 
