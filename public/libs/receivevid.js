@@ -40,6 +40,11 @@
         vid.play();
         break;
 
+      case "rate":
+        vid.pause();
+        vid.currentTime = 0;
+        break;
+
       case "stop":
         vid.pause();
         vid.currentTime = 0;
