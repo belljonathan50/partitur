@@ -13,7 +13,7 @@
     console.log('everybody '+ response);
     var words = response.split(' ');
     var first = words[0];
-    var seekValue = parseInt(words[1]);
+    var myValue = parseInt(words[1]);
     var vid = document.getElementById('vid');
 
     switch (first) {
@@ -29,7 +29,7 @@
         break;
 
       case "seek":
-        vid.currentTime = seekValue;
+        vid.currentTime = myValue;
         break;
 
       case "dummy":
@@ -41,8 +41,7 @@
         break;
 
       case "rate":
-        vid.pause();
-        vid.currentTime = 0;
+        vid.playbackRate = myValue;
         break;
 
       case "stop":
