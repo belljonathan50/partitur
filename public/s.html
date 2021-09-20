@@ -24,6 +24,18 @@
       height: 100%;
       font-size: 1px;
     }
+
+    #lock {
+      background-color: white;
+      border-color: grey;
+      width: 100%;
+      height: 100%;
+      font-size: 68px;
+    }
+
+
+
+
   </style>
 </head>
 
@@ -47,23 +59,24 @@
 
 
 <body>
+
+  <button id="lock" type="button" onclick="
+           vid.play();
+           vid.pause();
+           this.remove();
+">please click</button>
     
 <center>
-   <video id="vid" width="640px" src="libs/vids/test.mp4" controls playsinline></video>
+   <video id="vid" height="80%" width="100%" src="libs/vids/test.mp4" controls playsinline></video>
 <br><br>
 <br>   <form>
     <label for="vol">delay adjustment</label>
     <input class="slider" type="range" id="vol" name="sik" name="sik" min="-1600" max="1600" value="0" style="color:rgb(0, 251, 21); width:600px;" oninput="window.tomate =parseInt(this.value); this.nextElementSibling.value = this.value + ' ms'">
     <output>0</output>
   </form>
-  <br>a<br>
-  <br>a<br>
-  <br>a<br>
-  <br>a<br>
-  <br>a<br>
-  <br>a<br>
-  <br>a<br>
-  <br>a<br>
+  <br> <br>
+  <br> <br>
+
 
  
  </center>
@@ -74,12 +87,6 @@
 
 
  <script>
-   alert("please click");
-     alert("please click again");
-     setTimeout(function(){ vid.play();
-     vid.pause(); }, 500);
-     
-
 
 
 
@@ -204,11 +211,7 @@
   </script>
 
 
-<button id="butpause" type="button" onclick="
-           vid.play();
-           vid.pause();
 
-">click me to unlock video</button>
 
 
 
