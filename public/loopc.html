@@ -1,0 +1,658 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>jsonS</title>
+
+  <link href="libs/fonts/fonts.css" rel="stylesheet">
+  <!-- <script src="libs/libINScore.js"></script>
+  <script src="libs/libGUIDOEngine.js"></script>
+  <script src="libs/libfaust-wasm.js"></script>
+  <script src="libs/FaustLibrary.js"></script>
+  <script src="libs/inscoreview.js"></script>
+  <script src="libs/inscoreglue.js"></script>
+  <script src="libs/libmusicxml.js"></script> -->
+  <script src="/timesync/timesync.js"></script> 
+
+
+  <style>
+    body {
+      margin: 20;
+      background-color: black;
+      color: white
+    }
+
+    .inscore {
+      background-color: white;
+      border-color: grey;
+      width: 100%;
+      height: 100%;
+      font-size: 1px;
+    }
+
+    #lock {
+      background-color: white;
+      border-color: grey;
+      width: 100%;
+      height: 100%;
+      font-size: 68px;
+    }
+
+    .slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 125px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+  </style>
+</head>
+
+
+
+
+
+<script>
+  manualAdjustment = 0;
+  var ts = timesync.create({
+    server: '/timesync',
+    interval: 10000
+  });
+ 
+  ts.on('change', function (offset) {
+  });
+  setInterval(function () {
+    var now = new Date(ts.now());
+  }, 5000);
+</script> 
+
+
+
+<body>
+
+
+    
+<center>
+   <video id="vid" height="80%" width="100%" src="libs/vids/test.mp4" controls playsinline></video>
+<br><br>
+<br>   <form>
+    <label for="vol">delay adjustment</label>
+    <input class="slider" type="range" id="vol" name="sik" name="sik" min="-1500" max="1500" value="0" style="color:rgb(0, 251, 21); width:600px;" oninput="window.manualAdjustment =parseInt(this.value); this.nextElementSibling.value = this.value + ' ms'">
+    <output>0</output>
+  </form>
+  <br> <br>
+  <br> <br>
+</center>
+
+
+
+
+
+
+
+ <script>
+
+window.tomate=0;
+
+  (function() {
+    var HOST = location.origin.replace(/^http/, 'ws');
+    var ws = new WebSocket(HOST);
+    
+    var form = document.querySelector('.form');
+    let video = document.getElementById('vid');
+
+    
+    ws.onmessage = function(msg) {
+
+      var response = msg.data;
+      var words = response.split(' ');
+
+
+      var first = words[0];
+      // console.log('first '+ first);
+      var second = words[1];
+      // console.log('second '+ second);
+      var third = words[2];
+      // console.log('third '+ third);
+      var later = parseInt(words[4]);
+      // console.log('later  '+ later);
+      var last = words[words.length-1];
+      // console.log('last '+ last);
+      var obj = JSON.parse(last); 
+      
+
+
+   // always update
+
+   switch(first) {
+  case "hit":
+// when
+  var NowClientSide = new Date(ts.now());
+  var NowClientNum = NowClientSide.getTime()
+  // console.log("now " + NowClientNum+ " later " + later);
+  var difference = (later - NowClientNum) + manualAdjustment;
+  
+
+  setTimeout( function() { 
+
+    // update
+        if(obj.data.isPlaying=='true'){video.play();} else {video.pause();};
+        video.playbackRate = obj.data.rate;
+        video.currentTime = obj.data.seek;
+        let resource = video.src.split('/').pop();
+        let stateresource = obj.data.tune+'.mp4';
+        if (resource != stateresource) {video.src = '/libs/vids/s/'+ obj.data.tune +'.mp4'};
+        console.log("updated " + obj.data.lag + " or "+ difference + " ms later" )
+  
+
+                         }, difference)
+
+  break;
+
+  default:
+    console.log("do nothing")
+} 
+
+
+     
+
+
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // if(first=="dummy") {console.log("slllllllloooooooowwwwwww")}
+      // else if (first=="start") {video.play(); console.log("staaaaaaaart")}
+      // else if (first=="pause") {video.pause(); console.log("staaaaaaaart")}
+      // else
+      // {
+      //   var obj = JSON.parse(third); 
+      //     if(obj.data.isPlaying=='true'){video.play();}
+      //     else
+      //                                   {video.pause();}
+      //   video.playbackRate = obj.data.rate;
+      //   video.currentTime = obj.data.seek;
+      //   let resource = video.src.split('/').pop();
+      //   let stateresource = obj.data.tune+'.mp4';
+      //   console.log(resource+' '+stateresource);
+      //    if (resource != stateresource) {video.src = '/libs/vids/s/'+ obj.data.tune +'.mp4'};
+      //   }
+      // ;
+      
+
+        //   switch (obj.data.tune) {
+        
+        // case "test":
+        // console.log("tune test");
+        // vid.src= "./libs/vids/test.mp4";
+        // break;
+
+        // case "tallis":
+        // console.log("tune tallis");
+        // vid.src= "./libs/vids/s/tallis.mp4";
+        // break;
+
+        // case "collier":
+        // console.log("tune test");
+        // vid.src= "./libs/vids/s/collier.mp4";
+        // break;
+
+        // case "kids":
+        // console.log("tune test");
+        // vid.src= "./libs/vids/s/kids.mp4";
+        // break;
+
+        // case "dufay":
+        // console.log("tune test");
+        // vid.src= "./libs/vids/s/dufay.mp4";
+        // break;
+
+        // case "ockeghem":
+        // console.log("tune test");
+        // vid.src= "./libs/vids/s/ockeghem.mp4";
+        // break;
+
+        // case "dunstable":
+        // console.log("tune test");
+        // vid.src= "./libs/vids/s/dunstable.mp4";
+        // break;
+
+
+        //             }
+    
+     
+
+  
+
+
+
+
+
+
+
+    
+  }());
+
+
+  
+
+        // console.log('type response type reresponsest response rresponseest'+typeof response);
+      // console.log('rest.data : '+ rest.data);
+      // console.log('rest : '+ rest);
+      
+
+
+
+      // if(typeof msg == Object) {console.log('response object response object response object response object'+ response);}
+  
+  
+      // switch (first) {
+      //         case "hello":
+      //             console.log("got it")
+      //             break;
+        
+      //         case "pause":
+      //           state.isPlaying = "false"; console.log("the state.isPlaying of my object is : "+ state.isPlaying)
+      //           break;
+      // }
+
+
+  
+  </script>
+
+
+
+
+
+<!-- 
+ <script>
+
+
+
+     (function() {
+  var HOST = location.origin.replace(/^http/, 'ws');
+  var ws = new WebSocket(HOST);
+  
+  var form = document.querySelector('.form');
+
+  var vid = document.getElementById('vid');
+  
+  ws.onmessage = function(msg) {
+    var response = msg.data;
+    var words = response.split(' ');
+    var first = words[0];
+    var second = words[1];
+    var Value = parseInt(words[1]);
+
+
+    switch (first) {
+      
+        case "tune":
+        console.log("this voice: tune keyword");
+
+
+
+
+          switch (second) {
+      
+          case "test":
+          console.log("tune test");
+          vid.src= "./libs/vids/test.mp4";
+          break;
+
+          case "tallis":
+          console.log("tune tallis");
+          vid.src= "./libs/vids/s/tallis.mp4";
+          break;
+
+          case "collier":
+          console.log("tune test");
+          vid.src= "./libs/vids/s/collier.mp4";
+          break;
+
+          case "kids":
+          console.log("tune test");
+          vid.src= "./libs/vids/s/kids.mp4";
+          break;
+
+          case "dufay":
+          console.log("tune test");
+          vid.src= "./libs/vids/s/dufay.mp4";
+          break;
+
+          case "ockeghem":
+          console.log("tune test");
+          vid.src= "./libs/vids/s/ockeghem.mp4";
+          break;
+
+          case "dunstable":
+          console.log("tune test");
+          vid.src= "./libs/vids/s/dunstable.mp4";
+          break;
+
+
+                      }
+        break;
+
+        case "this":
+        console.log("i");
+
+
+
+
+          switch (second) {
+      
+          case "play":
+          console.log("hey")
+          break;
+
+          case "rate":
+          console.log("i");  
+          break;
+                          }
+
+
+
+
+
+        
+        break;
+    }
+
+
+
+
+
+  }
+}());
+
+  </script> -->
+
+
+
+
+
+
+
+
+
+<div class="inscore" id="scene">
+  <pre>
+
+
+
+
+
+/ITL/scene/cursor set rect 0.03 0.6;
+/ITL/scene/cursor color 255 0 0;
+/ITL/scene/cursor show 0;
+
+
+sc0start = 0.1 ;
+sc0end = 1 ;
+sc1start = 1 ;
+sc1end = 2 ;
+sc2start = 2 ;
+sc2end = 3 ;
+sc3start = 3 ;
+sc3end = 4 ;
+sc4start = 4 ;
+sc4end = 5 ;
+sc5start = 5 ;
+sc5end = 6 ;
+
+
+sc0duree = $sc0end - $sc0start;
+sc1duree = $sc1end - $sc1start;
+sc2duree = $sc2end - $sc2start;
+sc3duree = $sc3end - $sc3start;
+sc4duree = $sc4end - $sc4start;
+sc5duree = $sc5end - $sc5start;
+
+
+
+/ITL/scene/sc0 set txt '0' ;
+/ITL/scene/sc1 set txt '0' ;
+/ITL/scene/sc2 set txt '0' ;
+/ITL/scene/sc3 set txt '0' ;
+/ITL/scene/sc4 set txt '0' ;
+/ITL/scene/sc5 set txt '0' ;
+
+/ITL/scene/sc* show 0 ;
+
+#===================================================================================================================
+# events declaration
+#================================================================================================================= 
+/ITL/scene watch START0 (
+   /ITL/scene/cursor date 0,
+   /ITL/scene/cursor tempo 60
+  );
+
+  /ITL/scene watch STARTX (
+    /ITL/scene/cursor tempo 60
+   );
+
+/ITL/scene watch STOP0 (
+    /ITL/scene/cursor tempo 0
+   );
+
+   /ITL/scene watch REWIND (
+    /ITL/scene/cursor date 0,
+    /ITL/scene/cursor tempo 0
+   );
+
+
+/ITL/scene watch START (
+/ITL/scene/sync cursor sc* v relative
+);
+
+/ITL/scene watch STOP (
+/ITL/scene/cursor tempo 0
+);
+
+
+
+
+
+
+/ITL/scene/sc0 date 	$sc0start;
+/ITL/scene/sc0 duration $sc0duree;
+/ITL/scene/sc1 date 	$sc1start;
+/ITL/scene/sc1 duration $sc1duree;
+/ITL/scene/sc2 date 	$sc2start;
+/ITL/scene/sc2 duration $sc2duree;
+/ITL/scene/sc3 date 	$sc3start;
+/ITL/scene/sc3 duration $sc3duree;
+/ITL/scene/sc4 date 	$sc4start;
+/ITL/scene/sc4 duration $sc4duree;
+/ITL/scene/sc5 date 	$sc5start;
+/ITL/scene/sc5 duration $sc5duree;
+
+#================================================================================================
+# the score
+#================================================================================================
+
+
+/ITL/scene/cursor watch timeEnter $sc0start$sc0end (
+/ITL/log write section 0,
+/ITL/scene/javascript run "toto('bite')"
+);
+
+/ITL/scene/cursor watch timeEnter $sc1start$sc1end (
+/ITL/log write section 1
+);
+
+/ITL/scene/cursor watch timeEnter $sc2start$sc2end (
+/ITL/log write section 2
+);
+
+/ITL/scene/cursor watch timeEnter $sc3start$sc3end (
+/ITL/log write section 3
+);
+
+/ITL/scene/cursor watch timeEnter $sc4start$sc4end (
+/ITL/log write section 4
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# UI UI UI UI UI UI UI user interface settings
+
+
+
+
+/ITL/scene/cursor tempo 0;
+/ITL/scene/cursor date 0;
+
+
+
+
+
+/ITL/scene/ctrlplay set img "imgsop/play.png";
+/ITL/scene/ctrlstop set img "imgsop/stop.png";
+/ITL/scene/ctrlplay xorigin 1.2;
+/ITL/scene/ctrlstop xorigin -1.2;
+/ITL/scene/ctrl* width 0.080;
+/ITL/scene/ctrl* y 0.88;
+alpha = 150; 
+/ITL/scene/ctrl* alpha $alpha;
+/ITL/scene/ctrl* watch mouseEnter ( /ITL/scene/$self alpha 255); 
+/ITL/scene/ctrl* watch mouseLeave ( /ITL/scene/$self alpha $alpha); 
+
+CTRLPLAY = (/ITL/scene/ctrlplay push,
+/ITL/log write 'ctrplay-push',
+/ITL/scene/cursor tempo 60,
+ /ITL/scene/audio play 1,
+/ITL/scene/ctrlplay set img "imgsop/pause.png", 
+/ITL/scene/ctrlplay watch mouseDown (
+  /ITL/scene/cursor tempo 0,
+    /ITL/scene/audio play 0,
+  /ITL/scene/ctrlplay set img "imgsop/play.png",
+  /ITL/log write 'ctrplay-pop',
+  /ITL/scene/ctrlplay pop
+)
+);
+
+
+
+/ITL/scene watch keyDown ArrowRight ( /ITL/scene event PRINTX );
+/ITL/scene watch PRINTX (
+ /ITL/log write "hi hi",
+ /ITL/scene/ctrlplay push,
+/ITL/log write 'ctrplay-push',
+/ITL/scene/cursor tempo 60,
+ /ITL/scene/audio play 1,
+/ITL/scene/ctrlplay set img "imgsop/pause.png", 
+/ITL/scene/ctrlplay watch mouseDown (
+  /ITL/scene/cursor tempo 0,
+    /ITL/scene/audio play 0,
+  /ITL/scene/ctrlplay set img "imgsop/play.png",
+  /ITL/log write 'ctrplay-pop',
+  /ITL/scene/ctrlplay pop)
+  );
+
+  /ITL/scene watch keyDown ' ' ( /ITL/scene event PRINTX );
+/ITL/scene watch PRINTX (
+ /ITL/log write "hi hi",
+ /ITL/scene/ctrlplay push,
+/ITL/log write 'ctrplay-push',
+/ITL/scene/cursor tempo 60,
+ /ITL/scene/audio play 1,
+/ITL/scene/ctrlplay set img "imgsop/pause.png", 
+/ITL/scene/ctrlplay watch keyDown ' ' (
+  /ITL/scene/cursor tempo 0,
+    /ITL/scene/audio play 0,
+  /ITL/scene/ctrlplay set img "imgsop/play.png",
+  /ITL/log write 'ctrplay-pop',
+  /ITL/scene/ctrlplay pop)
+  );
+
+  /ITL/scene watch keyDown ArrowLeft ( /ITL/scene event PRINTY );
+  /ITL/scene watch PRINTY (
+    /ITL/scene/cursor tempo 0,
+       /ITL/scene/audio play 0,
+       /ITL/scene/ctrlplay set img "imgsop/play.png",
+       /ITL/log write 'ctrplay-pop',
+       /ITL/scene/ctrlplay pop
+     );
+
+
+/ITL/scene/ctrlplay watch mouseDown $CTRLPLAY;
+
+/ITL/scene/ctrlstop watch mouseDown (
+/ITL/scene/cursor tempo 0,
+/ITL/scene/cursor date 0,
+ /ITL/scene/audio vdate 0,
+ /ITL/scene/audio play 0,
+/ITL/scene/ctrlplay pop,
+/ITL/scene/ctrlplay watch mouseDown $CTRLPLAY,
+/ITL/scene/ctrlplay set img "imgsop/play.png",
+/ITL/scene event CUT 
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#==================================================
+#/ITL/scene/cursor date 5;
+#
+# /ITL/scene/sc100 watch show ( /ITL/scene/sc100 watch show, /ITL/scene event START );
+#
+#
+#================================================== 
+
+
+
+
+
+</pre>
+
+</div> 
+
+
+
+
+</body>
+
+</html>
