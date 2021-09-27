@@ -121,6 +121,14 @@ app.get('/jsonS', function (req, res) {
   res.sendfile(publicPath + '/jsonS.html');
 });
 
+app.get('/loopc', function (req, res) {
+  res.sendfile(publicPath + '/loopc.html');
+});
+
+app.get('/loops', function (req, res) {
+  res.sendfile(publicPath + '/loops.html');
+});
+
 app.get('/smartex', function (req, res) {
   res.sendfile(publicPath + '/smartex.html');
 });
