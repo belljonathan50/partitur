@@ -1,0 +1,10 @@
+{
+  "isPlaying": "false",
+  "rate": 1,
+  "tune":"tallis", 
+  "seek": 0,
+  "currentTime": 0, 
+  "lag":500
+}
+
+
