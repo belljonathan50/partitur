@@ -1,25 +1,23 @@
 const express     = require('express');
 var timesyncServer = require('timesync/server');
 const app         = express();
-// const Max = require("max-api");
+const fs = require('fs');
+const editJsonFile = require("edit-json-file");
 
 
 const router = express.Router();
 const path = require('path');
-
-
-
-
 const expressWs   = require('express-ws')(app);
 const morgan      = require('morgan');
 const compression = require('compression');
 const serveStatic = require('serve-static');
 const basicAuth   = require('basic-auth-connect');
-
 const user = process.env.USER;
 const pass = process.env.PASS;
 
 let connects = [];
+let file = editJsonFile(`${__dirname}/public/libs/DistributedState/state.json`);
+
 
 app.set('port', process.env.PORT || 3000);
 
@@ -30,10 +28,6 @@ if (user && pass) {
 
 app.use(morgan('dev'));
 app.use(compression());
-// app.use(serveStatic(`${__dirname}/public`));
-
-
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 var publicPath = path.join(__dirname, 'public');
@@ -42,7 +36,6 @@ var publicPath = path.join(__dirname, 'public');
 router.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "/"));
 });
-
 
 app.get('/new', function (req, res) {
     res.sendfile(publicPath + '/new.html');
@@ -76,11 +69,9 @@ app.get('/baba', function (req, res) {
   res.sendfile(publicPath + '/baba.html');
 });
 
-
 app.get('/c', function (req, res) {
   res.sendfile(publicPath + '/c.html');
 });
-
 
 app.get('/banana', function (req, res) {
   res.sendfile(publicPath + '/banana.html');
@@ -106,7 +97,6 @@ app.get('/controlvid', function (req, res) {
   res.sendfile(publicPath + '/controlvid.html');
 });
 
-
 app.get('/vid', function (req, res) {
   res.sendfile(publicPath + '/vid.html');
 });
@@ -121,6 +111,14 @@ app.get('/s', function (req, res) {
 
 app.get('/smartsop', function (req, res) {
   res.sendfile(publicPath + '/smartsop.html');
+});
+
+app.get('/jsonC', function (req, res) {
+  res.sendfile(publicPath + '/jsonC.html');
+});
+
+app.get('/jsonS', function (req, res) {
+  res.sendfile(publicPath + '/jsonS.html');
 });
 
 app.get('/smartex', function (req, res) {
@@ -139,7 +137,6 @@ app.get('/smartex', function (req, res) {
   res.sendfile(publicPath + '/smartex.html');
 });
 
-
 app.get('/conductor', function (req, res) {
   res.sendfile(publicPath + '/conductor.html');
 });
@@ -154,11 +151,66 @@ app.ws('/', (ws, req) => {
   connects.push(ws);
 
   ws.on('message', message => {
-    console.log('Received -', message);
+
+    // console.log('message received serverside : '+ message);
+
+    var words = message.split(' ');
+    var first = words[0];
+    var second = words[1];
+    // console.log('first : '+first);
+    // console.log('second : '+second + ' typeof : ' + typeof second);
+    // var seekValue = parseInt(words[1]);
+    // var vid = document.getElementById('vid');
     
+
+
+
+switch(first) {
+  case "stop":
+    console.log("totoooo");
+    file.set("isPlaying", "false");
+    file.set("seek", 0);
+    break;
+
+  case "start":
+    file.set("isPlaying", "true");
+    break;
+
+  case "pause":
+  file.set("isPlaying", "false");
+  break;
+
+  case "seek":
+    file.set("seek", second);
+    console.log(file.get());
+    break;
+
+  case "rate":
+    file.set("rate", second);
+    break;
+
+  case "lag":
+    file.set("lag", second);
+    break;
+
+  case "tune":
+    file.set("tune", second);
+    console.log("changed tune to "+ second)
+    break;
+
+  default:
+    console.log("just a sync");
+    // code block
+} 
     connects.forEach(socket => {
-      socket.send(message);
+      socket.send(message + ' '+  JSON.stringify(file));
+      // socket.send(file);
+    
+      // socket.send(file);
     });
+
+
+
   });
   
   ws.on('close', () => {
@@ -170,83 +222,9 @@ app.ws('/', (ws, req) => {
 
 
 
-
-// router.ws('/echo', function(ws, req) {
-//   ws.on('message', function(msg) {
-//     ws.send(msg);
-//     ws.send(msg);
-//     ws.send(msg);
-//   });
-// });
-
 app.use("/ws-stuff", router);
 
-
-
-
-// const sender = function (a, b, c) {
-//     ws.send(JSON.stringify({
-//       "value_1": a,
-//       "value_2": b,
-//       "value_3": c
-//     }));
-//   };
-
-  // Handle the Max interactions here...
-
-
-
-// Max.addHandler("send", (...args) => {
-//     console.log("send args: " + args);
-//     if (args.length === 3) {
-//       sender(args[0], args[1], args[2]);
-//     }
-//   });
-
-// Max.addHandler("seek", (args) => {
-//     console.log("send args: " + args);
-    
-//      console.log(args);
-//      const stringifie =   String(args);
-//      console.log(stringifie);
-    
-//     connects.forEach(socket => {
-//       socket.send(stringifie);
-      
-//     });
-
-//   });
-
-
-// Max.addHandler("seek", (args) => {
-//     console.log("send args: " + args);
-//      console.log("rate " + args);
-//      const stringifie =   String(args);
-//      console.log(stringifie);
-//     connects.forEach(socket => {
-//       socket.send(stringifie);
-//     });
-//   });
-
-
-
-
-  // Max.addHandler("msg", (args) => {
-  //   console.log("temporal args: " + args);
-  //   console.log("hi");
-  //   //  ts.now();
-    
-  //    console.log("what's the time " + args);
-  //    const stringifie =   String(args);
-  //    console.log("as a string, and sent over socket " +stringifie);
-  //   connects.forEach(socket => {
-  //     socket.send(stringifie);
-  //   });
-  // });
-
-
-  app.use('/timesync', timesyncServer.requestHandler);
-
+app.use('/timesync', timesyncServer.requestHandler);
 
 app.listen(app.get('port'), () => {
   console.log('Server listening on port %s', app.get('port'));
