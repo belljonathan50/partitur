@@ -12,13 +12,33 @@
       let butstart = document.getElementById("butstart");
       butstart.onclick =function() {mybutStart()};
       function mybutStart()       {
-        ws.send("start"); 
-                                  };
+        ws.send("start");         };
 
       let butpause = document.getElementById("butpause");
       butpause.onclick =function() {mybutPause()};
       function mybutPause()       {
-      ws.send("pause"); };
+      ws.send("pause");           };
+
+      let butkill = document.getElementById("butkill");
+      butkill.onclick =function() {mybutkill()};
+      function mybutkill()       {
+        clearTimeout(myVar)      };
+
+        let butrepeat = document.getElementById("butrepeat");
+        butrepeat.onclick =function() {mybutrepeat()};
+        function mybutrepeat()       {
+          var myVar = setInterval(function () {
+            var now = new Date(ts.now());
+            var mess = ('hit now: '+ now.getTime() +'; later: ' + ( now.getTime() + lag)  );
+            console.log(mess);
+            var dum = "dummy";
+            ws.send(mess);
+            console.log('sent dummy');
+          }, 6000);
+        
+        };
+
+
 });
 }());
 
