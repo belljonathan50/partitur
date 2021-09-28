@@ -12,8 +12,8 @@
   <script src="libs/inscoreview.js"></script>
   <script src="libs/inscoreglue.js"></script>
   <script src="libs/libmusicxml.js"></script> -->
-  <script src="libs/jsonC.js"></script>
   <script src="/timesync/timesync.js"></script> 
+  <script src="libs/jsonC.js"></script>
 
   <style>
     body {
@@ -82,9 +82,6 @@ var HOST = location.origin.replace(/^http/, 'ws');
 console.log(mess);
 // ws.send(mess);
 
-
-
-
      var dum = "dummy";
     ws.send(mess);
      console.log('sent dummy');
@@ -124,6 +121,9 @@ console.log(mess);
   var mins = ~~((seekval % 3600) / 60);
   var secs = ~~seekval % 60;
   this.nextElementSibling.value =  mins + ' mins ' + secs;
+  let vid = document.getElementById('vid');
+
+
   ">
   <output>0 mins 00</output>
 </form>
@@ -251,31 +251,43 @@ ws.send(text);
 <button id="tallis" type="button" onclick="
  var text = 'tune tallis';
  ws.send(text);
+ vid.src='libs/vids/s/tallis.mp4'
 ">tallis</button>
 
 <button id="collier" type="button" onclick="
  var text = 'tune collier';
  ws.send(text);
+ vid.src='libs/vids/s/collier.mp4'
 ">Collier</button>
 
 <button id="kids" type="button" onclick="
  var text = 'tune kids';
  ws.send(text);
+ vid.src='libs/vids/s/kids.mp4'
 ">kids</button>
 
 <button id="dufay" type="button" onclick="
  var text = 'tune dufay';
  ws.send(text);
+ vid.src='libs/vids/s/dufay.mp4'
 ">dufay</button>
+
+<button id="dufay2" type="button" onclick="
+ var text = 'tune dufay2';
+ ws.send(text);
+ vid.src='libs/vids/s/dufay2.mp4'
+">dufay2</button>
 
 <button id="ockeghem" type="button" onclick="
  var text = 'tune ockeghem';
  ws.send(text);
+ vid.src='libs/vids/s/ockeghem.mp4'
 ">ockeghem</button>
 
 <button id="dunstable" type="button" onclick="
  var text = 'tune dunstable';
  ws.send(text);
+ vid.src='libs/vids/s/dunstable.mp4'
 ">dunstable</button>
         
 
@@ -283,7 +295,7 @@ ws.send(text);
 
 <center>
   <br> <br>
-  <video id="vid" height="80%" width="100%" src="libs/vids/test.mp4" controls playsinline></video>
+  <video id="vid" height="80%" width="100%" src="libs/vids/test.mp4" controls muted></video>
 <br><br>
 
 
