@@ -75,17 +75,14 @@ var HOST = location.origin.replace(/^http/, 'ws');
     //  console.log('now: ' + now.toISOString() + ' ms<br>');
    }, 3000);
 
-   setInterval(function () {
+   var myVar = setInterval(function () {
      var now = new Date(ts.now());
-
      var mess = ('hit now: '+ now.getTime() +'; later: ' + ( now.getTime() + lag)  );
-console.log(mess);
-// ws.send(mess);
-
+     console.log(mess);
      var dum = "dummy";
-    ws.send(mess);
+     ws.send(mess);
      console.log('sent dummy');
-   }, 5000);
+   }, 6000);
  </script> 
 
 
@@ -109,6 +106,8 @@ console.log(mess);
 <button id="butstop" type="button">Stop</button>
 <button id="butstart" type="button">Play</button>
 <button id="butpause" type="button">Pause</button>
+<button id="butkill" type="button">kill</button>
+<button id="butrepeat" type="button">repeat</button>
 
 
 
