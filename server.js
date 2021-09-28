@@ -121,6 +121,20 @@ app.get('/jsonS', function (req, res) {
   res.sendfile(publicPath + '/jsonS.html');
 });
 
+app.get('/jsonA', function (req, res) {
+  res.sendfile(publicPath + '/jsonA.html');
+});
+
+app.get('/jsonT', function (req, res) {
+  res.sendfile(publicPath + '/jsonT.html');
+});
+
+app.get('/jsonB', function (req, res) {
+  res.sendfile(publicPath + '/jsonB.html');
+});
+
+
+
 app.get('/loopc', function (req, res) {
   res.sendfile(publicPath + '/loopc.html');
 });
@@ -159,6 +173,7 @@ app.ws('/', (ws, req) => {
   connects.push(ws);
 
   ws.on('message', message => {
+    console.log("hi");
 
     // console.log('message received serverside : '+ message);
 
