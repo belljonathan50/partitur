@@ -111,6 +111,7 @@ window.tomate=0;
 
     
     ws.onmessage = function(msg) {
+      console.log("hi");
 
       var response = msg.data;
       var words = response.split(' ');
