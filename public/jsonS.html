@@ -2,7 +2,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-  <title>jsonS</title>
+  <title>jsonT</title>
 
   <link href="libs/fonts/fonts.css" rel="stylesheet">
   <!-- <script src="libs/libINScore.js"></script>
@@ -85,7 +85,12 @@
 <br><br>
 <br>   <form>
     <label for="vol">delay adjustment</label>
-    <input class="slider" type="range" id="vol" name="sik" name="sik" min="-1500" max="1500" value="0" style="color:rgb(0, 251, 21); width:600px;" oninput="window.manualAdjustment =parseInt(this.value); this.nextElementSibling.value = this.value + ' ms'">
+    <input class="slider" type="range" id="vol" name="sik" name="sik" min="-1500" max="1500" value="0" style="color:rgb(0, 251, 21); width:600px;" oninput="
+    window.manualAdjustment =parseInt(this.value); 
+    ws.send('adjS ' + manualAdjustment);
+    console.log('adjS ' + manualAdjustment);
+
+    this.nextElementSibling.value = this.value + ' ms'">
     <output>0</output>
   </form>
   <br> <br>
@@ -104,14 +109,13 @@ window.tomate=0;
 
   (function() {
     var HOST = location.origin.replace(/^http/, 'ws');
-    var ws = new WebSocket(HOST);
+    window.ws = new WebSocket(HOST);
     
     var form = document.querySelector('.form');
     let video = document.getElementById('vid');
 
     
     ws.onmessage = function(msg) {
-      console.log("hi");
 
       var response = msg.data;
       var words = response.split(' ');
