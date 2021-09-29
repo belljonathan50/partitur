@@ -4,7 +4,11 @@
   "tune":"tallis", 
   "seek": 0,
   "currentTime": 0, 
-  "lag":500
+  "lag":500,
+  "adjS" : 0,
+  "adjA": 0,
+  "adjT": 0,
+  "adjB": 0
 }
 
 
