@@ -85,7 +85,14 @@
 <br><br>
 <br>   <form>
     <label for="vol">delay adjustment</label>
-    <input class="slider" type="range" id="vol" name="sik" name="sik" min="-1500" max="1500" value="0" style="color:rgb(0, 251, 21); width:600px;" oninput="window.manualAdjustment =parseInt(this.value); this.nextElementSibling.value = this.value + ' ms'">
+    <input class="slider" type="range" id="vol" name="sik" name="sik" min="-1500" max="1500" value="0" style="color:rgb(0, 251, 21); width:600px;" oninput="
+    window.manualAdjustment =parseInt(this.value); 
+    ws.send('adjA ' + manualAdjustment);
+    console.log('adjA ' + manualAdjustment);
+    this.nextElementSibling.value = this.value + ' ms'
+
+    
+    ">
     <output>0</output>
   </form>
   <br> <br>
@@ -104,7 +111,7 @@ window.tomate=0;
 
   (function() {
     var HOST = location.origin.replace(/^http/, 'ws');
-    var ws = new WebSocket(HOST);
+    window.ws = new WebSocket(HOST);
     
     var form = document.querySelector('.form');
     let video = document.getElementById('vid');
