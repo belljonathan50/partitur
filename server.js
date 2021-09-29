@@ -193,6 +193,7 @@ switch(first) {
     console.log("totoooo");
     file.set("isPlaying", "false");
     file.set("seek", 0);
+    console.log(file.get());
     break;
 
   case "start":
@@ -221,11 +222,33 @@ switch(first) {
     console.log("changed tune to "+ second)
     break;
 
+  case "adjS":
+      file.set("adjS", second);
+      console.log("changed adjS to "+ second)
+      break;
+
+  case "adjA":
+        file.set("adjA", second);
+        console.log("changed adjA to "+ second)
+        break;
+
+  case "adjT":
+        file.set("adjT", second);
+        console.log("changed adjT  to "+ second)
+        break;
+
+  case "adjB":
+        file.set("adjB", second);
+        console.log("changed adjB to "+ second)
+        break;
+
   default:
     console.log("just a sync");
+    console.log(file.get());
     // code block
 } 
     connects.forEach(socket => {
+      
       socket.send(message + ' '+  JSON.stringify(file));
       // socket.send(file);
     
