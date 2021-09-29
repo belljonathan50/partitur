@@ -104,7 +104,7 @@ window.tomate=0;
 
   (function() {
     var HOST = location.origin.replace(/^http/, 'ws');
-    var ws = new WebSocket(HOST);
+    window.ws = new WebSocket(HOST);
     
     var form = document.querySelector('.form');
     let video = document.getElementById('vid');
