@@ -143,6 +143,21 @@ window.tomate=0;
       console.log("response "+response);
       console.log("words "+words);
       console.log("second "+second);
+      console.log("later "+later);
+      console.log("later "+later);
+      console.log("later "+later);
+      console.log("later "+later);
+
+      console.log("last "+last);
+      console.log("last "+last);
+      console.log("last "+last);
+      console.log("last "+last);
+
+      console.log("obj "+obj);
+      console.log("obj "+obj);
+      console.log("obj "+obj);
+      console.log("obj "+obj);
+
       console.log(second);
       
 
@@ -153,45 +168,41 @@ window.tomate=0;
 
 
     case "toto":
-      console.log("goooooot");
 
-            switch(second) {
-            
-            case "play":{vid.play(); console.log('playyyyyyplayyyyyyplayyyyyyplayyyyyyplayyyyyy')};
-            case "pause":{vid.pause(); console.log('pausssssssepausssssssepausssssssepausssssssepausssssssepaussssssse')};
-            case "stop":{vid.currentTime = 0; vid.pause() };
-            break;
-
-          }
-  break;
+   
 
 
-    case "hit":
-// when
-  var NowClientSide = new Date(ts.now());
-  var NowClientNum = NowClientSide.getTime()
-  // console.log("now " + NowClientNum+ " later " + later);
-  var difference = (later - NowClientNum) + manualAdjustment;
+
+
+
+
+// var NowClientSide = new Date(ts.now());
+//   var NowClientNum = NowClientSide.getTime();
+  var difference = 1000 + manualAdjustment;
   
 
   setTimeout( function() { 
 
-    // update
-        if(obj.data.isPlaying=='true'){video.play();} else {video.pause();};
-        video.playbackRate = obj.data.rate;
-        video.currentTime = obj.data.seek;
-        let resource = video.src.split('/').pop();
-        let stateresource = obj.data.tune+'.mp4';
-        if (resource != stateresource) {video.src = '/libs/vids/s/'+ obj.data.tune +'.mp4'};
-        console.log("updated " + obj.data.lag + " or "+ difference + " ms later" )
+    console.log(second);
+      console.log(typeof second);
+      if (second == "play") {vid.play(); console.log("playplayplayplayplayplayplayplayplayplayplayplayplayplay")}
+      else if (second == "pause") {vid.pause(); console.log("pausepausepausepausepausepausepausepausepausepausepausepause")}
+      else if (second == "stop") {vid.pause(); vid.currentTime = 0; console.log("stopstopstopstopstopstopstopstopstopstopstopstopstopstopstopstop")}
+else ("do nothingdo nothingdo nothingdo nothingdo nothingdo nothingdo nothingdo nothingdo nothingdo nothingdo nothing");
   
 
                          }, difference)
 
+
+
+
+
+
+
   break;
 
   default:
-    console.log("do nothing")
+    console.log("why do you pause?????")
 } 
 
 
