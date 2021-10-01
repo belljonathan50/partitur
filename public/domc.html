@@ -88,10 +88,9 @@ var HOST = location.origin.replace(/^http/, 'ws');
    }, 6000);
 
 
-   function toto(message) {
-	console.log("toto " + message);
-  ws.send("toto " + message);
-};
+   function start() {ws.send("start")};
+   function stop() {ws.send("stop")};
+   function pause() {ws.send("pause")};
  </script> 
 
 
@@ -121,18 +120,18 @@ var HOST = location.origin.replace(/^http/, 'ws');
 
 /ITL/scene watch PLAY ( 	
 /ITL/scene/pos tempo 60,
-/ITL/scene/javascript run "toto('play')"
+/ITL/scene/javascript run "start()"
 );
 
 /ITL/scene watch STOP (
 /ITL/scene/pos tempo 0,
 /ITL/scene/pos date 0,
-/ITL/scene/javascript run "toto('stop')"
+/ITL/scene/javascript run "stop()"
 );
 
 /ITL/scene watch PAUSE (
 /ITL/scene/pos tempo 0,
-/ITL/scene/javascript run "toto('pause')"
+/ITL/scene/javascript run "pause()"
 );
 
 
@@ -215,9 +214,13 @@ w = 0.07;
 /ITL/scene/score vdate '$date'
 );
 
+/ITL/scene/tl watch mouseMove (
+/ITL/scene/pos date '$date',
+/ITL/scene/score vdate '$date'
+);
 
-  
-  
+
+# /ITL/scene/javascript run "toto('stop')"
   
   </pre>
   
@@ -284,48 +287,6 @@ w = 0.07;
  <output> delayed of : 500ms</output>
 </form>
 
-
-
-<!-- <button id="delbut" type="button" onclick="
-    var now = new Date(ts.now());
-    var mess = ('hit now: '+ now.getTime() +'; later: ' + ( now.getTime() + 500)  );
-    console.log(mess);
-    var jtext = 'json '+ text;
-    ws.send(jtext);
-    ">Start - del 500</button>
-
-
-<button id="cur" type="button" onclick="
-    console.log('startX');
-    var jtext = 'json startX';
-    ws.send(jtext);
-   ">Start at currentTime</button> -->
-
-   
-
-
-
-
-<!-- <button id="dend" type="button" onclick="
-var nowC = new Date(ts.now());
- var jmess = ('json hit now: '+ nowC.getTime() +'; later: ' + ( nowC.getTime() + lag)  );
- console.log(jmess);
- ws.send(jmess);
-">hit</button> -->
-
-<!-- 
-var forsee = parseInt(words[4]);
-console.log("zob");
-console.log(NowClientSide.getTime());
-console.log(NowClientSide.value);
-console.log(typeof forsee);
-console.log(typeof tomate);
-console.log(typeof NowClientSide);
-var difference = (forsee + tomate) - NowClientSide.getTime();
-console.log("NowClientSIde "+ NowClientSide.getTime());
-console.log("forsee "+ forsee);
-console.log("difference "+ difference);
-setTimeout( function() { vid.play(); }, difference) -->
 
 
 
@@ -431,119 +392,145 @@ ws.send(text);
 </center>
 
 
+<script>
 
 
+(function() {
+  console.log("working");
 
-<!-- <script>
+  document.addEventListener("DOMContentLoaded", function(event) 
+{
+      let butstop = document.getElementById("butstop");
+      butstop.onclick =function() {mybutFunction()};
+      function mybutFunction()    {
+        vid.pause();
+      ws.send("stop");  };
 
-  window.tomate=0;
-  
-    (function() {
-      var HOST = location.origin.replace(/^http/, 'ws');
-      var ws = new WebSocket(HOST);
-      
-      var form = document.querySelector('.form');
-    
-      var vid = document.getElementById('vid');
-  
-      
-      ws.onmessage = function(msg) {
-  
-         window.state = {};
-        var response = msg.data;
-        console.log('response '+ response);
-        var words = response.split(' ');
-      var rest = words.slice(1,12);
-  
+      let butstart = document.getElementById("butstart");
+      butstart.onclick =function() {mybutStart()};
+      function mybutStart()       {
+        ws.send("start");         };
+
+      let butpause = document.getElementById("butpause");
+      butpause.onclick =function() {mybutPause()};
+      function mybutPause()       {
+      ws.send("pause");           };
+
+      let butkill = document.getElementById("butkill");
+      butkill.onclick =function() {mybutkill()};
+      function mybutkill()       {
+        clearTimeout(myVar)      };
+
+        let butrepeat = document.getElementById("butrepeat");
+        butrepeat.onclick =function() {mybutrepeat()};
+        function mybutrepeat()       {
+          var myVar = setInterval(function () {
+            var now = new Date(ts.now());
+            var mess = ('hit now: '+ now.getTime() +'; later: ' + ( now.getTime() + lag)  );
+            console.log(mess);
+            var dum = "dummy";
+            ws.send(mess);
+            console.log('sent dummy');
+          }, 6000);
         
-        var first = words[0];
-        var second = words[1];
-        var seekValue = parseInt(words[1]);
-        var vid = document.getElementById('vid');
-    
-        switch (second) {
-  
-                case "start":
-                    state.isPlaying = "true"; console.log("the state.isPlaying of my object is : "+ state.isPlaying)
-                    break;
-          
-                case "pause":
-                  state.isPlaying = "false"; console.log("the state.isPlaying of my object is : "+ state.isPlaying)
-                  break;
-          
-                case "seek":
-                  state.lastSeek= parseInt(rest[1]);
-                  console.log("the state.lastSeek of my object is : "+ state.lastSeek)
-                  break;
-  
-                case "lag":
-                    state.lag= parseInt(rest[1]);
-                    console.log("the state.lag of my object is : "+ state.lag)
-                    break;
-          
-                case "dummy":
-                  console.log("dummy");
-                  break;
-          
-                case "startX":
-                  state.isPlaying = "true"; console.log("the cuttent playbackstate of my object is : "+ state.isPlaying)
-                  break;
-          
-                case "stop":
-                  state.isPlaying = "false"; console.log("the cuttent state.isPlaying of my object is : "+ state.isPlaying);
-                  state.seek = 0; console.log("the cuttent state.seek of my stateobject is : "+ state.seek);
-                  break;
-  
-                case "rate":
-                    state.rate = rest[1]; console.log("the cuttent state.rate of my object is : "+ state.rate);
-                    break;
-  
-                case "tune":
-                      state.tune = rest[1]; console.log("the cuttent state.tune of my object is : "+ state.tune);
-                      break;
-          
-                case  "hit":
-             
-                  console.log('rest' + rest);
-                  console.log('rest' + rest);
-                  console.log('rest' + rest);
-                  console.log('rest' + rest);
-                  console.log('state' + state);
-                  break;
-    
-
-    
-        }
-    
-    
-    
-    
-    
-      };
-  
-  
-  
-  
-  
-  
-  
-    }());
-  
+        };
 
 
-
-    setInterval(function () {
-    ws.send(JSON.stringify(state));
-     console.log('sent state: '+state);
-   }, 5000);
-  
-    
-    
-    </script> -->
+});
+}());
 
 
 
 
+
+  manualAdjustment = 0;
+  var ts = timesync.create({
+    server: '/timesync',
+    interval: 10000
+  });
+ 
+  ts.on('change', function (offset) {
+  });
+  setInterval(function () {
+    var now = new Date(ts.now());
+  }, 5000);
+
+
+
+
+
+
+
+window.tomate=0;
+
+
+
+
+
+  (function() {
+    var HOST = location.origin.replace(/^http/, 'ws');
+    var ws = new WebSocket(HOST);
+    
+    var form = document.querySelector('.form');
+    let vid = document.getElementById('vid');
+
+    
+    ws.onmessage = function(msg) {
+
+      var response = msg.data;
+      var words = response.split(' ');
+
+
+      var first = words[0];
+      // console.log('first '+ first);
+      var second = words[1];
+      // console.log('second '+ second);
+      var third = words[2];
+      // console.log('third '+ third);
+      var later = parseInt(words[4]);
+      // console.log('later  '+ later);
+      var last = words[words.length-1];
+      // console.log('last '+ last);
+      var obj = JSON.parse(last); 
+      
+
+
+   // always update
+
+   switch(first) {
+  case "hit":
+// when
+  var NowClientSide = new Date(ts.now());
+  var NowClientNum = NowClientSide.getTime()
+  // console.log("now " + NowClientNum+ " later " + later);
+  var difference = (later - NowClientNum) + manualAdjustment;
+  
+
+  setTimeout( function() { 
+    let vid = document.getElementById('vid');
+
+    // update
+        if(obj.data.isPlaying=='true'){vid.play();} else {vid.pause();};
+        vid.playbackRate = obj.data.rate;
+        vid.currentTime = obj.data.seek;
+        let resource = vid.src.split('/').pop();
+        let stateresource = obj.data.tune+'.mp4';
+        if (resource != stateresource) {vid.src = '/libs/vids/s/'+ obj.data.tune +'.mp4'};
+        console.log("updated " + obj.data.lag + " or "+ difference + " ms later" )
+                         }, difference)
+  break;
+
+  default:
+    console.log("do nothing")
+} 
+    };
+  }());
+
+
+  
+
+
+</script>
 
 
 
