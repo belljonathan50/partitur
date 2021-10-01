@@ -167,43 +167,38 @@ window.tomate=0;
    switch(first) {
 
 
-    case "toto":
-
-   
-
-
-
-
-
-
-// var NowClientSide = new Date(ts.now());
-//   var NowClientNum = NowClientSide.getTime();
-  var difference = 1000 + manualAdjustment;
+    case "hit":
+// when
+  var NowClientSide = new Date(ts.now());
+  var NowClientNum = NowClientSide.getTime()
+  // console.log("now " + NowClientNum+ " later " + later);
+  var difference = (later - NowClientNum) + manualAdjustment;
   
 
   setTimeout( function() { 
 
-    console.log(second);
-      console.log(typeof second);
-      if (second == "play") {vid.play(); console.log("playplayplayplayplayplayplayplayplayplayplayplayplayplay")}
-      else if (second == "pause") {vid.pause(); console.log("pausepausepausepausepausepausepausepausepausepausepausepause")}
-      else if (second == "stop") {vid.pause(); vid.currentTime = 0; console.log("stopstopstopstopstopstopstopstopstopstopstopstopstopstopstopstop")}
-else ("do nothingdo nothingdo nothingdo nothingdo nothingdo nothingdo nothingdo nothingdo nothingdo nothingdo nothing");
+    // update
+        if(obj.data.isPlaying=='true'){video.play();} else {video.pause();};
+        video.playbackRate = obj.data.rate;
+        video.currentTime = obj.data.seek;
+        let resource = video.src.split('/').pop();
+        let stateresource = obj.data.tune+'.mp4';
+        if (resource != stateresource) {video.src = '/libs/vids/s/'+ obj.data.tune +'.mp4'};
+        console.log("updated " + obj.data.lag + " or "+ difference + " ms later" )
   
 
                          }, difference)
 
-
-
-
-
-
-
   break;
+
+
 
   default:
     console.log("why do you pause?????")
 } 
+
+
+
 
 
      
